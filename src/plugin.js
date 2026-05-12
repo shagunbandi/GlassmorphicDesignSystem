@@ -14,6 +14,7 @@ import ImageViewer from './components/overlay/ImageViewer.vue'
 import InlineInput from './components/overlay/InlineInput.vue'
 // Navigation
 import BottomNavigation from './components/navigation/BottomNavigation.vue'
+import TopNavbar        from './components/navigation/TopNavbar.vue'
 import Tabs             from './components/navigation/Tabs.vue'
 import SectionHeader    from './components/navigation/SectionHeader.vue'
 // Feedback
@@ -41,6 +42,7 @@ const GlassUI = {
     app.component('GdImageViewer',     ImageViewer)
     app.component('GdInlineInput',     InlineInput)
     app.component('GdBottomNavigation',BottomNavigation)
+    app.component('GdTopNavbar',       TopNavbar)
     app.component('GdTabs',            Tabs)
     app.component('GdSectionHeader',   SectionHeader)
     app.component('GdEmptyState',      EmptyState)

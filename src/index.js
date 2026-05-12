@@ -20,6 +20,7 @@ export { default as InlineInput } from './components/overlay/InlineInput.vue'
 
 // Navigation
 export { default as BottomNavigation } from './components/navigation/BottomNavigation.vue'
+export { default as TopNavbar        } from './components/navigation/TopNavbar.vue'
 export { default as Tabs             } from './components/navigation/Tabs.vue'
 export { default as SectionHeader    } from './components/navigation/SectionHeader.vue'
 

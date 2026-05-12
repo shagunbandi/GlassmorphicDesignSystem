@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-import { computed, inject } from 'vue'
+import { computed, inject, resolveComponent } from 'vue'
 
 const props = defineProps({
   intent: {
@@ -96,17 +96,22 @@ const props = defineProps({
 const inheritedTone = inject('buttonTone', 'default')
 const resolvedTone = computed(() => props.tone ?? inheritedTone)
 
-// Polymorphic rendering
+// Polymorphic rendering — resolve RouterLink so :is works reliably in library builds
+// (string 'router-link' can fail to resolve when the component is compiled in a package).
+let resolvedRouterLink = null
 const tag = computed(() => {
-  if (props.to) return 'router-link'
+  if (props.to) {
+    if (resolvedRouterLink == null) resolvedRouterLink = resolveComponent('RouterLink')
+    return resolvedRouterLink
+  }
   if (props.href) return 'a'
   return 'button'
 })
 
-const resolvedType = computed(() => (tag.value === 'button' ? props.type : undefined))
+const resolvedType = computed(() => (props.to || props.href ? undefined : props.type))
 
 const polymorphicAttrs = computed(() => {
-  if (tag.value === 'router-link') return { to: props.to }
+  if (props.to) return { to: props.to }
   if (tag.value === 'a') {
     const attrs = { href: props.href }
     if (props.external) {
