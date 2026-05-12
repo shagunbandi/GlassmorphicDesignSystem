@@ -1,0 +1,24 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:18px; background:radial-gradient(circle at top right,#243b55,#141e30); font-family:var(--font-sans); color:var(--fg-1); }
+  .grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+  .cell { padding:12px; border-radius:12px; border:1px solid var(--glass-border-soft); height:82px; display:flex; flex-direction:column; justify-content:space-between; background:var(--glass-soft); }
+  .label { font-size:11px; font-weight:600; }
+  .sample { font-size:13px; }
+  .meta { font-family:var(--font-mono); font-size:10px; color:var(--fg-3); }
+</style></head><body>
+<div class="grid">
+  <div class="cell"><div class="label">fg-1</div><div class="sample" style="color:rgba(255,255,255,.95)">Headings</div><div class="meta">white/95</div></div>
+  <div class="cell"><div class="label">fg-2</div><div class="sample" style="color:rgba(255,255,255,.80)">Body copy</div><div class="meta">white/80</div></div>
+  <div class="cell"><div class="label">fg-3</div><div class="sample" style="color:rgba(255,255,255,.60)">Secondary</div><div class="meta">white/60</div></div>
+  <div class="cell"><div class="label">fg-4</div><div class="sample" style="color:rgba(255,255,255,.40)">Hint</div><div class="meta">white/40</div></div>
+  <div class="cell"><div class="label">fg-5</div><div class="sample" style="color:rgba(255,255,255,.25)">Placeholder</div><div class="meta">white/25</div></div>
+  <div class="cell" style="background:rgba(255,255,255,.05)"><div class="label">glass-thin</div><div class="sample">5% alpha</div><div class="meta">surface</div></div>
+  <div class="cell" style="background:rgba(255,255,255,.07)"><div class="label">glass-soft</div><div class="sample">7% alpha</div><div class="meta">card hover</div></div>
+  <div class="cell" style="background:rgba(255,255,255,.10)"><div class="label">glass-default</div><div class="sample">10% alpha</div><div class="meta">nav / hero</div></div>
+  <div class="cell" style="background:rgba(255,255,255,.14)"><div class="label">glass-strong</div><div class="sample">14% alpha</div><div class="meta">selected</div></div>
+  <div class="cell" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.20)"><div class="label">glass-border</div><div class="sample">white/20</div><div class="meta">hairline</div></div>
+</div>
+</body></html>

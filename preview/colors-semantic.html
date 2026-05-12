@@ -1,0 +1,18 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:18px; background:radial-gradient(circle at top right,#243b55,#141e30); font-family:var(--font-sans); color:var(--fg-1); }
+  .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .cell { padding:14px; border-radius:14px; height:94px; display:flex; flex-direction:column; justify-content:space-between; border:1px solid var(--glass-border-soft); }
+  .name { font-size:12px; font-weight:600; }
+  .hex { font-family:var(--font-mono); font-size:11px; color:var(--fg-3); }
+  .dot { width:28px; height:28px; border-radius:8px; }
+</style></head><body>
+<div class="grid">
+  <div class="cell" style="background:rgba(79,70,229,.12)"><div class="dot" style="background:#4f46e5"></div><div><div class="name">Interactive</div><div class="hex">#4f46e5</div></div></div>
+  <div class="cell" style="background:rgba(16,185,129,.14)"><div class="dot" style="background:#10b981"></div><div><div class="name">Success</div><div class="hex">#10b981</div></div></div>
+  <div class="cell" style="background:rgba(217,119,6,.18)"><div class="dot" style="background:#b45309"></div><div><div class="name">Warning</div><div class="hex">#b45309</div></div></div>
+  <div class="cell" style="background:rgba(220,38,38,.14)"><div class="dot" style="background:#dc2626"></div><div><div class="name">Danger</div><div class="hex">#dc2626</div></div></div>
+</div>
+</body></html>

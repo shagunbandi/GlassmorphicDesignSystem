@@ -1,0 +1,32 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+  body { margin:0; padding:18px; background:radial-gradient(circle at top right,#243b55,#141e30); font-family:var(--font-sans); color:#fff; }
+  .hero { position:relative; height:240px; border-radius:24px; overflow:hidden; background:url('../assets/aurora-green.jpg') center/cover; box-shadow:0 16px 48px rgba(0,0,0,.4); }
+  .hero::before { content:""; position:absolute; inset:0; background:rgba(0,0,0,.25); }
+  .info { position:absolute; bottom:16px; left:16px; right:16px; max-width:520px; background:rgba(255,255,255,.12); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,.20); border-radius:16px; padding:18px 20px; }
+  .eyebrow { color:#55ddb0; font-size:11px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; }
+  h1 { margin:4px 0 6px; font-size:22px; font-weight:700; line-height:1.2; }
+  .meta { color:rgba(255,255,255,.7); font-size:13px; display:flex; gap:16px; }
+  .meta i { margin-right:6px; font-size:11px; }
+  .actions { display:flex; gap:8px; margin-top:14px; }
+  .btn { font-size:13px; font-weight:500; padding:7px 13px; border-radius:9999px; background:rgba(155,203,255,.18); color:#dbeafe; border:1px solid rgba(155,203,255,.30); display:inline-flex; gap:6px; align-items:center; }
+</style></head><body>
+  <div class="hero">
+    <div class="info">
+      <div class="eyebrow">Active Adventure</div>
+      <h1>Iceland Aurora Drive</h1>
+      <div class="meta">
+        <span><i class="fas fa-calendar-alt"></i>14 Mar – 24 Mar 2026</span>
+        <span><i class="fas fa-clock"></i>11 days</span>
+      </div>
+      <div class="actions">
+        <span class="btn"><i class="fas fa-share-alt"></i>Share Trip</span>
+        <span class="btn"><i class="fas fa-route"></i>Maps</span>
+        <span class="btn"><i class="fas fa-magic"></i>Optimize</span>
+      </div>
+    </div>
+  </div>
+</body></html>

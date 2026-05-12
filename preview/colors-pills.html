@@ -1,0 +1,28 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:18px; background:radial-gradient(circle at top right,#243b55,#141e30); font-family:var(--font-sans); color:var(--fg-1); display:flex; flex-direction:column; gap:14px; }
+  .pill { display:inline-flex; padding:5px 12px; border-radius:9999px; font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; }
+  .row { display:flex; flex-wrap:wrap; gap:10px; }
+  .label { font-size:11px; color:var(--fg-3); letter-spacing:.18em; text-transform:uppercase; font-weight:700; }
+</style></head><body>
+<div>
+  <div class="label">Place pill tones</div>
+  <div class="row" style="margin-top:8px">
+    <span class="pill" style="background:rgba(56,189,248,.18);color:rgba(224,242,254,.95)">Sky · 09:30 AM</span>
+    <span class="pill" style="background:rgba(52,211,153,.14);color:rgba(209,250,229,.92)">Emerald · Transport</span>
+    <span class="pill" style="background:rgba(251,191,36,.16);color:rgba(254,243,199,.95)">Amber · Explore</span>
+    <span class="pill" style="background:rgba(148,163,184,.20);color:rgba(226,232,240,.90)">Slate · Arrival</span>
+  </div>
+</div>
+<div>
+  <div class="label">Plan status badges (over photo)</div>
+  <div class="row" style="margin-top:8px">
+    <span class="pill" style="background:rgba(59,130,246,.70);color:#fff;backdrop-filter:blur(6px)"><i style="margin-right:6px">●</i>Active</span>
+    <span class="pill" style="background:rgba(168,85,247,.70);color:#fff;backdrop-filter:blur(6px)">Planning</span>
+    <span class="pill" style="background:rgba(155,203,255,.70);color:#003256;backdrop-filter:blur(6px)">Upcoming</span>
+    <span class="pill" style="background:rgba(255,126,95,.70);color:#fff;backdrop-filter:blur(6px)">Memory</span>
+  </div>
+</div>
+</body></html>

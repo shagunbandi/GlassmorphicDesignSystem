@@ -1,0 +1,40 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+  body { margin:0; padding:24px; background:radial-gradient(circle at top right,#243b55,#141e30); font-family:var(--font-sans); color:var(--fg-1); }
+  .card { background:rgba(255,255,255,.07); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:16px; display:flex; gap:14px; box-shadow:0 8px 32px rgba(0,0,0,.20); }
+  .thumb { width:96px; height:96px; border-radius:12px; background:linear-gradient(135deg,#3a5b80,#1c2a47); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.55); font-size:24px; font-weight:600; flex-shrink:0; }
+  .meta { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+  .pill { padding:4px 10px; border-radius:9999px; font-size:11px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; }
+  .sky  { background:rgba(56,189,248,.18); color:rgba(224,242,254,.95); }
+  .amb  { background:rgba(251,191,36,.16); color:rgba(254,243,199,.95); text-transform:none; letter-spacing:0; }
+  .dot  { color:rgba(255,255,255,.30); font-size:11px; }
+  .title { margin:6px 0 4px; font-size:17px; font-weight:600; color:rgba(255,255,255,.95); }
+  .snip { font-size:13px; color:rgba(255,255,255,.55); line-height:1.5; margin:0 0 10px; }
+  .icons { display:flex; gap:6px; }
+  .ico { width:32px; height:32px; border-radius:8px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); display:inline-flex; align-items:center; justify-content:center; color:rgba(255,255,255,.65); font-size:12px; }
+  .ico.on { background:rgba(16,185,129,.18); color:#a7f3d0; border-color:rgba(52,211,153,.40); }
+</style></head><body>
+  <article class="card">
+    <div class="thumb">M</div>
+    <div style="min-width:0;flex:1">
+      <div class="meta">
+        <span class="pill sky">09:30 AM – 11:00 AM</span>
+        <span class="dot">·</span>
+        <span class="pill amb">Explore</span>
+      </div>
+      <h3 class="title">Mirador Las Torres viewpoint</h3>
+      <p class="snip">Short hike out from the refugio with the best sunrise angle on the towers — bring layers and a hot drink.</p>
+      <div class="icons">
+        <span class="ico on"><i class="fas fa-location-dot"></i></span>
+        <span class="ico on"><i class="fa-regular fa-clock"></i></span>
+        <span class="ico"><i class="fas fa-wallet"></i></span>
+        <span class="ico"><i class="fas fa-address-card"></i></span>
+        <span class="ico"><i class="fas fa-file-lines"></i></span>
+        <span class="ico"><i class="fas fa-cloud-sun"></i></span>
+      </div>
+    </div>
+  </article>
+</body></html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin:0; padding:22px; background:radial-gradient(circle at top right,#243b55,#141e30); font-family:var(--font-sans); color:var(--fg-1); display:flex; gap:18px; align-items:flex-end; }
+  .box { width:80px; aspect-ratio:1; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; color:rgba(255,255,255,.85); font-size:11px; font-weight:600; }
+  .lift { box-shadow:0 8px 32px rgba(0,0,0,.30); }
+  .lifthigh { box-shadow:0 16px 48px rgba(0,0,0,.40); transform:translateY(-4px); }
+  .meta { font-family:var(--font-mono); font-size:10px; color:rgba(255,255,255,.55); }
+</style></head><body>
+  <div class="box" style="border-radius:6px"><span>6px</span><span class="meta">--radius-sm</span></div>
+  <div class="box" style="border-radius:12px"><span>12px</span><span class="meta">--radius-lg</span></div>
+  <div class="box" style="border-radius:16px"><span>16px</span><span class="meta">--radius-xl</span></div>
+  <div class="box" style="border-radius:20px"><span>20px</span><span class="meta">--radius-2xl</span></div>
+  <div class="box" style="border-radius:24px"><span>24px</span><span class="meta">--radius-3xl</span></div>
+  <div class="box lift" style="border-radius:20px"><span>rest</span><span class="meta">shadow lg</span></div>
+  <div class="box lifthigh" style="border-radius:20px"><span>hover</span><span class="meta">shadow xl</span></div>
+</body></html>
