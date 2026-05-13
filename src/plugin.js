@@ -16,6 +16,7 @@ import InlineInput from './components/overlay/InlineInput.vue'
 import BottomNavigation from './components/navigation/BottomNavigation.vue'
 import TopNavbar        from './components/navigation/TopNavbar.vue'
 import Tabs             from './components/navigation/Tabs.vue'
+import TabBar           from './components/navigation/TabBar.vue'
 import SectionHeader    from './components/navigation/SectionHeader.vue'
 // Feedback
 import EmptyState     from './components/feedback/EmptyState.vue'
@@ -45,6 +46,7 @@ const GlassUI = {
     app.component('GdBottomNavigation',BottomNavigation)
     app.component('GdTopNavbar',       TopNavbar)
     app.component('GdTabs',            Tabs)
+    app.component('GdTabBar',          TabBar)
     app.component('GdSectionHeader',   SectionHeader)
     app.component('GdEmptyState',      EmptyState)
     app.component('GdLoadingOverlay',  LoadingOverlay)

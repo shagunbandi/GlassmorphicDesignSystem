@@ -86,7 +86,7 @@ const props = defineProps({
   accentHue: {
     type: String,
     default: null,
-    validator: (v) => v == null || ['indigo', 'violet', 'amber', 'emerald', 'rose', 'sky'].includes(v),
+    validator: (v) => v == null || ['indigo', 'violet', 'amber', 'emerald', 'rose', 'sky', 'coral'].includes(v),
   },
   type: { type: String, default: 'button' },
   to:   { type: [String, Object], default: null },
@@ -648,6 +648,7 @@ function handleClick(event) {
 .gd-btn[data-accent="emerald"][data-surface="soft"][data-tone="default"]  { background: rgba(5,150,105,0.08);   color: #059669; border-color: rgba(5,150,105,0.25); }
 .gd-btn[data-accent="rose"][data-surface="soft"][data-tone="default"]     { background: rgba(225,29,72,0.08);   color: #e11d48; border-color: rgba(225,29,72,0.25); }
 .gd-btn[data-accent="sky"][data-surface="soft"][data-tone="default"]      { background: rgba(14,165,233,0.08);  color: #0284c7; border-color: rgba(14,165,233,0.25); }
+.gd-btn[data-accent="coral"][data-surface="soft"][data-tone="default"]    { background: rgba(255,126,95,0.08);  color: #ff7e5f; border-color: rgba(255,126,95,0.25); }
 
 .gd-btn[data-accent="indigo"][data-surface="soft"][data-tone="inverted"]  { background: rgba(99,102,241,0.20); color: #c7d2fe; border-color: rgba(99,102,241,0.40); }
 .gd-btn[data-accent="violet"][data-surface="soft"][data-tone="inverted"]  { background: rgba(139,92,246,0.20); color: #ddd6fe; border-color: rgba(139,92,246,0.40); }
@@ -655,6 +656,7 @@ function handleClick(event) {
 .gd-btn[data-accent="emerald"][data-surface="soft"][data-tone="inverted"] { background: rgba(52,211,153,0.22); color: #a7f3d0; border-color: rgba(52,211,153,0.45); }
 .gd-btn[data-accent="rose"][data-surface="soft"][data-tone="inverted"]    { background: rgba(251,113,133,0.20); color: #fecdd3; border-color: rgba(251,113,133,0.40); }
 .gd-btn[data-accent="sky"][data-surface="soft"][data-tone="inverted"]     { background: rgba(56,189,248,0.22); color: #bae6fd; border-color: rgba(56,189,248,0.45); }
+.gd-btn[data-accent="coral"][data-surface="soft"][data-tone="inverted"]   { background: rgba(255,126,95,0.15); color: #ffb39f; border-color: rgba(255,126,95,0.32); }
 
 .gd-btn[data-accent]:not(:disabled):hover { filter: brightness(1.08); }
 </style>
