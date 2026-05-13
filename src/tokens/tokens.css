@@ -128,14 +128,16 @@
                "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
-  --text-xs:   12px;
-  --text-sm:   14px;
-  --text-base: 16px;
-  --text-lg:   18px;
-  --text-xl:   20px;
-  --text-2xl:  24px;
-  --text-3xl:  30px;
-  --text-4xl:  36px;
+  --text-eyebrow: 11px;  /* eyebrow / day-label — uppercase tracking-widest */
+  --text-2xs:     13px;  /* between xs (12) and sm (14) — dates, secondary meta */
+  --text-xs:      12px;
+  --text-sm:      14px;
+  --text-base:    16px;
+  --text-lg:      18px;
+  --text-xl:      20px;
+  --text-2xl:     24px;
+  --text-3xl:     30px;
+  --text-4xl:     36px;
 
   --tracking-tight:  -0.01em;
   --tracking-normal: 0;
@@ -232,7 +234,7 @@
 .gd-eyebrow {
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 11px;
+  font-size: var(--text-eyebrow);
   text-transform: uppercase;
   letter-spacing: var(--tracking-widest);
   color: var(--brand-mint);
