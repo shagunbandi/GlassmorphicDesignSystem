@@ -64,12 +64,28 @@
   /* -------- Badge / chip tones -------- */
   --badge-sky-bg:       rgba(56, 189, 248, 0.18);
   --badge-sky-fg:       rgba(224, 242, 254, 0.95);
+  --badge-sky-solid-bg: #0284c7;
+  --badge-sky-solid-fg: #fff;
   --badge-emerald-bg:   rgba(52, 211, 153, 0.14);
   --badge-emerald-fg:   rgba(209, 250, 229, 0.92);
+  --badge-emerald-solid-bg: #059669;
+  --badge-emerald-solid-fg: #fff;
   --badge-amber-bg:     rgba(251, 191, 36, 0.16);
   --badge-amber-fg:     rgba(254, 243, 199, 0.95);
+  --badge-amber-solid-bg: #d97706;
+  --badge-amber-solid-fg: #fff;
+  --badge-indigo-bg:    rgba(99, 102, 241, 0.18);
+  --badge-indigo-fg:    rgba(224, 231, 255, 0.95);
+  --badge-indigo-solid-bg: #4f46e5;
+  --badge-indigo-solid-fg: #fff;
+  --badge-coral-bg:     rgba(255, 126, 95, 0.20);
+  --badge-coral-fg:     rgba(255, 237, 233, 0.96);
+  --badge-coral-solid-bg: #dc4e2a;
+  --badge-coral-solid-fg: #fff;
   --badge-slate-bg:     rgba(148, 163, 184, 0.20);
   --badge-slate-fg:     rgba(226, 232, 240, 0.90);
+  --badge-slate-solid-bg: #475569;
+  --badge-slate-solid-fg: #fff;
 
   /* -------- Map / category palette -------- */
   --cat-attraction: #f59e0b;  /* amber */
@@ -162,6 +178,10 @@
   --badge-emerald-fg:   #065f46;
   --badge-amber-bg:     rgba(245, 158, 11, 0.16);
   --badge-amber-fg:     #92400e;
+  --badge-indigo-bg:    rgba(79, 70, 229, 0.14);
+  --badge-indigo-fg:    #3730a3;
+  --badge-coral-bg:     rgba(255, 126, 95, 0.18);
+  --badge-coral-fg:     #9a3412;
   --badge-slate-bg:     rgba(100, 116, 139, 0.18);
   --badge-slate-fg:     #334155;
 }

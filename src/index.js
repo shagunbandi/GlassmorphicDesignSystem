@@ -7,10 +7,11 @@ export { default as Badge }  from './components/primitives/Badge.vue'
 export { default as Input }  from './components/primitives/Input.vue'
 
 // Layout
-export { default as Card } from './components/layout/Card.vue'
-export { default as Grid } from './components/layout/Grid.vue'
-export { default as Flex } from './components/layout/Flex.vue'
-export { default as Hero } from './components/layout/Hero.vue'
+export { default as Card      } from './components/layout/Card.vue'
+export { default as MediaCard } from './components/layout/MediaCard.vue'
+export { default as Grid      } from './components/layout/Grid.vue'
+export { default as Flex      } from './components/layout/Flex.vue'
+export { default as Hero      } from './components/layout/Hero.vue'
 
 // Overlay
 export { default as Modal       } from './components/overlay/Modal.vue'
@@ -36,6 +37,7 @@ export { default as FileUpload      } from './components/form/FileUpload.vue'
 // Display
 export { default as TimelineItem } from './components/display/TimelineItem.vue'
 export { default as TransitItem  } from './components/display/TransitItem.vue'
+export { default as ProfileHero  } from './components/display/ProfileHero.vue'
 
 // Vue plugin (app.use(GlassUI) registers all as Gd* globals)
 export { default as GlassUI } from './plugin.js'

@@ -17,9 +17,11 @@
       fullWidth ? 'gd-btn--full' : '',
       align === 'start' ? 'gd-btn--align-start' : '',
     ]"
-    :disabled="isDisabled"
+    :disabled="disabledAttr"
     :aria-pressed="ariaPressedValue"
     :aria-disabled="isDisabled || undefined"
+    :tabindex="tabIndexAttr"
+    @click="handleClick"
   >
     <span v-if="loading" class="gd-btn__spinner" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -109,6 +111,7 @@ const tag = computed(() => {
 })
 
 const resolvedType = computed(() => (props.to || props.href ? undefined : props.type))
+const isNativeButton = computed(() => !props.to && !props.href)
 
 const polymorphicAttrs = computed(() => {
   if (props.to) return { to: props.to }
@@ -124,7 +127,16 @@ const polymorphicAttrs = computed(() => {
 })
 
 const isDisabled = computed(() => props.disabled || props.loading)
+const disabledAttr = computed(() => (isNativeButton.value ? isDisabled.value : undefined))
+const tabIndexAttr = computed(() => (!isNativeButton.value && isDisabled.value ? -1 : undefined))
 const ariaPressedValue = computed(() => (props.selected ? 'true' : undefined))
+
+function handleClick(event) {
+  if (!isDisabled.value || isNativeButton.value) return
+
+  event.preventDefault()
+  event.stopImmediatePropagation?.()
+}
 </script>
 
 <style scoped>
@@ -157,7 +169,8 @@ const ariaPressedValue = computed(() => (props.selected ? 'true' : undefined))
   outline-color: rgba(255, 255, 255, 0.35);
 }
 .gd-btn:disabled,
-.gd-btn[disabled] {
+.gd-btn[disabled],
+.gd-btn[aria-disabled="true"] {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;

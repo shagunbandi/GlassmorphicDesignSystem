@@ -27,6 +27,7 @@ import FileUpload     from './components/form/FileUpload.vue'
 // Display
 import TimelineItem from './components/display/TimelineItem.vue'
 import TransitItem  from './components/display/TransitItem.vue'
+import ProfileHero  from './components/display/ProfileHero.vue'
 
 const GlassUI = {
   install(app) {
@@ -52,6 +53,7 @@ const GlassUI = {
     app.component('GdFileUpload',      FileUpload)
     app.component('GdTimelineItem',    TimelineItem)
     app.component('GdTransitItem',     TransitItem)
+    app.component('GdProfileHero',     ProfileHero)
   },
 }
 

@@ -11,10 +11,13 @@
     },
     "./style.css": "./dist/style.css"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build",
-    "dev": "vite build --watch"
+    "dev": "vite build --watch",
+    "format": "prettier --write src/"
   },
   "peerDependencies": {
     "vue": "^3.3.0",
@@ -22,11 +25,14 @@
     "@vueup/vue-quill": "^1.2.0"
   },
   "peerDependenciesMeta": {
-    "vue-router": { "optional": true }
+    "vue-router": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
     "@vueup/vue-quill": "^1.2.0",
+    "prettier": "^3.8.3",
     "vite": "^5.0.0",
     "vue": "^3.3.11"
   }
