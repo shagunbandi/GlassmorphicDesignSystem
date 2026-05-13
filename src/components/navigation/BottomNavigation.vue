@@ -5,7 +5,10 @@
       v-for="item in items"
       :key="item.path ?? item.label"
       :to="item.path ?? undefined"
-      :class="['gd-bottom-nav__item', isActive(item) ? 'gd-bottom-nav__item--active' : '']"
+      :class="[
+        'gd-bottom-nav__item',
+        isActive(item) ? 'gd-bottom-nav__item--active' : '',
+      ]"
       :aria-label="item.label"
       :type="item.path ? undefined : 'button'"
       @click="item.path ? undefined : $emit('item-click', item)"
@@ -31,7 +34,9 @@ const props = defineProps({
 defineEmits(['item-click'])
 
 const instance = getCurrentInstance()
-const route = computed(() => instance?.appContext.config.globalProperties.$route ?? null)
+const route = computed(
+  () => instance?.appContext.config.globalProperties.$route ?? null,
+)
 
 function isActive(item) {
   const r = route.value
@@ -58,7 +63,9 @@ function isActive(item) {
 }
 
 @media (min-width: 768px) {
-  .gd-bottom-nav { display: none; }
+  .gd-bottom-nav {
+    display: none;
+  }
 }
 
 .gd-bottom-nav__item {
@@ -80,10 +87,22 @@ function isActive(item) {
   font-family: var(--font-sans);
 }
 
-.gd-bottom-nav__item:active { opacity: 0.7; }
+.gd-bottom-nav__item:active {
+  opacity: 0.7;
+}
 
-.gd-bottom-nav__item--active { color: var(--brand-sky); }
+.gd-bottom-nav__item--active {
+  color: var(--brand-sky);
+}
 
-.gd-bottom-nav__icon  { font-size: 20px; line-height: 1; }
-.gd-bottom-nav__label { font-size: 10px; font-weight: 500; letter-spacing: 0.01em; line-height: 1; }
+.gd-bottom-nav__icon {
+  font-size: 20px;
+  line-height: 1;
+}
+.gd-bottom-nav__label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
 </style>

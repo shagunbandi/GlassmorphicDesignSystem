@@ -1,5 +1,8 @@
 <template>
-  <div :class="['gd-card', glass ? 'gd-card--glass' : '']" :style="paddingStyle">
+  <div
+    :class="['gd-card', glass ? 'gd-card--glass' : '']"
+    :style="paddingStyle"
+  >
     <h5 v-if="title" class="gd-card__title">{{ title }}</h5>
     <div v-if="divider && title" class="gd-card__divider" aria-hidden="true" />
     <p v-if="description" class="gd-card__description">{{ description }}</p>
@@ -11,16 +14,16 @@
 import { computed } from 'vue'
 
 const props = defineProps({
-  title:       String,
+  title: String,
   description: String,
-  divider:     { type: Boolean, default: true },
+  divider: { type: Boolean, default: true },
   /** Spacing unit — multiplied by 4px (e.g. padding="6" → 24px). */
-  padding:     { type: [String, Number], default: '6' },
+  padding: { type: [String, Number], default: '6' },
   /** Applies glassmorphic surface styling. */
-  glass:       { type: Boolean, default: false },
+  glass: { type: Boolean, default: false },
 })
 
-const PADDING_PX = { '0': '0', '2': '8px', '4': '16px', '6': '24px', '8': '32px' }
+const PADDING_PX = { 0: '0', 2: '8px', 4: '16px', 6: '24px', 8: '32px' }
 
 const paddingStyle = computed(() => {
   const p = PADDING_PX[String(props.padding)] ?? '24px'

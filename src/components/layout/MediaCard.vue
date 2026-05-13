@@ -18,7 +18,9 @@
         v-if="description !== undefined"
         class="gd-media-card__desc"
         :class="{ 'gd-media-card__desc--empty': !description }"
-      >{{ description }}</p>
+      >
+        {{ description }}
+      </p>
 
       <div v-if="$slots.chips" class="gd-media-card__chips">
         <slot name="chips" />
@@ -33,8 +35,8 @@
 
 <script setup>
 defineProps({
-  imageUrl:    String,
-  title:       { type: String, required: true },
+  imageUrl: String,
+  title: { type: String, required: true },
   description: String,
 })
 
@@ -53,7 +55,10 @@ defineEmits(['click'])
   border: 1px solid var(--glass-border-soft);
   box-shadow: var(--glass-shadow);
   cursor: pointer;
-  transition: background var(--transition-base), box-shadow var(--transition-base), transform 220ms ease;
+  transition:
+    background var(--transition-base),
+    box-shadow var(--transition-base),
+    transform 220ms ease;
 }
 .gd-media-card:hover {
   background: var(--glass-default);
@@ -77,7 +82,9 @@ defineEmits(['click'])
   filter: brightness(0.78);
   transition: transform var(--transition-slow);
 }
-.gd-media-card:hover .gd-media-card__cover-img { transform: scale(1.05); }
+.gd-media-card:hover .gd-media-card__cover-img {
+  transform: scale(1.05);
+}
 
 .gd-media-card__cover-placeholder {
   position: absolute;
@@ -105,7 +112,9 @@ defineEmits(['click'])
   color: var(--fg-1);
   transition: color var(--transition-fast);
 }
-.gd-media-card:hover .gd-media-card__title { color: var(--brand-sky); }
+.gd-media-card:hover .gd-media-card__title {
+  color: var(--brand-sky);
+}
 
 .gd-media-card__desc {
   margin: 0 0 14px;

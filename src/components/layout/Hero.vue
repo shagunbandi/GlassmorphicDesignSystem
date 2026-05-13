@@ -4,14 +4,18 @@
 
     <div class="gd-hero__content">
       <div class="gd-hero__text">
-        <span v-if="tagline" class="gd-hero__tagline gd-eyebrow">{{ tagline }}</span>
+        <span v-if="tagline" class="gd-hero__tagline gd-eyebrow">{{
+          tagline
+        }}</span>
 
         <slot name="title">
           <h1 class="gd-hero__title gd-h1">{{ title }}</h1>
         </slot>
 
         <slot name="subtitle">
-          <p v-if="subtitle" class="gd-hero__subtitle gd-body">{{ subtitle }}</p>
+          <p v-if="subtitle" class="gd-hero__subtitle gd-body">
+            {{ subtitle }}
+          </p>
         </slot>
       </div>
 
@@ -26,14 +30,14 @@
 import { computed } from 'vue'
 
 const props = defineProps({
-  title:           { type: String, default: '' },
-  subtitle:        { type: String, default: '' },
-  tagline:         { type: String, default: '' },
+  title: { type: String, default: '' },
+  subtitle: { type: String, default: '' },
+  tagline: { type: String, default: '' },
   /** URL for a cover/background image. Falls back to the app gradient. */
   backgroundImage: { type: String, default: '' },
-  showAction:      { type: Boolean, default: true },
+  showAction: { type: Boolean, default: true },
   /** Inner padding, accepts any CSS value. */
-  padding:         { type: String, default: '1.5rem 2rem' },
+  padding: { type: String, default: '1.5rem 2rem' },
 })
 
 defineEmits(['action-click'])
@@ -42,7 +46,7 @@ const heroStyle = computed(() => {
   const styles = { padding: props.padding }
   if (props.backgroundImage) {
     styles.backgroundImage = `url(${props.backgroundImage})`
-    styles.backgroundSize  = 'cover'
+    styles.backgroundSize = 'cover'
     styles.backgroundPosition = 'center'
   }
   return styles
@@ -74,7 +78,7 @@ const heroStyle = computed(() => {
   top: -80px;
   width: 260px;
   height: 260px;
-  border: 4px solid rgba(255,255,255,0.3);
+  border: 4px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-full);
 }
 
@@ -85,7 +89,7 @@ const heroStyle = computed(() => {
   top: 40px;
   width: 130px;
   height: 130px;
-  border: 4px solid rgba(255,255,255,0.2);
+  border: 4px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-full);
 }
 
@@ -125,6 +129,8 @@ const heroStyle = computed(() => {
 }
 
 @media (max-width: 640px) {
-  .gd-hero__action { width: 100%; }
+  .gd-hero__action {
+    width: 100%;
+  }
 }
 </style>

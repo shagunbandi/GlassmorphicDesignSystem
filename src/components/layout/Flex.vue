@@ -8,27 +8,27 @@
 import { computed } from 'vue'
 
 const JUSTIFY_MAP = {
-  start:   'flex-start',
-  end:     'flex-end',
-  center:  'center',
+  start: 'flex-start',
+  end: 'flex-end',
+  center: 'center',
   between: 'space-between',
-  around:  'space-around',
-  evenly:  'space-evenly',
+  around: 'space-around',
+  evenly: 'space-evenly',
 }
 
 const ALIGN_MAP = {
-  start:    'flex-start',
-  end:      'flex-end',
-  center:   'center',
+  start: 'flex-start',
+  end: 'flex-end',
+  center: 'center',
   baseline: 'baseline',
-  stretch:  'stretch',
+  stretch: 'stretch',
 }
 
 const DIRECTION_MAP = {
-  row:          'row',
-  'row-reverse':'row-reverse',
-  col:          'column',
-  'col-reverse':'column-reverse',
+  row: 'row',
+  'row-reverse': 'row-reverse',
+  col: 'column',
+  'col-reverse': 'column-reverse',
 }
 
 const props = defineProps({
@@ -40,12 +40,14 @@ const props = defineProps({
   justify: {
     type: String,
     default: 'start',
-    validator: (v) => ['start', 'end', 'center', 'between', 'around', 'evenly'].includes(v),
+    validator: (v) =>
+      ['start', 'end', 'center', 'between', 'around', 'evenly'].includes(v),
   },
   align: {
     type: String,
     default: 'stretch',
-    validator: (v) => ['start', 'end', 'center', 'baseline', 'stretch'].includes(v),
+    validator: (v) =>
+      ['start', 'end', 'center', 'baseline', 'stretch'].includes(v),
   },
   wrap: {
     type: String,
@@ -57,14 +59,19 @@ const props = defineProps({
 })
 
 const flexStyle = computed(() => ({
-  flexDirection:  DIRECTION_MAP[props.direction] ?? 'row',
-  justifyContent: JUSTIFY_MAP[props.justify]    ?? 'flex-start',
-  alignItems:     ALIGN_MAP[props.align]        ?? 'stretch',
-  flexWrap:       props.wrap,
-  gap: props.gap !== '' && props.gap != null ? `${parseInt(props.gap, 10) * 4}px` : undefined,
+  flexDirection: DIRECTION_MAP[props.direction] ?? 'row',
+  justifyContent: JUSTIFY_MAP[props.justify] ?? 'flex-start',
+  alignItems: ALIGN_MAP[props.align] ?? 'stretch',
+  flexWrap: props.wrap,
+  gap:
+    props.gap !== '' && props.gap != null
+      ? `${parseInt(props.gap, 10) * 4}px`
+      : undefined,
 }))
 </script>
 
 <style scoped>
-.gd-flex { display: flex; }
+.gd-flex {
+  display: flex;
+}
 </style>

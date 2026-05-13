@@ -12,108 +12,112 @@
 :root,
 :root.dark {
   /* -------- Surfaces / background -------- */
-  --color-app-bg-from: #243b55;   /* radial top-right */
-  --color-app-bg-to:   #141e30;   /* radial bottom-left */
-  --color-app-bg: radial-gradient(circle at top right, var(--color-app-bg-from), var(--color-app-bg-to));
+  --color-app-bg-from: #243b55; /* radial top-right */
+  --color-app-bg-to: #141e30; /* radial bottom-left */
+  --color-app-bg: radial-gradient(
+    circle at top right,
+    var(--color-app-bg-from),
+    var(--color-app-bg-to)
+  );
 
   /* Glass surfaces — translucent white over the gradient. */
-  --glass-thin:    rgba(255, 255, 255, 0.05);
-  --glass-soft:    rgba(255, 255, 255, 0.07);
-  --glass-default: rgba(255, 255, 255, 0.10);
-  --glass-strong:  rgba(255, 255, 255, 0.14);
+  --glass-thin: rgba(255, 255, 255, 0.05);
+  --glass-soft: rgba(255, 255, 255, 0.07);
+  --glass-default: rgba(255, 255, 255, 0.1);
+  --glass-strong: rgba(255, 255, 255, 0.14);
 
-  --glass-border:          rgba(255, 255, 255, 0.20);
-  --glass-border-soft:     rgba(255, 255, 255, 0.12);
-  --glass-border-hairline: rgba(255, 255, 255, 0.10);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-border-soft: rgba(255, 255, 255, 0.12);
+  --glass-border-hairline: rgba(255, 255, 255, 0.1);
 
   --glass-blur: 20px;
-  --glass-shadow:       0 8px 32px rgba(0, 0, 0, 0.20);
-  --glass-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.30);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --glass-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.3);
 
   /* -------- Foreground (text on dark glass) -------- */
-  --fg-1: rgba(255, 255, 255, 0.95);  /* primary heading / strong text */
-  --fg-2: rgba(255, 255, 255, 0.80);  /* body */
-  --fg-3: rgba(255, 255, 255, 0.60);  /* secondary / meta */
-  --fg-4: rgba(255, 255, 255, 0.40);  /* disabled / hint */
-  --fg-5: rgba(255, 255, 255, 0.25);  /* placeholder */
+  --fg-1: rgba(255, 255, 255, 0.95); /* primary heading / strong text */
+  --fg-2: rgba(255, 255, 255, 0.8); /* body */
+  --fg-3: rgba(255, 255, 255, 0.6); /* secondary / meta */
+  --fg-4: rgba(255, 255, 255, 0.4); /* disabled / hint */
+  --fg-5: rgba(255, 255, 255, 0.25); /* placeholder */
 
   /* -------- Brand accent palette -------- */
-  --brand-sky:        #9bcbff;   /* primary link / nav hover */
-  --brand-sky-deep:   #003256;
-  --brand-mint:       #55ddb0;   /* "Active Adventure", success accent */
-  --brand-coral:      #ff7e5f;   /* "Past Memory" highlight */
+  --brand-sky: #9bcbff; /* primary link / nav hover */
+  --brand-sky-deep: #003256;
+  --brand-mint: #55ddb0; /* "Active Adventure", success accent */
+  --brand-coral: #ff7e5f; /* "Past Memory" highlight */
 
   /* -------- Semantic interaction colors -------- */
-  --color-interactive:       #4f46e5;
+  --color-interactive: #4f46e5;
   --color-interactive-hover: #4338ca;
   --color-interactive-light: #6366f1;
-  --color-interactive-bg:    rgba(79, 70, 229, 0.12);
+  --color-interactive-bg: rgba(79, 70, 229, 0.12);
 
-  --color-success:       #059669;
+  --color-success: #059669;
   --color-success-light: #10b981;
-  --color-success-bg:    rgba(16, 185, 129, 0.14);
+  --color-success-bg: rgba(16, 185, 129, 0.14);
 
-  --color-warning:       #b45309;
+  --color-warning: #b45309;
   --color-warning-light: #f59e0b;
-  --color-warning-bg:    rgba(217, 119, 6, 0.18);
+  --color-warning-bg: rgba(217, 119, 6, 0.18);
 
-  --color-danger:        #dc2626;
-  --color-danger-light:  #f87171;
-  --color-danger-bg:     rgba(220, 38, 38, 0.14);
+  --color-danger: #dc2626;
+  --color-danger-light: #f87171;
+  --color-danger-bg: rgba(220, 38, 38, 0.14);
 
   /* -------- Badge / chip tones -------- */
-  --badge-sky-bg:       rgba(56, 189, 248, 0.18);
-  --badge-sky-fg:       rgba(224, 242, 254, 0.95);
+  --badge-sky-bg: rgba(56, 189, 248, 0.18);
+  --badge-sky-fg: rgba(224, 242, 254, 0.95);
   --badge-sky-solid-bg: #0284c7;
   --badge-sky-solid-fg: #fff;
-  --badge-emerald-bg:   rgba(52, 211, 153, 0.14);
-  --badge-emerald-fg:   rgba(209, 250, 229, 0.92);
+  --badge-emerald-bg: rgba(52, 211, 153, 0.14);
+  --badge-emerald-fg: rgba(209, 250, 229, 0.92);
   --badge-emerald-solid-bg: #059669;
   --badge-emerald-solid-fg: #fff;
-  --badge-amber-bg:     rgba(251, 191, 36, 0.16);
-  --badge-amber-fg:     rgba(254, 243, 199, 0.95);
+  --badge-amber-bg: rgba(251, 191, 36, 0.16);
+  --badge-amber-fg: rgba(254, 243, 199, 0.95);
   --badge-amber-solid-bg: #d97706;
   --badge-amber-solid-fg: #fff;
-  --badge-indigo-bg:    rgba(99, 102, 241, 0.18);
-  --badge-indigo-fg:    rgba(224, 231, 255, 0.95);
+  --badge-indigo-bg: rgba(99, 102, 241, 0.18);
+  --badge-indigo-fg: rgba(224, 231, 255, 0.95);
   --badge-indigo-solid-bg: #4f46e5;
   --badge-indigo-solid-fg: #fff;
-  --badge-coral-bg:     rgba(255, 126, 95, 0.20);
-  --badge-coral-fg:     rgba(255, 237, 233, 0.96);
+  --badge-coral-bg: rgba(255, 126, 95, 0.2);
+  --badge-coral-fg: rgba(255, 237, 233, 0.96);
   --badge-coral-solid-bg: #dc4e2a;
   --badge-coral-solid-fg: #fff;
-  --badge-slate-bg:     rgba(148, 163, 184, 0.20);
-  --badge-slate-fg:     rgba(226, 232, 240, 0.90);
+  --badge-slate-bg: rgba(148, 163, 184, 0.2);
+  --badge-slate-fg: rgba(226, 232, 240, 0.9);
   --badge-slate-solid-bg: #475569;
   --badge-slate-solid-fg: #fff;
 
   /* -------- Map / category palette -------- */
-  --cat-attraction: #f59e0b;  /* amber */
-  --cat-restaurant: #fb7185;  /* rose */
-  --cat-activity:   #34d399;  /* emerald */
-  --cat-hotel:      #a78bfa;  /* violet */
-  --cat-transport:  #10b981;  /* green */
-  --cat-airport:    #38bdf8;  /* sky */
-  --cat-shopping:   #f472b6;  /* pink */
+  --cat-attraction: #f59e0b; /* amber */
+  --cat-restaurant: #fb7185; /* rose */
+  --cat-activity: #34d399; /* emerald */
+  --cat-hotel: #a78bfa; /* violet */
+  --cat-transport: #10b981; /* green */
+  --cat-airport: #38bdf8; /* sky */
+  --cat-shopping: #f472b6; /* pink */
 
   /* -------- Radii -------- */
-  --radius-xs:   4px;
-  --radius-sm:   6px;
-  --radius-md:   10px;
-  --radius-lg:   12px;
-  --radius-xl:   16px;
-  --radius-2xl:  20px;
-  --radius-3xl:  24px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
   --radius-full: 9999px;
 
   /* -------- Spacing -------- */
-  --space-1:  4px;
-  --space-2:  8px;
-  --space-3:  12px;
-  --space-4:  16px;
-  --space-5:  20px;
-  --space-6:  24px;
-  --space-8:  32px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
   --space-10: 40px;
   --space-12: 48px;
 
@@ -124,72 +128,78 @@
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 
   /* -------- Typography -------- */
-  --font-sans: "Inter", "InterVariable", -apple-system, BlinkMacSystemFont,
-               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-sans:
+    'Inter', 'InterVariable', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
-  --text-eyebrow: 11px;  /* eyebrow / day-label — uppercase tracking-widest */
-  --text-2xs:     13px;  /* between xs (12) and sm (14) — dates, secondary meta */
-  --text-xs:      12px;
-  --text-sm:      14px;
-  --text-base:    16px;
-  --text-lg:      18px;
-  --text-xl:      20px;
-  --text-2xl:     24px;
-  --text-3xl:     30px;
-  --text-4xl:     36px;
+  --text-eyebrow: 11px; /* eyebrow / day-label — uppercase tracking-widest */
+  --text-2xs: 13px; /* between xs (12) and sm (14) — dates, secondary meta */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
 
-  --tracking-tight:  -0.01em;
+  --tracking-tight: -0.01em;
   --tracking-normal: 0;
-  --tracking-wide:   0.06em;
+  --tracking-wide: 0.06em;
   --tracking-widest: 0.18em;
 }
 
 /* ---------- Light mode ---------- */
 :root.light {
   --color-app-bg-from: #eef3fb;
-  --color-app-bg-to:   #dde7f3;
-  --color-app-bg: radial-gradient(circle at top right, var(--color-app-bg-from), var(--color-app-bg-to));
+  --color-app-bg-to: #dde7f3;
+  --color-app-bg: radial-gradient(
+    circle at top right,
+    var(--color-app-bg-from),
+    var(--color-app-bg-to)
+  );
 
-  --glass-thin:    rgba(15, 23, 42, 0.04);
-  --glass-soft:    rgba(15, 23, 42, 0.06);
+  --glass-thin: rgba(15, 23, 42, 0.04);
+  --glass-soft: rgba(15, 23, 42, 0.06);
   --glass-default: rgba(255, 255, 255, 0.55);
-  --glass-strong:  rgba(255, 255, 255, 0.70);
+  --glass-strong: rgba(255, 255, 255, 0.7);
 
-  --glass-border:          rgba(15, 23, 42, 0.10);
-  --glass-border-soft:     rgba(15, 23, 42, 0.06);
+  --glass-border: rgba(15, 23, 42, 0.1);
+  --glass-border-soft: rgba(15, 23, 42, 0.06);
   --glass-border-hairline: rgba(15, 23, 42, 0.05);
 
-  --glass-shadow:       0 6px 24px rgba(15, 23, 42, 0.08);
+  --glass-shadow: 0 6px 24px rgba(15, 23, 42, 0.08);
   --glass-shadow-hover: 0 12px 36px rgba(15, 23, 42, 0.14);
 
   --fg-1: rgba(15, 23, 42, 0.95);
-  --fg-2: rgba(15, 23, 42, 0.80);
-  --fg-3: rgba(15, 23, 42, 0.60);
-  --fg-4: rgba(15, 23, 42, 0.40);
+  --fg-2: rgba(15, 23, 42, 0.8);
+  --fg-3: rgba(15, 23, 42, 0.6);
+  --fg-4: rgba(15, 23, 42, 0.4);
   --fg-5: rgba(15, 23, 42, 0.25);
 
-  --brand-sky:       #2563eb;
-  --brand-sky-deep:  #003256;
-  --brand-mint:      #047857;
-  --brand-coral:     #c2410c;
+  --brand-sky: #2563eb;
+  --brand-sky-deep: #003256;
+  --brand-mint: #047857;
+  --brand-coral: #c2410c;
 
-  --badge-sky-bg:       rgba(56, 189, 248, 0.20);
-  --badge-sky-fg:       #075985;
-  --badge-emerald-bg:   rgba(16, 185, 129, 0.16);
-  --badge-emerald-fg:   #065f46;
-  --badge-amber-bg:     rgba(245, 158, 11, 0.16);
-  --badge-amber-fg:     #92400e;
-  --badge-indigo-bg:    rgba(79, 70, 229, 0.14);
-  --badge-indigo-fg:    #3730a3;
-  --badge-coral-bg:     rgba(255, 126, 95, 0.18);
-  --badge-coral-fg:     #9a3412;
-  --badge-slate-bg:     rgba(100, 116, 139, 0.18);
-  --badge-slate-fg:     #334155;
+  --badge-sky-bg: rgba(56, 189, 248, 0.2);
+  --badge-sky-fg: #075985;
+  --badge-emerald-bg: rgba(16, 185, 129, 0.16);
+  --badge-emerald-fg: #065f46;
+  --badge-amber-bg: rgba(245, 158, 11, 0.16);
+  --badge-amber-fg: #92400e;
+  --badge-indigo-bg: rgba(79, 70, 229, 0.14);
+  --badge-indigo-fg: #3730a3;
+  --badge-coral-bg: rgba(255, 126, 95, 0.18);
+  --badge-coral-fg: #9a3412;
+  --badge-slate-bg: rgba(100, 116, 139, 0.18);
+  --badge-slate-fg: #334155;
 }
 
 /* ---------- Semantic typography classes ---------- */
-.gd-h1, h1.gd {
+.gd-h1,
+h1.gd {
   font-family: var(--font-sans);
   font-weight: 700;
   font-size: clamp(1.75rem, 2.4vw, 2.25rem);
@@ -198,7 +208,8 @@
   color: var(--fg-1);
 }
 
-.gd-h2, h2.gd {
+.gd-h2,
+h2.gd {
   font-family: var(--font-sans);
   font-weight: 600;
   font-size: var(--text-3xl);
@@ -206,7 +217,8 @@
   color: var(--fg-2);
 }
 
-.gd-h3, h3.gd {
+.gd-h3,
+h3.gd {
   font-family: var(--font-sans);
   font-weight: 600;
   font-size: var(--text-lg);
@@ -214,7 +226,8 @@
   color: var(--fg-1);
 }
 
-.gd-body, p.gd {
+.gd-body,
+p.gd {
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: var(--text-sm);
@@ -240,7 +253,8 @@
   color: var(--brand-mint);
 }
 
-.gd-code, code.gd {
+.gd-code,
+code.gd {
   font-family: var(--font-mono);
   font-size: 0.92em;
   background: var(--glass-soft);

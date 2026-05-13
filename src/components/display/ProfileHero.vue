@@ -7,14 +7,25 @@
       <!-- Avatar -->
       <div
         class="gd-profile-hero__avatar-wrap"
-        :class="{ 'gd-profile-hero__avatar-wrap--clickable': allowAvatarChange }"
+        :class="{
+          'gd-profile-hero__avatar-wrap--clickable': allowAvatarChange,
+        }"
         @click="allowAvatarChange && $emit('avatar-click')"
       >
         <div class="gd-profile-hero__avatar">
-          <img v-if="avatarUrl" :src="avatarUrl" :alt="name" class="gd-profile-hero__avatar-img" />
+          <img
+            v-if="avatarUrl"
+            :src="avatarUrl"
+            :alt="name"
+            class="gd-profile-hero__avatar-img"
+          />
           <span v-else class="gd-profile-hero__initials">{{ initials }}</span>
         </div>
-        <div v-if="allowAvatarChange" class="gd-profile-hero__avatar-overlay" aria-hidden="true">
+        <div
+          v-if="allowAvatarChange"
+          class="gd-profile-hero__avatar-overlay"
+          aria-hidden="true"
+        >
           <i class="fas fa-camera" />
         </div>
       </div>
@@ -46,13 +57,13 @@
 
 <script setup>
 defineProps({
-  avatarUrl:         { type: String,  default: '' },
-  initials:          { type: String,  default: '?' },
-  name:              { type: String,  default: '' },
-  handle:            { type: String,  default: '' },
-  location:          { type: String,  default: '' },
-  bio:               { type: String,  default: '' },
-  memberSince:       { type: String,  default: '' },
+  avatarUrl: { type: String, default: '' },
+  initials: { type: String, default: '?' },
+  name: { type: String, default: '' },
+  handle: { type: String, default: '' },
+  location: { type: String, default: '' },
+  bio: { type: String, default: '' },
+  memberSince: { type: String, default: '' },
   allowAvatarChange: { type: Boolean, default: false },
 })
 defineEmits(['avatar-click'])
@@ -84,7 +95,11 @@ defineEmits(['avatar-click'])
   left: -100px;
   width: 360px;
   height: 360px;
-  background: radial-gradient(circle, rgba(85, 221, 176, 0.25), transparent 60%);
+  background: radial-gradient(
+    circle,
+    rgba(85, 221, 176, 0.25),
+    transparent 60%
+  );
   pointer-events: none;
 }
 
@@ -101,7 +116,9 @@ defineEmits(['avatar-click'])
   position: relative;
   flex-shrink: 0;
 }
-.gd-profile-hero__avatar-wrap--clickable { cursor: pointer; }
+.gd-profile-hero__avatar-wrap--clickable {
+  cursor: pointer;
+}
 
 .gd-profile-hero__avatar {
   width: 120px;
@@ -141,7 +158,8 @@ defineEmits(['avatar-click'])
   opacity: 0;
   transition: opacity 0.2s ease;
 }
-.gd-profile-hero__avatar-wrap--clickable:hover .gd-profile-hero__avatar-overlay {
+.gd-profile-hero__avatar-wrap--clickable:hover
+  .gd-profile-hero__avatar-overlay {
   opacity: 1;
 }
 
@@ -207,9 +225,18 @@ defineEmits(['avatar-click'])
 }
 
 @media (max-width: 640px) {
-  .gd-profile-hero__inner   { flex-direction: column; }
-  .gd-profile-hero__name    { font-size: 1.75rem; }
-  .gd-profile-hero__avatar  { width: 88px; height: 88px; }
-  .gd-profile-hero__initials { font-size: 2rem; }
+  .gd-profile-hero__inner {
+    flex-direction: column;
+  }
+  .gd-profile-hero__name {
+    font-size: 1.75rem;
+  }
+  .gd-profile-hero__avatar {
+    width: 88px;
+    height: 88px;
+  }
+  .gd-profile-hero__initials {
+    font-size: 2rem;
+  }
 }
 </style>

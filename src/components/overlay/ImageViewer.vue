@@ -8,7 +8,11 @@
           class="gd-image-viewer__img"
           @click="canEdit ? $emit('edit') : (showLightbox = true)"
         />
-        <div v-if="canEdit" class="gd-image-viewer__overlay gd-image-viewer__overlay--edit" aria-hidden="true">
+        <div
+          v-if="canEdit"
+          class="gd-image-viewer__overlay gd-image-viewer__overlay--edit"
+          aria-hidden="true"
+        >
           <i class="fa-solid fa-pen gd-image-viewer__edit-icon" />
         </div>
         <div v-else class="gd-image-viewer__overlay" aria-hidden="true" />
@@ -26,7 +30,11 @@
         >
           <template #body>
             <div class="gd-image-viewer__lightbox" @click.stop>
-              <img :src="src" :alt="alt" class="gd-image-viewer__lightbox-img" />
+              <img
+                :src="src"
+                :alt="alt"
+                class="gd-image-viewer__lightbox-img"
+              />
             </div>
           </template>
         </Modal>
@@ -40,8 +48,8 @@ import { ref } from 'vue'
 import Modal from './Modal.vue'
 
 defineProps({
-  src:     { type: String, required: true },
-  alt:     { type: String, default: '' },
+  src: { type: String, required: true },
+  alt: { type: String, default: '' },
   canEdit: { type: Boolean, default: false },
 })
 
@@ -51,15 +59,22 @@ const showLightbox = ref(false)
 </script>
 
 <style scoped>
-.gd-image-viewer        { height: 100%; }
-.gd-image-viewer__wrapper { overflow: hidden; height: 100%; }
+.gd-image-viewer {
+  height: 100%;
+}
+.gd-image-viewer__wrapper {
+  overflow: hidden;
+  height: 100%;
+}
 
 .gd-image-viewer__group {
   position: relative;
   height: 100%;
 }
 
-.gd-image-viewer__group:hover .gd-image-viewer__overlay { opacity: 1; }
+.gd-image-viewer__group:hover .gd-image-viewer__overlay {
+  opacity: 1;
+}
 
 .gd-image-viewer__img {
   width: 100%;
@@ -69,12 +84,14 @@ const showLightbox = ref(false)
   transition: transform var(--transition-slow);
 }
 
-.gd-image-viewer__group:hover .gd-image-viewer__img { transform: scale(1.02); }
+.gd-image-viewer__group:hover .gd-image-viewer__img {
+  transform: scale(1.02);
+}
 
 .gd-image-viewer__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0);
+  background: rgba(0, 0, 0, 0);
   transition: background var(--transition-slow);
   pointer-events: none;
   opacity: 0;
@@ -84,11 +101,13 @@ const showLightbox = ref(false)
 }
 
 .gd-image-viewer__group:hover .gd-image-viewer__overlay {
-  background: rgba(0,0,0,0.30);
+  background: rgba(0, 0, 0, 0.3);
   opacity: 1;
 }
 
-.gd-image-viewer__overlay--edit { pointer-events: none; }
+.gd-image-viewer__overlay--edit {
+  pointer-events: none;
+}
 
 .gd-image-viewer__edit-icon {
   color: white;
@@ -97,7 +116,9 @@ const showLightbox = ref(false)
   transition: opacity var(--transition-base);
 }
 
-.gd-image-viewer__group:hover .gd-image-viewer__edit-icon { opacity: 1; }
+.gd-image-viewer__group:hover .gd-image-viewer__edit-icon {
+  opacity: 1;
+}
 
 .gd-image-viewer__lightbox {
   position: relative;
@@ -113,7 +134,11 @@ const showLightbox = ref(false)
 
 /* Transition */
 .gd-fade-enter-active,
-.gd-fade-leave-active  { transition: opacity var(--transition-base); }
+.gd-fade-leave-active {
+  transition: opacity var(--transition-base);
+}
 .gd-fade-enter-from,
-.gd-fade-leave-to      { opacity: 0; }
+.gd-fade-leave-to {
+  opacity: 0;
+}
 </style>

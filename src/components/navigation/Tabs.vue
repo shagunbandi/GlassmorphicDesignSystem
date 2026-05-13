@@ -12,7 +12,15 @@
         type="button"
         @click="$emit('update:active', tab.id)"
       >
-        <i v-if="tab.icon" :class="[tab.icon, 'gd-tabs__icon', active === tab.id ? 'gd-tabs__icon--active' : '']" aria-hidden="true" />
+        <i
+          v-if="tab.icon"
+          :class="[
+            tab.icon,
+            'gd-tabs__icon',
+            active === tab.id ? 'gd-tabs__icon--active' : '',
+          ]"
+          aria-hidden="true"
+        />
         <span class="gd-tabs__label">{{ tab.name }}</span>
         <span v-if="tab.count > 0" class="gd-tabs__count">{{ tab.count }}</span>
       </Button>
@@ -25,7 +33,7 @@ import Button from '../primitives/Button.vue'
 
 defineProps({
   /** Array of { id, name, icon?, count? } */
-  tabs:   { type: Array, required: true },
+  tabs: { type: Array, required: true },
   active: { type: String, required: true },
 })
 
@@ -44,21 +52,27 @@ defineEmits(['update:active'])
   scrollbar-width: none;
 }
 
-.gd-tabs__scroll::-webkit-scrollbar { display: none; }
+.gd-tabs__scroll::-webkit-scrollbar {
+  display: none;
+}
 
 .gd-tabs__icon {
   color: var(--fg-4);
   transition: color var(--transition-fast);
 }
 
-.gd-tabs__icon--active { color: var(--brand-sky); }
+.gd-tabs__icon--active {
+  color: var(--brand-sky);
+}
 
 .gd-tabs__label {
   display: none;
 }
 
 @media (min-width: 480px) {
-  .gd-tabs__label { display: inline; }
+  .gd-tabs__label {
+    display: inline;
+  }
 }
 
 .gd-tabs__count {
@@ -71,7 +85,7 @@ defineEmits(['update:active'])
   border-radius: var(--radius-full);
   background: var(--badge-sky-bg);
   color: var(--badge-sky-fg);
-  border: 1px solid rgba(155, 203, 255, 0.40);
+  border: 1px solid rgba(155, 203, 255, 0.4);
   line-height: 1.4;
 }
 </style>

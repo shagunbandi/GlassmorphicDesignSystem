@@ -1,7 +1,12 @@
 <template>
   <div :class="['gd-empty-state', large ? 'gd-empty-state--large' : '']">
     <div class="gd-empty-state__icon-group">
-      <div :class="['gd-empty-state__icon-wrap', `gd-empty-state__icon-wrap--${tone}`]">
+      <div
+        :class="[
+          'gd-empty-state__icon-wrap',
+          `gd-empty-state__icon-wrap--${tone}`,
+        ]"
+      >
         <i :class="[icon, 'gd-empty-state__icon']" aria-hidden="true" />
       </div>
       <div v-if="showAddBadge" class="gd-empty-state__badge" aria-hidden="true">
@@ -32,13 +37,13 @@
 import Button from '../primitives/Button.vue'
 
 defineProps({
-  title:       { type: String, required: true },
+  title: { type: String, required: true },
   description: { type: String, required: true },
-  icon:        { type: String, required: true },
-  actionText:  { type: String, default: '' },
-  showAddBadge:{ type: Boolean, default: true },
-  large:       { type: Boolean, default: false },
-  tone:        {
+  icon: { type: String, required: true },
+  actionText: { type: String, default: '' },
+  showAddBadge: { type: Boolean, default: true },
+  large: { type: Boolean, default: false },
+  tone: {
     type: String,
     default: 'sky',
     validator: (v) => ['sky', 'mint', 'coral', 'amber', 'slate'].includes(v),
@@ -62,7 +67,9 @@ defineEmits(['action-click'])
 }
 
 @media (min-width: 640px) {
-  .gd-empty-state { padding: var(--space-8); }
+  .gd-empty-state {
+    padding: var(--space-8);
+  }
 }
 
 .gd-empty-state--large {
@@ -70,7 +77,9 @@ defineEmits(['action-click'])
 }
 
 @media (min-width: 640px) {
-  .gd-empty-state--large { padding: 4rem var(--space-8); }
+  .gd-empty-state--large {
+    padding: 4rem var(--space-8);
+  }
 }
 
 /* Icon group */
@@ -89,14 +98,27 @@ defineEmits(['action-click'])
 }
 
 @media (min-width: 640px) {
-  .gd-empty-state__icon-wrap { width: 80px; height: 80px; }
+  .gd-empty-state__icon-wrap {
+    width: 80px;
+    height: 80px;
+  }
 }
 
-.gd-empty-state__icon-wrap--sky   { background: var(--badge-sky-bg); }
-.gd-empty-state__icon-wrap--mint  { background: var(--badge-emerald-bg); }
-.gd-empty-state__icon-wrap--coral { background: rgba(255,126,95,0.18); }
-.gd-empty-state__icon-wrap--amber { background: var(--badge-amber-bg); }
-.gd-empty-state__icon-wrap--slate { background: var(--badge-slate-bg); }
+.gd-empty-state__icon-wrap--sky {
+  background: var(--badge-sky-bg);
+}
+.gd-empty-state__icon-wrap--mint {
+  background: var(--badge-emerald-bg);
+}
+.gd-empty-state__icon-wrap--coral {
+  background: rgba(255, 126, 95, 0.18);
+}
+.gd-empty-state__icon-wrap--amber {
+  background: var(--badge-amber-bg);
+}
+.gd-empty-state__icon-wrap--slate {
+  background: var(--badge-slate-bg);
+}
 
 .gd-empty-state__icon {
   font-size: 1.5rem;
@@ -104,7 +126,9 @@ defineEmits(['action-click'])
 }
 
 @media (min-width: 640px) {
-  .gd-empty-state__icon { font-size: 1.875rem; }
+  .gd-empty-state__icon {
+    font-size: 1.875rem;
+  }
 }
 
 .gd-empty-state__badge {
@@ -122,7 +146,10 @@ defineEmits(['action-click'])
 }
 
 @media (min-width: 640px) {
-  .gd-empty-state__badge { width: 24px; height: 24px; }
+  .gd-empty-state__badge {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .gd-empty-state__badge-icon {
@@ -140,7 +167,9 @@ defineEmits(['action-click'])
 }
 
 @media (min-width: 640px) {
-  .gd-empty-state__title { font-size: var(--text-xl); }
+  .gd-empty-state__title {
+    font-size: var(--text-xl);
+  }
 }
 
 .gd-empty-state__description {
@@ -153,6 +182,8 @@ defineEmits(['action-click'])
 }
 
 @media (min-width: 640px) {
-  .gd-empty-state__description { margin-bottom: var(--space-6); }
+  .gd-empty-state__description {
+    margin-bottom: var(--space-6);
+  }
 }
 </style>

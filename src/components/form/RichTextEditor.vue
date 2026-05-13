@@ -26,8 +26,8 @@ import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
 const props = defineProps({
-  value:      [String, Number],
-  placeholder:String,
+  value: [String, Number],
+  placeholder: String,
   editorType: {
     type: String,
     default: 'small',
@@ -39,8 +39,8 @@ const props = defineProps({
 const emit = defineEmits(['change'])
 
 const containerRef = ref(null)
-const editorRef    = ref(null)
-const content      = ref(props.value)
+const editorRef = ref(null)
+const content = ref(props.value)
 const contentBefore = ref(props.value)
 const hasLargeContent = ref(false)
 
@@ -50,12 +50,19 @@ const quillOptions = {
   readOnly: !props.canEdit,
 }
 
-watch(() => props.value, (v) => {
-  if (v !== content.value) {
-    content.value = v
-    nextTick(() => { contentBefore.value = content.value; checkSize() })
-  }
-}, { immediate: true })
+watch(
+  () => props.value,
+  (v) => {
+    if (v !== content.value) {
+      content.value = v
+      nextTick(() => {
+        contentBefore.value = content.value
+        checkSize()
+      })
+    }
+  },
+  { immediate: true },
+)
 
 function handleChange() {
   if (content.value !== contentBefore.value) {
@@ -74,7 +81,10 @@ function checkSize() {
 
 <style>
 /* Non-scoped: Quill renders outside component scope */
-.gd-rte { position: relative; margin-top: 5px; }
+.gd-rte {
+  position: relative;
+  margin-top: 5px;
+}
 
 .gd-rte .ql-toolbar {
   height: 0;
@@ -126,5 +136,8 @@ function checkSize() {
   border-radius: var(--radius-sm);
 }
 
-.gd-rte .ql-editor.ql-blank::before { left: 0; color: var(--fg-5); }
+.gd-rte .ql-editor.ql-blank::before {
+  left: 0;
+  color: var(--fg-5);
+}
 </style>

@@ -42,7 +42,13 @@ defineProps({
   gap: 6px;
 }
 
-.gd-transit-item__icon { color: #9ca3af; }
-.gd-transit-item__val  { font-weight: 500; }
-.gd-transit-item__sep  { color: #d1d5db; }
+.gd-transit-item__icon {
+  color: #9ca3af;
+}
+.gd-transit-item__val {
+  font-weight: 500;
+}
+.gd-transit-item__sep {
+  color: #d1d5db;
+}
 </style>

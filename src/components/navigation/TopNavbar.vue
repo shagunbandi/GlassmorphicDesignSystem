@@ -8,7 +8,13 @@
       <div class="gd-top-navbar__max">
         <div class="gd-top-navbar__row">
           <div class="gd-top-navbar__brand-wrap">
-            <slot name="brand" :brand-to="brandTo" :title="brandTitle" :tagline="brandTagline" :logo-src="logoSrc">
+            <slot
+              name="brand"
+              :brand-to="brandTo"
+              :title="brandTitle"
+              :tagline="brandTagline"
+              :logo-src="logoSrc"
+            >
               <router-link :to="brandTo" class="gd-top-navbar__brand">
                 <div v-if="logoSrc" class="gd-top-navbar__logo">
                   <img
@@ -18,15 +24,21 @@
                   />
                 </div>
                 <div>
-                  <span v-if="brandTitle" class="gd-top-navbar__title">{{ brandTitle }}</span>
-                  <span v-if="brandTagline" class="gd-top-navbar__tagline">{{ brandTagline }}</span>
+                  <span v-if="brandTitle" class="gd-top-navbar__title">{{
+                    brandTitle
+                  }}</span>
+                  <span v-if="brandTagline" class="gd-top-navbar__tagline">{{
+                    brandTagline
+                  }}</span>
                 </div>
               </router-link>
             </slot>
           </div>
 
           <div class="gd-top-navbar__desktop">
-            <template v-if="desktopLayout === 'inline' && itemsResolved.length > 0">
+            <template
+              v-if="desktopLayout === 'inline' && itemsResolved.length > 0"
+            >
               <router-link
                 v-for="(item, idx) in itemsResolved"
                 :key="`inline-${item.path}-${idx}`"
@@ -34,13 +46,22 @@
                 class="gd-top-navbar__link"
                 :class="{ 'gd-top-navbar__link--active': isItemActive(item) }"
               >
-                <i v-if="item.icon" :class="item.icon" class="gd-top-navbar__link-icon" aria-hidden="true"></i>
+                <i
+                  v-if="item.icon"
+                  :class="item.icon"
+                  class="gd-top-navbar__link-icon"
+                  aria-hidden="true"
+                ></i>
                 {{ itemLabel(item) }}
               </router-link>
             </template>
 
             <div
-              v-else-if="desktopLayout === 'pill' && itemsResolved.length > 0 && !hasDesktopAfterSlot"
+              v-else-if="
+                desktopLayout === 'pill' &&
+                itemsResolved.length > 0 &&
+                !hasDesktopAfterSlot
+              "
               class="gd-top-navbar__switch"
               role="group"
               :aria-label="navAriaLabel"
@@ -71,9 +92,19 @@
             </template>
             <template v-else-if="showUserAvatar">
               <router-link :to="profilePath" class="gd-top-navbar__avatar-link">
-                <slot name="avatar" :user="currentUser" :profile-path="profilePath" size="md">
+                <slot
+                  name="avatar"
+                  :user="currentUser"
+                  :profile-path="profilePath"
+                  size="md"
+                >
                   <div class="gd-top-navbar__avatar">
-                    <img v-if="currentUser?.avatar_url" :src="currentUser.avatar_url" :alt="avatarAlt" class="gd-top-navbar__avatar-img" />
+                    <img
+                      v-if="currentUser?.avatar_url"
+                      :src="currentUser.avatar_url"
+                      :alt="avatarAlt"
+                      class="gd-top-navbar__avatar-img"
+                    />
                     <div v-else class="gd-top-navbar__avatar-fallback">
                       {{ avatarInitial }}
                     </div>
@@ -92,8 +123,16 @@
               :aria-label="mobileMenuLabel"
               @click="toggleMobileMenu"
             >
-              <i v-if="!mobileMenuOpen" class="fas fa-bars gd-top-navbar__menu-icon" aria-hidden="true"></i>
-              <i v-else class="fas fa-xmark gd-top-navbar__menu-icon" aria-hidden="true"></i>
+              <i
+                v-if="!mobileMenuOpen"
+                class="fas fa-bars gd-top-navbar__menu-icon"
+                aria-hidden="true"
+              ></i>
+              <i
+                v-else
+                class="fas fa-xmark gd-top-navbar__menu-icon"
+                aria-hidden="true"
+              ></i>
             </Button>
           </div>
         </div>
@@ -119,8 +158,15 @@
             @click="closeMobileMenu"
           >
             <div class="gd-top-navbar__sheet-row">
-              <i v-if="item.icon" :class="item.icon" class="gd-top-navbar__sheet-icon" aria-hidden="true"></i>
-              <span class="gd-top-navbar__sheet-label">{{ sheetItemLabel(item) }}</span>
+              <i
+                v-if="item.icon"
+                :class="item.icon"
+                class="gd-top-navbar__sheet-icon"
+                aria-hidden="true"
+              ></i>
+              <span class="gd-top-navbar__sheet-label">{{
+                sheetItemLabel(item)
+              }}</span>
               <i
                 v-if="isItemActive(item)"
                 class="fas fa-chevron-right gd-top-navbar__sheet-chevron"
@@ -147,11 +193,25 @@
               class="gd-top-navbar__sheet-link gd-top-navbar__sheet-link--profile"
               @click="closeMobileMenu"
             >
-              <div class="gd-top-navbar__sheet-row gd-top-navbar__sheet-row--gap">
-                <slot name="avatar" :user="currentUser" :profile-path="profilePath" size="sm">
+              <div
+                class="gd-top-navbar__sheet-row gd-top-navbar__sheet-row--gap"
+              >
+                <slot
+                  name="avatar"
+                  :user="currentUser"
+                  :profile-path="profilePath"
+                  size="sm"
+                >
                   <div class="gd-top-navbar__avatar gd-top-navbar__avatar--sm">
-                    <img v-if="currentUser?.avatar_url" :src="currentUser.avatar_url" class="gd-top-navbar__avatar-img" />
-                    <div v-else class="gd-top-navbar__avatar-fallback gd-top-navbar__avatar-fallback--sm">
+                    <img
+                      v-if="currentUser?.avatar_url"
+                      :src="currentUser.avatar_url"
+                      class="gd-top-navbar__avatar-img"
+                    />
+                    <div
+                      v-else
+                      class="gd-top-navbar__avatar-fallback gd-top-navbar__avatar-fallback--sm"
+                    >
                       {{ avatarInitial }}
                     </div>
                   </div>
@@ -171,7 +231,10 @@
             >
               <div class="gd-top-navbar__logout-row">
                 <span>{{ logoutLabel }}</span>
-                <i class="fas fa-right-from-bracket gd-top-navbar__logout-icon" aria-hidden="true"></i>
+                <i
+                  class="fas fa-right-from-bracket gd-top-navbar__logout-icon"
+                  aria-hidden="true"
+                ></i>
               </div>
             </Button>
           </template>
@@ -238,8 +301,12 @@ const isHiddenRoute = computed(() => {
   return paths.includes(route.path)
 })
 
-const avatarAlt = computed(() => props.currentUser?.username ?? props.profileLabel)
-const avatarInitial = computed(() => props.currentUser?.username?.[0]?.toUpperCase() ?? '?')
+const avatarAlt = computed(
+  () => props.currentUser?.username ?? props.profileLabel,
+)
+const avatarInitial = computed(
+  () => props.currentUser?.username?.[0]?.toUpperCase() ?? '?',
+)
 
 function itemLabel(item) {
   return item.name ?? item.label ?? ''

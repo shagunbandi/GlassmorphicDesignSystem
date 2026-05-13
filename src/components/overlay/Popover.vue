@@ -1,7 +1,11 @@
 <template>
   <teleport to="body">
     <template v-if="show">
-      <div v-if="backdrop" class="gd-popover-backdrop" @click="$emit('close')" />
+      <div
+        v-if="backdrop"
+        class="gd-popover-backdrop"
+        @click="$emit('close')"
+      />
       <div
         class="gd-popover"
         :class="{ 'gd-popover--match-width': matchAnchorWidth }"
@@ -18,15 +22,19 @@
 import { computed, onUnmounted, watch } from 'vue'
 
 const props = defineProps({
-  show:    { type: Boolean, required: true },
+  show: { type: Boolean, required: true },
   /** DOMRect from getBoundingClientRect() on the anchor element. */
-  rect:    { type: Object, default: null },
+  rect: { type: Object, default: null },
   /** `leading` — align left edge to anchor left. `center` — center under anchor. */
-  anchor:  { type: String, default: 'leading', validator: (v) => ['leading', 'center'].includes(v) },
-  backdrop:         { type: Boolean, default: true },
+  anchor: {
+    type: String,
+    default: 'leading',
+    validator: (v) => ['leading', 'center'].includes(v),
+  },
+  backdrop: { type: Boolean, default: true },
   matchAnchorWidth: { type: Boolean, default: false },
-  closeOnScroll:    { type: Boolean, default: true },
-  closeOnResize:    { type: Boolean, default: true },
+  closeOnScroll: { type: Boolean, default: true },
+  closeOnResize: { type: Boolean, default: true },
 })
 
 const emit = defineEmits(['close'])
@@ -41,35 +49,58 @@ const menuStyle = computed(() => {
 
   const withWidth = (base) => {
     if (props.matchAnchorWidth && width != null && width > 0) {
-      return { ...base, width: `${width}px`, minWidth: `${width}px`, maxWidth: `${width}px` }
+      return {
+        ...base,
+        width: `${width}px`,
+        minWidth: `${width}px`,
+        maxWidth: `${width}px`,
+      }
     }
     return base
   }
 
   if (props.anchor === 'center') {
     const cx = left + (width ?? 0) / 2
-    return withWidth({ top: `${top}px`, left: `${cx}px`, transform: 'translateX(-50%)' })
+    return withWidth({
+      top: `${top}px`,
+      left: `${cx}px`,
+      transform: 'translateX(-50%)',
+    })
   }
 
   const openRight = left + anchorW > window.innerWidth
   if (openRight) {
-    return withWidth({ top: `${top}px`, right: `${window.innerWidth - right}px` })
+    return withWidth({
+      top: `${top}px`,
+      right: `${window.innerWidth - right}px`,
+    })
   }
   return withWidth({ top: `${top}px`, left: `${left}px` })
 })
 
-function onScrollClose() { if (props.show && props.closeOnScroll) emit('close') }
-function onResizeClose() { if (props.show && props.closeOnResize) emit('close') }
+function onScrollClose() {
+  if (props.show && props.closeOnScroll) emit('close')
+}
+function onResizeClose() {
+  if (props.show && props.closeOnResize) emit('close')
+}
 
-watch(() => props.show, (val) => {
-  if (val) {
-    if (props.closeOnScroll) window.addEventListener('scroll', onScrollClose, { passive: true, capture: true })
-    if (props.closeOnResize) window.addEventListener('resize', onResizeClose)
-  } else {
-    window.removeEventListener('scroll', onScrollClose, { capture: true })
-    window.removeEventListener('resize', onResizeClose)
-  }
-})
+watch(
+  () => props.show,
+  (val) => {
+    if (val) {
+      if (props.closeOnScroll)
+        window.addEventListener('scroll', onScrollClose, {
+          passive: true,
+          capture: true,
+        })
+      if (props.closeOnResize) window.addEventListener('resize', onResizeClose)
+    } else {
+      window.removeEventListener('scroll', onScrollClose, { capture: true })
+      window.removeEventListener('resize', onResizeClose)
+    }
+  },
+)
 
 onUnmounted(() => {
   window.removeEventListener('scroll', onScrollClose, { capture: true })
@@ -100,7 +131,9 @@ onUnmounted(() => {
   gap: 2px;
 }
 
-.gd-popover--match-width { min-width: 0; }
+.gd-popover--match-width {
+  min-width: 0;
+}
 
 /* ─── Generic row styles for slotted menu items ─────────────────────────── */
 /* Consumers can use these class names to get consistent row styling. */
@@ -114,7 +147,9 @@ onUnmounted(() => {
   font-size: var(--text-sm);
   color: var(--fg-2);
   cursor: pointer;
-  transition: background var(--transition-fast), color var(--transition-fast);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
   user-select: none;
 }
 

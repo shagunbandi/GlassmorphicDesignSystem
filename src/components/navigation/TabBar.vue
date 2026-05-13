@@ -6,10 +6,17 @@
       role="tab"
       type="button"
       :aria-selected="active === tab.id"
-      :class="['gd-tab-bar__tab', { 'gd-tab-bar__tab--active': active === tab.id }]"
+      :class="[
+        'gd-tab-bar__tab',
+        { 'gd-tab-bar__tab--active': active === tab.id },
+      ]"
       @click="$emit('update:active', tab.id)"
     >
-      <i v-if="tab.icon" :class="[tab.icon, 'gd-tab-bar__icon']" aria-hidden="true" />
+      <i
+        v-if="tab.icon"
+        :class="[tab.icon, 'gd-tab-bar__icon']"
+        aria-hidden="true"
+      />
       <span>{{ tab.name }}</span>
     </button>
   </div>
@@ -18,9 +25,13 @@
 <script setup>
 defineProps({
   /** Array of { id, name, icon? } */
-  tabs:   { type: Array, required: true },
+  tabs: { type: Array, required: true },
   active: { type: String, required: true },
-  size:   { type: String, default: 'md', validator: (v) => ['xs', 'sm', 'md', 'lg'].includes(v) },
+  size: {
+    type: String,
+    default: 'md',
+    validator: (v) => ['xs', 'sm', 'md', 'lg'].includes(v),
+  },
 })
 
 defineEmits(['update:active'])
@@ -50,7 +61,9 @@ defineEmits(['update:active'])
   font-weight: 500;
   color: var(--fg-3);
   cursor: pointer;
-  transition: background var(--transition-fast), color var(--transition-fast);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
 }
 
 .gd-tab-bar__tab:hover {
@@ -68,31 +81,31 @@ defineEmits(['update:active'])
 }
 
 /* ─── Size variants ──────────────────────────────────────────────────────── */
-.gd-tab-bar[data-size="xs"] {
+.gd-tab-bar[data-size='xs'] {
   padding: 0.15rem;
   gap: 0.125rem;
 }
-.gd-tab-bar[data-size="xs"] .gd-tab-bar__tab {
+.gd-tab-bar[data-size='xs'] .gd-tab-bar__tab {
   padding: 0.15rem 0.5rem;
   font-size: 0.6875rem;
   gap: 0.25rem;
 }
 
-.gd-tab-bar[data-size="sm"] {
+.gd-tab-bar[data-size='sm'] {
   padding: 0.2rem;
   gap: 0.125rem;
 }
-.gd-tab-bar[data-size="sm"] .gd-tab-bar__tab {
+.gd-tab-bar[data-size='sm'] .gd-tab-bar__tab {
   padding: 0.25rem 0.75rem;
   font-size: 0.75rem;
   gap: 0.375rem;
 }
 
-.gd-tab-bar[data-size="lg"] {
+.gd-tab-bar[data-size='lg'] {
   padding: 0.4rem;
   gap: 0.375rem;
 }
-.gd-tab-bar[data-size="lg"] .gd-tab-bar__tab {
+.gd-tab-bar[data-size='lg'] .gd-tab-bar__tab {
   padding: 0.55rem 1.4rem;
   font-size: 0.9375rem;
   gap: 0.625rem;

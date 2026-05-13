@@ -45,11 +45,11 @@ const props = defineProps({
   },
 })
 
-const transitDistance = computed(() =>
-  props.transit?.distance?.text ?? props.transit?.distance ?? ''
+const transitDistance = computed(
+  () => props.transit?.distance?.text ?? props.transit?.distance ?? '',
 )
-const transitTime = computed(() =>
-  props.transit?.duration?.text ?? props.transit?.time ?? ''
+const transitTime = computed(
+  () => props.transit?.duration?.text ?? props.transit?.time ?? '',
 )
 </script>
 
@@ -99,12 +99,20 @@ const transitTime = computed(() =>
   font: 600 11.5px/1 var(--font-sans);
 }
 
-.gd-timeline-item__transit i { font-size: 11px; }
+.gd-timeline-item__transit i {
+  font-size: 11px;
+}
 
-.gd-timeline-item__transit-sep { color: var(--fg-5); }
-.gd-timeline-item__transit-time { color: var(--fg-2); }
+.gd-timeline-item__transit-sep {
+  color: var(--fg-5);
+}
+.gd-timeline-item__transit-time {
+  color: var(--fg-2);
+}
 
-.gd-timeline-item__spacer { flex: 1; }
+.gd-timeline-item__spacer {
+  flex: 1;
+}
 
 /* Action buttons pill */
 .gd-timeline-item__actions {
@@ -128,10 +136,14 @@ const transitTime = computed(() =>
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: background 150ms, color 150ms;
+  transition:
+    background 150ms,
+    color 150ms;
 }
 
-.gd-timeline-item__action-btn i { font-size: 10px; }
+.gd-timeline-item__action-btn i {
+  font-size: 10px;
+}
 
 .gd-timeline-item__action-btn:hover {
   background: rgba(155, 203, 255, 0.12);

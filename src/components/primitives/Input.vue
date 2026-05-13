@@ -41,7 +41,11 @@
     v-model="editedInput"
     :disabled="disabled"
     :readonly="readonly"
-    :class="['gd-inline-input', transparent ? 'gd-inline-input--transparent' : '', fullWidth ? 'gd-inline-input--full' : '']"
+    :class="[
+      'gd-inline-input',
+      transparent ? 'gd-inline-input--transparent' : '',
+      fullWidth ? 'gd-inline-input--full' : '',
+    ]"
     :type="inlineHtmlType"
     :placeholder="placeholder"
     v-bind="nativeAttrs"
@@ -63,8 +67,16 @@
 import { computed, ref, useAttrs, watch } from 'vue'
 
 const FIELD_TYPES = new Set([
-  'text', 'url', 'tel', 'email', 'number', 'date',
-  'time', 'datetime-local', 'search', 'password',
+  'text',
+  'url',
+  'tel',
+  'email',
+  'number',
+  'date',
+  'time',
+  'datetime-local',
+  'search',
+  'password',
 ])
 
 const props = defineProps({
@@ -79,15 +91,15 @@ const props = defineProps({
   inputType: String,
   nativeType: { type: String, default: 'text' },
   placeholder: String,
-  disabled:    { type: Boolean, default: false },
-  readonly:    { type: Boolean, default: false },
+  disabled: { type: Boolean, default: false },
+  readonly: { type: Boolean, default: false },
   transparent: { type: Boolean, default: false },
-  fullWidth:   { type: Boolean, default: false },
+  fullWidth: { type: Boolean, default: false },
   errorMessage: { type: String, default: '' },
   maxlength: [String, Number],
-  min:       [String, Number],
-  max:       [String, Number],
-  step:      [String, Number],
+  min: [String, Number],
+  max: [String, Number],
+  step: [String, Number],
   textareaRows: { type: Number, default: 6 },
 })
 
@@ -97,13 +109,14 @@ defineOptions({ inheritAttrs: false })
 const attrs = useAttrs()
 const nativeAttrs = computed(() => {
   const { class: _c, style: _s, ...rest } = attrs
-  void _c; void _s
+  void _c
+  void _s
   return rest
 })
 
-const fieldInputRef    = ref(null)
+const fieldInputRef = ref(null)
 const fieldTextareaRef = ref(null)
-const inlineInputRef   = ref(null)
+const inlineInputRef = ref(null)
 const inlineTextareaRef = ref(null)
 
 defineExpose({
@@ -115,17 +128,21 @@ defineExpose({
   },
 })
 
-const hasError        = computed(() => Boolean(props.errorMessage))
-const isFieldVariant  = computed(() => props.variant === 'field')
-const fieldIsTextarea = computed(() => isFieldVariant.value && props.inputType === 'textarea')
+const hasError = computed(() => Boolean(props.errorMessage))
+const isFieldVariant = computed(() => props.variant === 'field')
+const fieldIsTextarea = computed(
+  () => isFieldVariant.value && props.inputType === 'textarea',
+)
 
 const resolvedFieldType = computed(() => {
   const t = (props.nativeType || 'text').toLowerCase()
   return FIELD_TYPES.has(t) ? t : 'text'
 })
 
-const isInlineNativeInput = computed(() =>
-  props.variant === 'inline' && ['input', 'link', 'number', 'date'].includes(props.inputType),
+const isInlineNativeInput = computed(
+  () =>
+    props.variant === 'inline' &&
+    ['input', 'link', 'number', 'date'].includes(props.inputType),
 )
 
 const inlineHtmlType = computed(() =>
@@ -138,24 +155,35 @@ const maxlengthNum = computed(() => {
   return Number.isFinite(n) ? n : undefined
 })
 
-const minAttr  = computed(() => (props.min  != null && props.min  !== '' ? props.min  : undefined))
-const maxAttr  = computed(() => (props.max  != null && props.max  !== '' ? props.max  : undefined))
-const stepAttr = computed(() => (props.step != null && props.step !== '' ? props.step : undefined))
+const minAttr = computed(() =>
+  props.min != null && props.min !== '' ? props.min : undefined,
+)
+const maxAttr = computed(() =>
+  props.max != null && props.max !== '' ? props.max : undefined,
+)
+const stepAttr = computed(() =>
+  props.step != null && props.step !== '' ? props.step : undefined,
+)
 
 function toFieldString(v) {
-  return (v == null || v === '') ? '' : String(v)
+  return v == null || v === '' ? '' : String(v)
 }
 
 const fieldDisplayValue = ref('')
 watch(
   () => props.modelValue,
-  (v) => { if (isFieldVariant.value) fieldDisplayValue.value = toFieldString(v) },
+  (v) => {
+    if (isFieldVariant.value) fieldDisplayValue.value = toFieldString(v)
+  },
   { immediate: true },
 )
 
 function emitFieldModel(raw) {
   if (resolvedFieldType.value === 'number') {
-    if (raw === '' || raw == null) { emit('update:modelValue', null); return }
+    if (raw === '' || raw == null) {
+      emit('update:modelValue', null)
+      return
+    }
     const n = Number(raw)
     emit('update:modelValue', Number.isNaN(n) ? null : n)
     return
@@ -176,7 +204,11 @@ function onFieldTextareaInput(e) {
 }
 
 const editedInput = ref(
-  props.value != null ? String(props.value) : props.modelValue != null ? String(props.modelValue) : '',
+  props.value != null
+    ? String(props.value)
+    : props.modelValue != null
+      ? String(props.modelValue)
+      : '',
 )
 
 watch(
@@ -188,7 +220,7 @@ watch(
 )
 
 function saveInlineChanges() {
-  const cur  = editedInput.value
+  const cur = editedInput.value
   const prev = props.value != null ? String(props.value) : ''
   if (cur !== prev) emit('onSave', cur)
 }
@@ -196,7 +228,9 @@ function saveInlineChanges() {
 
 <style scoped>
 /* ─── Field variant ─────────────────────────────────────────────────────── */
-.gd-input-wrap { width: 100%; }
+.gd-input-wrap {
+  width: 100%;
+}
 
 textarea.gd-input {
   min-height: 7.5rem;
@@ -215,11 +249,15 @@ textarea.gd-input {
   background: var(--glass-soft);
   border: 1px solid var(--glass-border-soft);
   border-radius: var(--radius-sm);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
   outline: none;
 }
 
-.gd-input::placeholder { color: var(--fg-5); }
+.gd-input::placeholder {
+  color: var(--fg-5);
+}
 
 .gd-input:focus {
   border-color: var(--color-interactive-light);
@@ -231,8 +269,12 @@ textarea.gd-input {
   cursor: not-allowed;
 }
 
-.gd-input--error                { border-color: var(--color-danger-light) !important; }
-.gd-input--error:focus          { box-shadow: 0 0 0 2px var(--color-danger-bg) !important; }
+.gd-input--error {
+  border-color: var(--color-danger-light) !important;
+}
+.gd-input--error:focus {
+  box-shadow: 0 0 0 2px var(--color-danger-bg) !important;
+}
 
 .gd-input-error {
   font-size: 0.7rem;
@@ -261,6 +303,10 @@ textarea.gd-input {
   background: transparent;
 }
 
-.gd-inline-input--transparent { background: transparent; }
-.gd-inline-input--full        { width: 100%; }
+.gd-inline-input--transparent {
+  background: transparent;
+}
+.gd-inline-input--full {
+  width: 100%;
+}
 </style>

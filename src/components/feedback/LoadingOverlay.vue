@@ -4,7 +4,9 @@
       <div class="gd-loading-overlay__inner">
         <div class="gd-loading-overlay__spinner-wrap">
           <div class="gd-loading-overlay__ring" />
-          <div class="gd-loading-overlay__ring gd-loading-overlay__ring--spin" />
+          <div
+            class="gd-loading-overlay__ring gd-loading-overlay__ring--spin"
+          />
         </div>
         <p class="gd-loading-overlay__message">{{ message }}</p>
       </div>
@@ -68,15 +70,30 @@ defineProps({
 }
 
 /* Transitions */
-.gd-fade-enter-active { transition: opacity var(--transition-base); }
-.gd-fade-leave-active { transition: opacity 200ms ease; }
+.gd-fade-enter-active {
+  transition: opacity var(--transition-base);
+}
+.gd-fade-leave-active {
+  transition: opacity 200ms ease;
+}
 .gd-fade-enter-from,
-.gd-fade-leave-to     { opacity: 0; }
+.gd-fade-leave-to {
+  opacity: 0;
+}
 
-@keyframes gd-spin  { to { transform: rotate(360deg); } }
+@keyframes gd-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 @keyframes gd-pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.45; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
 }
 </style>

@@ -7,11 +7,17 @@
       rel="noopener noreferrer"
       class="gd-file-upload__current"
     >
-      <i class="fa-solid fa-file gd-file-upload__file-icon" aria-hidden="true" />
+      <i
+        class="fa-solid fa-file gd-file-upload__file-icon"
+        aria-hidden="true"
+      />
       <span class="gd-file-upload__filename">{{ filename }}</span>
     </a>
 
-    <label class="gd-file-upload__drop-zone" :class="{ 'gd-file-upload__drop-zone--dragover': isDragging }">
+    <label
+      class="gd-file-upload__drop-zone"
+      :class="{ 'gd-file-upload__drop-zone--dragover': isDragging }"
+    >
       <input
         type="file"
         class="gd-file-upload__native"
@@ -20,7 +26,10 @@
         @dragleave="isDragging = false"
         @drop.prevent="onDrop"
       />
-      <i class="fa-solid fa-cloud-arrow-up gd-file-upload__upload-icon" aria-hidden="true" />
+      <i
+        class="fa-solid fa-cloud-arrow-up gd-file-upload__upload-icon"
+        aria-hidden="true"
+      />
       <span class="gd-file-upload__hint">
         {{ isDragging ? 'Drop to upload' : 'Click or drag a file here' }}
       </span>
@@ -32,7 +41,7 @@
 import { computed, ref } from 'vue'
 
 const props = defineProps({
-  value:   String,
+  value: String,
   itemKey: String,
 })
 
@@ -58,7 +67,11 @@ function onDrop(e) {
 </script>
 
 <style scoped>
-.gd-file-upload { display: flex; flex-direction: column; gap: var(--space-2); }
+.gd-file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
 
 .gd-file-upload__current {
   display: inline-flex;
@@ -75,10 +88,19 @@ function onDrop(e) {
   transition: background var(--transition-fast);
 }
 
-.gd-file-upload__current:hover { background: var(--glass-soft); }
+.gd-file-upload__current:hover {
+  background: var(--glass-soft);
+}
 
-.gd-file-upload__file-icon    { color: var(--fg-4); }
-.gd-file-upload__filename     { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 24rem; }
+.gd-file-upload__file-icon {
+  color: var(--fg-4);
+}
+.gd-file-upload__filename {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 24rem;
+}
 
 .gd-file-upload__drop-zone {
   position: relative;
@@ -92,14 +114,16 @@ function onDrop(e) {
   border-radius: var(--radius-md);
   background: var(--glass-thin);
   cursor: pointer;
-  transition: border-color var(--transition-fast), background var(--transition-fast);
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast);
   text-align: center;
 }
 
 .gd-file-upload__drop-zone:hover,
 .gd-file-upload__drop-zone--dragover {
   border-color: var(--brand-sky);
-  background: rgba(155,203,255,0.06);
+  background: rgba(155, 203, 255, 0.06);
 }
 
 .gd-file-upload__native {
