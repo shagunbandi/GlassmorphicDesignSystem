@@ -7,6 +7,7 @@
         @click="$emit('close')"
       />
       <div
+        ref="popoverRef"
         class="gd-popover"
         :class="{ 'gd-popover--match-width': matchAnchorWidth }"
         :style="menuStyle"
@@ -19,7 +20,7 @@
 </template>
 
 <script setup>
-import { computed, onUnmounted, watch } from 'vue'
+import { ref, onUnmounted, watch, nextTick } from 'vue'
 
 const props = defineProps({
   show: { type: Boolean, required: true },
@@ -39,44 +40,69 @@ const props = defineProps({
 
 const emit = defineEmits(['close'])
 
+const popoverRef = ref(null)
+const menuStyle = ref({})
+
+const MARGIN = 6
+const ESTIMATED_HEIGHT = 200
 const ESTIMATED_WIDTH = 180
 
-const menuStyle = computed(() => {
-  if (!props.rect) return {}
-  const { left, right, bottom, width } = props.rect
-  const top = bottom + 6
+function computeStyle() {
+  if (!props.rect) {
+    menuStyle.value = {}
+    return
+  }
+
+  const { left, right, top: anchorTop, bottom, width } = props.rect
+  const vw = window.innerWidth
+  const vh = window.innerHeight
+
+  const el = popoverRef.value
+  const popoverH = el ? el.offsetHeight : ESTIMATED_HEIGHT
+  const popoverW = el ? el.offsetWidth : ESTIMATED_WIDTH
   const anchorW = width != null && width > 0 ? width : ESTIMATED_WIDTH
 
-  const withWidth = (base) => {
-    if (props.matchAnchorWidth && width != null && width > 0) {
-      return {
-        ...base,
-        width: `${width}px`,
-        minWidth: `${width}px`,
-        maxWidth: `${width}px`,
-      }
-    }
-    return base
+  // Vertical: open below unless more space above
+  const spaceBelow = vh - bottom - MARGIN
+  const spaceAbove = anchorTop - MARGIN
+  let topVal
+  if (popoverH <= spaceBelow || spaceBelow >= spaceAbove) {
+    topVal = bottom + MARGIN
+  } else {
+    topVal = Math.max(MARGIN, anchorTop - MARGIN - popoverH)
   }
+
+  const widthStyle =
+    props.matchAnchorWidth && width != null && width > 0
+      ? { width: `${width}px`, minWidth: `${width}px`, maxWidth: `${width}px` }
+      : {}
 
   if (props.anchor === 'center') {
     const cx = left + (width ?? 0) / 2
-    return withWidth({
-      top: `${top}px`,
-      left: `${cx}px`,
-      transform: 'translateX(-50%)',
-    })
+    const leftEdge = cx - popoverW / 2
+    const rightEdge = cx + popoverW / 2
+    if (leftEdge < MARGIN) {
+      menuStyle.value = { top: `${topVal}px`, left: `${MARGIN}px`, ...widthStyle }
+    } else if (rightEdge > vw - MARGIN) {
+      menuStyle.value = { top: `${topVal}px`, right: `${MARGIN}px`, ...widthStyle }
+    } else {
+      menuStyle.value = {
+        top: `${topVal}px`,
+        left: `${cx}px`,
+        transform: 'translateX(-50%)',
+        ...widthStyle,
+      }
+    }
+    return
   }
 
-  const openRight = left + anchorW > window.innerWidth
-  if (openRight) {
-    return withWidth({
-      top: `${top}px`,
-      right: `${window.innerWidth - right}px`,
-    })
+  // Leading: left-align unless it overflows right, then right-align
+  if (left + popoverW > vw - MARGIN) {
+    menuStyle.value = { top: `${topVal}px`, right: `${vw - right}px`, ...widthStyle }
+  } else {
+    menuStyle.value = { top: `${topVal}px`, left: `${left}px`, ...widthStyle }
   }
-  return withWidth({ top: `${top}px`, left: `${left}px` })
-})
+}
 
 function onScrollClose() {
   if (props.show && props.closeOnScroll) emit('close')
@@ -87,19 +113,26 @@ function onResizeClose() {
 
 watch(
   () => props.show,
-  (val) => {
+  async (val) => {
     if (val) {
+      computeStyle()
+      await nextTick()
+      computeStyle()
       if (props.closeOnScroll)
-        window.addEventListener('scroll', onScrollClose, {
-          passive: true,
-          capture: true,
-        })
+        window.addEventListener('scroll', onScrollClose, { passive: true, capture: true })
       if (props.closeOnResize) window.addEventListener('resize', onResizeClose)
     } else {
+      menuStyle.value = {}
       window.removeEventListener('scroll', onScrollClose, { capture: true })
       window.removeEventListener('resize', onResizeClose)
     }
   },
+)
+
+watch(
+  () => props.rect,
+  () => { if (props.show) computeStyle() },
+  { deep: true },
 )
 
 onUnmounted(() => {
