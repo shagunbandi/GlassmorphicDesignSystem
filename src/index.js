@@ -12,10 +12,14 @@ export { default as MediaCard } from './components/layout/MediaCard.vue'
 export { default as Grid } from './components/layout/Grid.vue'
 export { default as Flex } from './components/layout/Flex.vue'
 export { default as Hero } from './components/layout/Hero.vue'
+export { default as CollapsibleSection } from './components/layout/CollapsibleSection.vue'
 
 // Overlay
 export { default as Modal } from './components/overlay/Modal.vue'
 export { default as Popover } from './components/overlay/Popover.vue'
+export { default as PopoverItem } from './components/overlay/PopoverItem.vue'
+export { default as PopoverRow } from './components/overlay/PopoverRow.vue'
+export { default as PopoverDivider } from './components/overlay/PopoverDivider.vue'
 export { default as ImageViewer } from './components/overlay/ImageViewer.vue'
 export { default as InlineInput } from './components/overlay/InlineInput.vue'
 
@@ -29,6 +33,7 @@ export { default as SectionHeader } from './components/navigation/SectionHeader.
 // Feedback
 export { default as EmptyState } from './components/feedback/EmptyState.vue'
 export { default as LoadingOverlay } from './components/feedback/LoadingOverlay.vue'
+export { default as AlertBanner } from './components/feedback/AlertBanner.vue'
 
 // Form
 export { default as CheckList } from './components/form/CheckList.vue'
@@ -39,6 +44,9 @@ export { default as FileUpload } from './components/form/FileUpload.vue'
 export { default as TimelineItem } from './components/display/TimelineItem.vue'
 export { default as TransitItem } from './components/display/TransitItem.vue'
 export { default as ProfileHero } from './components/display/ProfileHero.vue'
+export { default as ChatBubble } from './components/display/ChatBubble.vue'
+export { default as StatCard } from './components/display/StatCard.vue'
+export { default as StatItem } from './components/display/StatItem.vue'
 
 // Vue plugin (app.use(GlassUI) registers all as Gd* globals)
 export { default as GlassUI } from './plugin.js'

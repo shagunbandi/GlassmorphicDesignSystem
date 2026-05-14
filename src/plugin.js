@@ -7,9 +7,13 @@ import Card from './components/layout/Card.vue'
 import Grid from './components/layout/Grid.vue'
 import Flex from './components/layout/Flex.vue'
 import Hero from './components/layout/Hero.vue'
+import CollapsibleSection from './components/layout/CollapsibleSection.vue'
 // Overlay
 import Modal from './components/overlay/Modal.vue'
 import Popover from './components/overlay/Popover.vue'
+import PopoverItem from './components/overlay/PopoverItem.vue'
+import PopoverRow from './components/overlay/PopoverRow.vue'
+import PopoverDivider from './components/overlay/PopoverDivider.vue'
 import ImageViewer from './components/overlay/ImageViewer.vue'
 import InlineInput from './components/overlay/InlineInput.vue'
 // Navigation
@@ -21,6 +25,7 @@ import SectionHeader from './components/navigation/SectionHeader.vue'
 // Feedback
 import EmptyState from './components/feedback/EmptyState.vue'
 import LoadingOverlay from './components/feedback/LoadingOverlay.vue'
+import AlertBanner from './components/feedback/AlertBanner.vue'
 // Form
 import CheckList from './components/form/CheckList.vue'
 import RichTextEditor from './components/form/RichTextEditor.vue'
@@ -29,6 +34,9 @@ import FileUpload from './components/form/FileUpload.vue'
 import TimelineItem from './components/display/TimelineItem.vue'
 import TransitItem from './components/display/TransitItem.vue'
 import ProfileHero from './components/display/ProfileHero.vue'
+import ChatBubble from './components/display/ChatBubble.vue'
+import StatCard from './components/display/StatCard.vue'
+import StatItem from './components/display/StatItem.vue'
 
 const GlassUI = {
   install(app) {
@@ -39,8 +47,12 @@ const GlassUI = {
     app.component('GdGrid', Grid)
     app.component('GdFlex', Flex)
     app.component('GdHero', Hero)
+    app.component('GdCollapsibleSection', CollapsibleSection)
     app.component('GdModal', Modal)
     app.component('GdPopover', Popover)
+    app.component('GdPopoverItem', PopoverItem)
+    app.component('GdPopoverRow', PopoverRow)
+    app.component('GdPopoverDivider', PopoverDivider)
     app.component('GdImageViewer', ImageViewer)
     app.component('GdInlineInput', InlineInput)
     app.component('GdBottomNavigation', BottomNavigation)
@@ -50,12 +62,16 @@ const GlassUI = {
     app.component('GdSectionHeader', SectionHeader)
     app.component('GdEmptyState', EmptyState)
     app.component('GdLoadingOverlay', LoadingOverlay)
+    app.component('GdAlertBanner', AlertBanner)
     app.component('GdCheckList', CheckList)
     app.component('GdRichTextEditor', RichTextEditor)
     app.component('GdFileUpload', FileUpload)
     app.component('GdTimelineItem', TimelineItem)
     app.component('GdTransitItem', TransitItem)
     app.component('GdProfileHero', ProfileHero)
+    app.component('GdChatBubble', ChatBubble)
+    app.component('GdStatCard', StatCard)
+    app.component('GdStatItem', StatItem)
   },
 }
 

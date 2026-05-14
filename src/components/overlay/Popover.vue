@@ -82,9 +82,17 @@ function computeStyle() {
     const leftEdge = cx - popoverW / 2
     const rightEdge = cx + popoverW / 2
     if (leftEdge < MARGIN) {
-      menuStyle.value = { top: `${topVal}px`, left: `${MARGIN}px`, ...widthStyle }
+      menuStyle.value = {
+        top: `${topVal}px`,
+        left: `${MARGIN}px`,
+        ...widthStyle,
+      }
     } else if (rightEdge > vw - MARGIN) {
-      menuStyle.value = { top: `${topVal}px`, right: `${MARGIN}px`, ...widthStyle }
+      menuStyle.value = {
+        top: `${topVal}px`,
+        right: `${MARGIN}px`,
+        ...widthStyle,
+      }
     } else {
       menuStyle.value = {
         top: `${topVal}px`,
@@ -98,7 +106,11 @@ function computeStyle() {
 
   // Leading: left-align unless it overflows right, then right-align
   if (left + popoverW > vw - MARGIN) {
-    menuStyle.value = { top: `${topVal}px`, right: `${vw - right}px`, ...widthStyle }
+    menuStyle.value = {
+      top: `${topVal}px`,
+      right: `${vw - right}px`,
+      ...widthStyle,
+    }
   } else {
     menuStyle.value = { top: `${topVal}px`, left: `${left}px`, ...widthStyle }
   }
@@ -119,7 +131,10 @@ watch(
       await nextTick()
       computeStyle()
       if (props.closeOnScroll)
-        window.addEventListener('scroll', onScrollClose, { passive: true, capture: true })
+        window.addEventListener('scroll', onScrollClose, {
+          passive: true,
+          capture: true,
+        })
       if (props.closeOnResize) window.addEventListener('resize', onResizeClose)
     } else {
       menuStyle.value = {}
@@ -131,7 +146,9 @@ watch(
 
 watch(
   () => props.rect,
-  () => { if (props.show) computeStyle() },
+  () => {
+    if (props.show) computeStyle()
+  },
   { deep: true },
 )
 
@@ -199,6 +216,31 @@ onUnmounted(() => {
 .gd-popover :deep(.gd-popover-item--danger:hover) {
   background: var(--color-danger-bg);
   color: var(--color-danger-light);
+}
+
+/* Detail row — non-interactive label/value pair */
+.gd-popover :deep(.gd-popover-item--detail) {
+  cursor: default;
+  text-transform: capitalize;
+}
+
+.gd-popover :deep(.gd-popover-item--detail:hover) {
+  background: transparent;
+  color: var(--fg-2);
+}
+
+.gd-popover :deep(.gd-popover-item__label) {
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  color: var(--fg-3);
+  min-width: 4rem;
+  flex-shrink: 0;
+}
+
+.gd-popover :deep(.gd-popover-item__value) {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--fg-2);
 }
 
 .gd-popover :deep(.gd-popover-divider) {
