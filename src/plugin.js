@@ -8,6 +8,7 @@ import Grid from './components/layout/Grid.vue'
 import Flex from './components/layout/Flex.vue'
 import Hero from './components/layout/Hero.vue'
 import CollapsibleSection from './components/layout/CollapsibleSection.vue'
+import MediaCard from './components/layout/MediaCard.vue'
 // Overlay
 import Modal from './components/overlay/Modal.vue'
 import Popover from './components/overlay/Popover.vue'
@@ -21,7 +22,6 @@ import BottomNavigation from './components/navigation/BottomNavigation.vue'
 import TopNavbar from './components/navigation/TopNavbar.vue'
 import Tabs from './components/navigation/Tabs.vue'
 import TabBar from './components/navigation/TabBar.vue'
-import SectionHeader from './components/navigation/SectionHeader.vue'
 // Feedback
 import EmptyState from './components/feedback/EmptyState.vue'
 import LoadingOverlay from './components/feedback/LoadingOverlay.vue'
@@ -48,6 +48,7 @@ const GlassUI = {
     app.component('GdFlex', Flex)
     app.component('GdHero', Hero)
     app.component('GdCollapsibleSection', CollapsibleSection)
+    app.component('GdMediaCard', MediaCard)
     app.component('GdModal', Modal)
     app.component('GdPopover', Popover)
     app.component('GdPopoverItem', PopoverItem)
@@ -59,7 +60,6 @@ const GlassUI = {
     app.component('GdTopNavbar', TopNavbar)
     app.component('GdTabs', Tabs)
     app.component('GdTabBar', TabBar)
-    app.component('GdSectionHeader', SectionHeader)
     app.component('GdEmptyState', EmptyState)
     app.component('GdLoadingOverlay', LoadingOverlay)
     app.component('GdAlertBanner', AlertBanner)

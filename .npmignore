@@ -1,0 +1,19 @@
+# Storybook
+.storybook/
+storybook-static/
+
+# Source
+src/
+preview/
+
+# Config / tooling
+vite.config.js
+.prettierrc
+.gitignore
+
+# Dev artifacts
+node_modules/
+*.log
+
+# Git
+.git/
