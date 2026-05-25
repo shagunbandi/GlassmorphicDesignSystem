@@ -40,7 +40,7 @@
         </div>
 
         <!-- Footer -->
-        <div v-if="$slots.footer" class="gd-modal-footer">
+        <div v-if="$slots.footer" :class="['gd-modal-footer', `gd-modal-footer--${footerAlign}`]">
           <slot name="footer" />
         </div>
       </div>
@@ -49,7 +49,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick, provide } from 'vue'
+
+provide('buttonTone', 'inverted')
 
 const props = defineProps({
   size: {
@@ -65,6 +67,11 @@ const props = defineProps({
   dismissable: {
     type: Boolean,
     default: true,
+  },
+  footerAlign: {
+    type: String,
+    default: 'end',
+    validator: (v) => ['start', 'end', 'between'].includes(v),
   },
 })
 
@@ -270,9 +277,12 @@ function onKeyDown(e) {
   background: var(--glass-thin);
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   gap: var(--space-3);
 }
+
+.gd-modal-footer--end     { justify-content: flex-end; }
+.gd-modal-footer--start   { justify-content: flex-start; }
+.gd-modal-footer--between { justify-content: space-between; }
 
 /* ── Layout helpers for consumer footer content ───────────────────────────── */
 :deep(.gd-modal-actions),
