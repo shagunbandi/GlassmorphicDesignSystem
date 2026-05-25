@@ -14,13 +14,15 @@
             class="gd-checklist__checkbox"
             @click="handleCheckboxClicked(key)"
           />
-          <input
-            type="text"
+          <textarea
+            :ref="el => { if (el) textareaEls[key] = el; else delete textareaEls[key] }"
             class="gd-checklist__text"
             placeholder="Enter item name..."
             :value="item.key"
             :disabled="!canEdit"
             :readonly="!canEdit"
+            rows="1"
+            @input="(e) => { autoResize(e.target); onTextChangeHandler(key, e.target.value) }"
             @change="(e) => onTextChangeHandler(key, e.target.value)"
           />
           <div v-if="canEdit" class="gd-checklist__actions">
@@ -86,7 +88,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch, onMounted, nextTick } from 'vue'
 import Button from '../primitives/Button.vue'
 
 const props = defineProps({
@@ -108,6 +110,7 @@ function parse(v) {
 }
 
 const checkedItems = ref(parse(props.value))
+const textareaEls = {}
 
 function persist() {
   emit('change', JSON.stringify(checkedItems.value))
@@ -145,6 +148,19 @@ function handleDownClicked(i) {
     persist()
   }
 }
+
+function autoResize(el) {
+  if (!el) return
+  el.style.height = 'auto'
+  el.style.height = el.scrollHeight + 'px'
+}
+
+function resizeAll() {
+  Object.values(textareaEls).forEach(autoResize)
+}
+
+onMounted(() => nextTick(resizeAll))
+watch(checkedItems, () => nextTick(resizeAll), { deep: true, flush: 'post' })
 </script>
 
 <style scoped>
@@ -169,7 +185,7 @@ function handleDownClicked(i) {
 
 .gd-checklist__row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   padding: 7px 12px;
 }
@@ -213,7 +229,7 @@ function handleDownClicked(i) {
   cursor: default;
 }
 
-/* Text input */
+/* Text textarea */
 .gd-checklist__text {
   flex: 1;
   border: none;
@@ -224,6 +240,9 @@ function handleDownClicked(i) {
   color: var(--fg-2);
   min-width: 0;
   outline: none;
+  resize: none;
+  overflow: hidden;
+  line-height: 1.5;
 }
 
 .gd-checklist__text::placeholder {
