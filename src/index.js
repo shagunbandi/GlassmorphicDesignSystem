@@ -46,6 +46,7 @@ export { default as ProfileHero } from './components/display/ProfileHero.vue'
 export { default as ChatBubble } from './components/display/ChatBubble.vue'
 export { default as StatCard } from './components/display/StatCard.vue'
 export { default as StatItem } from './components/display/StatItem.vue'
+export { default as Difference } from './components/display/Difference.vue'
 
 // Vue plugin (app.use(GlassUI) registers all as Gd* globals)
 export { default as GlassUI } from './plugin.js'
