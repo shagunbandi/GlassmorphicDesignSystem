@@ -30,12 +30,19 @@
         </button>
 
         <!-- Header -->
-        <div v-if="$slots.header" class="gd-modal-header">
-          <slot name="header" />
+        <div v-if="$slots.header || title || eyebrow" class="gd-modal-header">
+          <slot name="header">
+            <div v-if="eyebrow" class="gd-modal-eyebrow">{{ eyebrow }}</div>
+            <h2 v-if="title" class="gd-modal-title">
+              <i v-if="icon" :class="['gd-modal-title-icon', icon]" />
+              {{ title }}
+            </h2>
+            <p v-if="subtitle" class="gd-modal-subtitle">{{ subtitle }}</p>
+          </slot>
         </div>
 
         <!-- Body -->
-        <div class="gd-modal-body">
+        <div :class="['gd-modal-body', { 'gd-modal-body--scroll': scrollBody }]">
           <slot name="body" />
         </div>
 
@@ -73,6 +80,11 @@ const props = defineProps({
     default: 'end',
     validator: (v) => ['start', 'end', 'between'].includes(v),
   },
+  eyebrow: { type: String, default: null },
+  title: { type: String, default: null },
+  subtitle: { type: String, default: null },
+  icon: { type: String, default: null },
+  scrollBody: { type: Boolean, default: false },
 })
 
 const emit = defineEmits(['close', 'click:outside'])
@@ -267,6 +279,11 @@ function onKeyDown(e) {
   color: var(--fg-2);
   font-size: var(--text-sm);
   line-height: 1.55;
+}
+
+.gd-modal-body--scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* ── Footer ───────────────────────────────────────────────────────────────── */
