@@ -34,7 +34,7 @@ const resolvedTag = computed(() => props.as ?? `h${props.level}`)
 }
 
 .gd-title--2 {
-  font-size: var(--text-2xl);
+  font-size: clamp(var(--text-xl), 3vw, var(--text-2xl));
   font-weight: 700;
   line-height: 1.2;
 }
