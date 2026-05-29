@@ -391,6 +391,10 @@ function onKeyDown(e) {
 
 <style>
 /* ── Light mode overrides ── */
+:root.light .gd-modal-backdrop {
+  background: rgba(15, 23, 42, 0.18);
+}
+
 :root.light .gd-modal-body input[type='date'] { color-scheme: light; }
 
 :root.light .gd-modal-body .gd-input--error { border-color: #dc2626 !important; }

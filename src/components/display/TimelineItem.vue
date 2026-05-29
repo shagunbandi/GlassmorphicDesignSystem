@@ -146,7 +146,7 @@ const transitTime = computed(
 }
 
 .gd-timeline-item__action-btn:hover {
-  background: rgba(155, 203, 255, 0.12);
+  background: var(--glass-soft);
   color: var(--brand-sky);
 }
 </style>

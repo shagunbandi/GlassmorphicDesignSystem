@@ -118,3 +118,10 @@ defineProps({
   font-family: var(--font-sans);
 }
 </style>
+
+<style>
+:root.light .gd-chat-bubble--incoming {
+  background: rgba(15, 23, 42, 0.07);
+  border-color: rgba(15, 23, 42, 0.1);
+}
+</style>
