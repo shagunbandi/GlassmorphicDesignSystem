@@ -123,7 +123,7 @@ function onDrop(e) {
 .gd-file-upload__drop-zone:hover,
 .gd-file-upload__drop-zone--dragover {
   border-color: var(--brand-sky);
-  background: rgba(155, 203, 255, 0.06);
+  background: var(--glass-soft);
 }
 
 .gd-file-upload__native {

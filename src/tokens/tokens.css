@@ -121,6 +121,15 @@
   --space-10: 40px;
   --space-12: 48px;
 
+  /* -------- Component tokens -------- */
+  --scrollbar-thumb: rgba(255, 255, 255, 0.25);
+  --checkbox-check: rgba(255, 255, 255, 0.95);
+  --loading-bg: rgba(10, 18, 32, 0.72);
+  --popover-bg: rgba(20, 30, 48, 0.88);
+  --modal-shadow: 0 24px 64px rgba(0, 0, 0, 0.45), 0 2px 0 rgba(255, 255, 255, 0.04) inset;
+  --focus-ring-color: rgba(155, 203, 255, 0.65);
+  --focus-ring-shadow: rgba(155, 203, 255, 0.15);
+
   /* -------- Motion -------- */
   --transition-fast: 150ms ease;
   --transition-base: 200ms ease;
@@ -169,6 +178,7 @@
   --glass-border-soft: rgba(15, 23, 42, 0.06);
   --glass-border-hairline: rgba(15, 23, 42, 0.05);
 
+  --glass-blur: 20px;
   --glass-shadow: 0 6px 24px rgba(15, 23, 42, 0.08);
   --glass-shadow-hover: 0 12px 36px rgba(15, 23, 42, 0.14);
 
@@ -181,20 +191,69 @@
   --brand-sky: #2563eb;
   --brand-sky-deep: #003256;
   --brand-mint: #047857;
-  --brand-coral: #c2410c;
+  --brand-coral: #b83b09;
 
+  /* -------- Semantic interaction colors -------- */
+  --color-interactive: #4f46e5;
+  --color-interactive-hover: #4338ca;
+  --color-interactive-light: #4f46e5;
+  --color-interactive-bg: rgba(79, 70, 229, 0.1);
+
+  --color-success: #059669;
+  --color-success-light: #059669;
+  --color-success-bg: rgba(5, 150, 105, 0.1);
+
+  --color-warning: #b45309;
+  --color-warning-light: #d97706;
+  --color-warning-bg: rgba(217, 119, 6, 0.1);
+
+  --color-danger: #dc2626;
+  --color-danger-light: #dc2626;
+  --color-danger-bg: rgba(220, 38, 38, 0.1);
+
+  /* -------- Badge / chip tones -------- */
   --badge-sky-bg: rgba(56, 189, 248, 0.2);
   --badge-sky-fg: #075985;
+  --badge-sky-solid-bg: #0284c7;
+  --badge-sky-solid-fg: #fff;
   --badge-emerald-bg: rgba(16, 185, 129, 0.16);
   --badge-emerald-fg: #065f46;
+  --badge-emerald-solid-bg: #059669;
+  --badge-emerald-solid-fg: #fff;
   --badge-amber-bg: rgba(245, 158, 11, 0.16);
   --badge-amber-fg: #92400e;
+  --badge-amber-solid-bg: #d97706;
+  --badge-amber-solid-fg: #fff;
   --badge-indigo-bg: rgba(79, 70, 229, 0.14);
   --badge-indigo-fg: #3730a3;
-  --badge-coral-bg: rgba(255, 126, 95, 0.18);
+  --badge-indigo-solid-bg: #4f46e5;
+  --badge-indigo-solid-fg: #fff;
+  --badge-coral-bg: rgba(184, 59, 9, 0.14);
   --badge-coral-fg: #9a3412;
+  --badge-coral-solid-bg: #b83b09;
+  --badge-coral-solid-fg: #fff;
   --badge-slate-bg: rgba(100, 116, 139, 0.18);
   --badge-slate-fg: #334155;
+  --badge-slate-solid-bg: #475569;
+  --badge-slate-solid-fg: #fff;
+
+  /* -------- Map / category palette -------- */
+  --cat-attraction: #d97706;
+  --cat-restaurant: #e11d48;
+  --cat-activity: #059669;
+  --cat-hotel: #7c3aed;
+  --cat-transport: #059669;
+  --cat-airport: #0284c7;
+  --cat-shopping: #db2777;
+
+  /* -------- Component tokens -------- */
+  --scrollbar-thumb: rgba(15, 23, 42, 0.2);
+  --checkbox-check: rgba(255, 255, 255, 0.95);
+  --loading-bg: rgba(200, 210, 230, 0.72);
+  --popover-bg: rgba(255, 255, 255, 0.88);
+  --modal-shadow: 0 16px 48px rgba(15, 23, 42, 0.15), 0 2px 0 rgba(15, 23, 42, 0.04) inset;
+  --focus-ring-color: rgba(37, 99, 235, 0.5);
+  --focus-ring-shadow: rgba(37, 99, 235, 0.12);
 }
 
 /* ---------- Semantic typography classes ---------- */

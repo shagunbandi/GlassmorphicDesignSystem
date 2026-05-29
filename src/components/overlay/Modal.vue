@@ -160,9 +160,7 @@ function onKeyDown(e) {
   -webkit-backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-3xl);
-  box-shadow:
-    0 24px 64px rgba(0, 0, 0, 0.45),
-    0 2px 0 rgba(255, 255, 255, 0.04) inset;
+  box-shadow: var(--modal-shadow);
   color: var(--fg-1);
   transform: translateY(var(--space-2)) scale(0.97);
   opacity: 0;
@@ -348,9 +346,9 @@ function onKeyDown(e) {
 :deep(.gd-modal-body input:not([type='checkbox']):not([type='radio']):focus),
 :deep(.gd-modal-body textarea:focus),
 :deep(.gd-modal-body select:focus) {
-  border-color: rgba(155, 203, 255, 0.65);
+  border-color: var(--focus-ring-color);
   background: var(--glass-soft);
-  box-shadow: 0 0 0 3px rgba(155, 203, 255, 0.15);
+  box-shadow: 0 0 0 3px var(--focus-ring-shadow);
 }
 
 :deep(.gd-modal-body input::placeholder),
@@ -365,6 +363,7 @@ function onKeyDown(e) {
 :deep(.gd-modal-body input[type='date']) {
   color-scheme: dark;
 }
+
 
 :deep(.gd-modal-body .gd-input) {
   border-color: var(--glass-border-soft);
@@ -388,4 +387,15 @@ function onKeyDown(e) {
 :deep(.gd-modal-body .gd-input-error) {
   color: #fecaca;
 }
+</style>
+
+<style>
+/* ── Light mode overrides ── */
+:root.light .gd-modal-body input[type='date'] { color-scheme: light; }
+
+:root.light .gd-modal-body .gd-input--error { border-color: #dc2626 !important; }
+:root.light .gd-modal-body .gd-input--error:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15) !important;
+}
+:root.light .gd-modal-body .gd-input-error { color: #b91c1c; }
 </style>

@@ -111,7 +111,7 @@ defineEmits(['action-click'])
   background: var(--badge-emerald-bg);
 }
 .gd-empty-state__icon-wrap--coral {
-  background: rgba(255, 126, 95, 0.18);
+  background: var(--badge-coral-bg);
 }
 .gd-empty-state__icon-wrap--amber {
   background: var(--badge-amber-bg);

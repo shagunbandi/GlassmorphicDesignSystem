@@ -48,5 +48,9 @@ export { default as StatCard } from './components/display/StatCard.vue'
 export { default as StatItem } from './components/display/StatItem.vue'
 export { default as Difference } from './components/display/Difference.vue'
 
+// Typography
+export { default as Title } from './components/typography/Title.vue'
+export { default as Text } from './components/typography/Text.vue'
+
 // Vue plugin (app.use(GlassUI) registers all as Gd* globals)
 export { default as GlassUI } from './plugin.js'

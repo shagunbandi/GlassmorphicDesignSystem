@@ -119,7 +119,7 @@ const transitTime = computed(
   display: inline-flex;
   gap: 4px;
   padding: 3px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--glass-thin);
   border: 1px solid var(--glass-border-hairline);
   border-radius: 9999px;
 }

@@ -128,7 +128,7 @@ defineEmits(['avatar-click'])
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid rgba(255, 255, 255, 0.18);
+  border: 3px solid var(--glass-border-soft);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
   overflow: hidden;
 }
@@ -222,6 +222,11 @@ defineEmits(['avatar-click'])
   flex-wrap: wrap;
   flex-shrink: 0;
   align-self: flex-start;
+}
+
+/* Light mode: softer avatar shadow */
+:root.light .gd-profile-hero__avatar {
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.18);
 }
 
 @media (max-width: 640px) {

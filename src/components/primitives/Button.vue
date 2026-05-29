@@ -1242,3 +1242,133 @@ function handleClick(event) {
   filter: brightness(1.08);
 }
 </style>
+
+<style>
+/* ─── Light mode overrides — inverted tone on light glass ─────────────────── */
+
+/* Focus ring */
+:root.light .gd-btn[data-tone='inverted']:focus-visible {
+  outline-color: rgba(79, 70, 229, 0.4);
+}
+
+/* neutral elevated */
+:root.light .gd-btn[data-tone='inverted'][data-intent='neutral'][data-surface='elevated'] {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.12);
+}
+:root.light .gd-btn[data-tone='inverted'][data-intent='neutral'][data-surface='elevated']:not(:disabled):hover {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+/* primary inverted — pastel → saturated */
+:root.light .gd-btn[data-tone='inverted'][data-intent='primary'][data-surface='soft'] {
+  background: rgba(79, 70, 229, 0.1);
+  color: #4f46e5;
+  border-color: rgba(79, 70, 229, 0.35);
+}
+:root.light .gd-btn[data-tone='inverted'][data-intent='primary'][data-surface='soft']:not(:disabled):hover {
+  background: rgba(79, 70, 229, 0.16);
+}
+:root.light .gd-btn[data-tone='inverted'][data-intent='primary'][data-surface='outline'] {
+  color: #4f46e5;
+  border-color: rgba(79, 70, 229, 0.5);
+}
+:root.light .gd-btn[data-tone='inverted'][data-intent='primary'][data-surface='ghost'] { color: #4f46e5; }
+:root.light .gd-btn[data-tone='inverted'][data-intent='primary'][data-surface='link']  { color: #4f46e5; }
+:root.light .gd-btn[data-tone='inverted'][data-intent='primary'][data-surface='link']:not(:disabled):hover { color: #4338ca; }
+
+/* success inverted */
+:root.light .gd-btn[data-tone='inverted'][data-intent='success'][data-surface='soft'] {
+  background: rgba(5, 150, 105, 0.1);
+  color: #047857;
+  border-color: rgba(5, 150, 105, 0.35);
+}
+:root.light .gd-btn[data-tone='inverted'][data-intent='success'][data-surface='soft']:not(:disabled):hover {
+  background: rgba(5, 150, 105, 0.16);
+}
+:root.light .gd-btn[data-tone='inverted'][data-intent='success'][data-surface='outline'] {
+  color: #047857;
+  border-color: rgba(5, 150, 105, 0.5);
+}
+:root.light .gd-btn[data-tone='inverted'][data-intent='success'][data-surface='ghost'] { color: #047857; }
+:root.light .gd-btn[data-tone='inverted'][data-intent='success'][data-surface='link']  { color: #047857; }
+:root.light .gd-btn[data-tone='inverted'][data-intent='success'][data-surface='link']:not(:disabled):hover { color: #065f46; }
+
+/* warning inverted */
+:root.light .gd-btn[data-tone='inverted'][data-intent='warning'][data-surface='soft'] {
+  background: rgba(245, 158, 11, 0.1);
+  color: #92400e;
+  border-color: rgba(245, 158, 11, 0.35);
+}
+:root.light .gd-btn[data-tone='inverted'][data-intent='warning'][data-surface='soft']:not(:disabled):hover {
+  background: rgba(245, 158, 11, 0.18);
+}
+:root.light .gd-btn[data-tone='inverted'][data-intent='warning'][data-surface='outline'] {
+  color: #92400e;
+  border-color: rgba(245, 158, 11, 0.5);
+}
+:root.light .gd-btn[data-tone='inverted'][data-intent='warning'][data-surface='ghost'] { color: #b45309; }
+:root.light .gd-btn[data-tone='inverted'][data-intent='warning'][data-surface='link']  { color: #b45309; }
+:root.light .gd-btn[data-tone='inverted'][data-intent='warning'][data-surface='link']:not(:disabled):hover { color: #92400e; }
+
+/* danger inverted */
+:root.light .gd-btn[data-tone='inverted'][data-intent='danger'][data-surface='soft'] {
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+  border-color: rgba(220, 38, 38, 0.35);
+}
+:root.light .gd-btn[data-tone='inverted'][data-intent='danger'][data-surface='soft']:not(:disabled):hover {
+  background: rgba(220, 38, 38, 0.16);
+}
+:root.light .gd-btn[data-tone='inverted'][data-intent='danger'][data-surface='outline'] {
+  color: #dc2626;
+  border-color: rgba(220, 38, 38, 0.5);
+}
+:root.light .gd-btn[data-tone='inverted'][data-intent='danger'][data-surface='ghost'] { color: #dc2626; }
+:root.light .gd-btn[data-tone='inverted'][data-intent='danger'][data-surface='link']  { color: #dc2626; }
+:root.light .gd-btn[data-tone='inverted'][data-intent='danger'][data-surface='link']:not(:disabled):hover { color: #b91c1c; }
+
+/* selected elevated neutral */
+:root.light .gd-btn[data-selected='true'][data-tone='inverted'][data-intent='neutral'][data-surface='elevated'] {
+  outline: 1px solid rgba(37, 99, 235, 0.45);
+  color: #1d4ed8;
+  background: rgba(219, 234, 254, 0.5);
+  border-color: rgba(37, 99, 235, 0.35);
+}
+
+/* selected primary/success inverted soft */
+:root.light .gd-btn[data-selected='true'][data-tone='inverted'][data-intent='primary'][data-surface='soft'] {
+  background: rgba(79, 70, 229, 0.18);
+  color: #3730a3;
+  border-color: rgba(79, 70, 229, 0.45);
+}
+:root.light .gd-btn[data-selected='true'][data-tone='inverted'][data-intent='success'][data-surface='soft'] {
+  background: rgba(5, 150, 105, 0.18);
+  color: #065f46;
+  border-color: rgba(5, 150, 105, 0.4);
+}
+
+/* accent inverted chips */
+:root.light .gd-btn[data-accent='indigo'][data-surface='soft'][data-tone='inverted'] {
+  background: rgba(79, 70, 229, 0.1); color: #4f46e5; border-color: rgba(79, 70, 229, 0.35);
+}
+:root.light .gd-btn[data-accent='violet'][data-surface='soft'][data-tone='inverted'] {
+  background: rgba(124, 58, 237, 0.1); color: #7c3aed; border-color: rgba(124, 58, 237, 0.35);
+}
+:root.light .gd-btn[data-accent='amber'][data-surface='soft'][data-tone='inverted'] {
+  background: rgba(245, 158, 11, 0.1); color: #b45309; border-color: rgba(245, 158, 11, 0.3);
+}
+:root.light .gd-btn[data-accent='emerald'][data-surface='soft'][data-tone='inverted'] {
+  background: rgba(5, 150, 105, 0.1); color: #059669; border-color: rgba(5, 150, 105, 0.3);
+}
+:root.light .gd-btn[data-accent='rose'][data-surface='soft'][data-tone='inverted'] {
+  background: rgba(225, 29, 72, 0.1); color: #e11d48; border-color: rgba(225, 29, 72, 0.3);
+}
+:root.light .gd-btn[data-accent='sky'][data-surface='soft'][data-tone='inverted'] {
+  background: rgba(2, 132, 199, 0.1); color: #0284c7; border-color: rgba(2, 132, 199, 0.3);
+}
+:root.light .gd-btn[data-accent='coral'][data-surface='soft'][data-tone='inverted'] {
+  background: rgba(184, 59, 9, 0.1); color: #b83b09; border-color: rgba(184, 59, 9, 0.3);
+}
+</style>

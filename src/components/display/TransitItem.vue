@@ -30,9 +30,9 @@ defineProps({
   border-radius: var(--radius-full);
   font-family: var(--font-sans);
   font-size: var(--text-sm);
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  color: #4b5563;
+  background: var(--glass-thin);
+  border: 1px solid var(--glass-border-soft);
+  color: var(--fg-2);
   width: fit-content;
 }
 
@@ -43,12 +43,12 @@ defineProps({
 }
 
 .gd-transit-item__icon {
-  color: #9ca3af;
+  color: var(--fg-4);
 }
 .gd-transit-item__val {
   font-weight: 500;
 }
 .gd-transit-item__sep {
-  color: #d1d5db;
+  color: var(--fg-5);
 }
 </style>

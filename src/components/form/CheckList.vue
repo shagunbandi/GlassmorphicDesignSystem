@@ -219,7 +219,7 @@ watch(checkedItems, () => nextTick(resizeAll), { deep: true, flush: 'post' })
   top: 1px;
   width: 6px;
   height: 10px;
-  border: 2px solid rgba(255, 255, 255, 0.95);
+  border: 2px solid var(--checkbox-check);
   border-top: none;
   border-left: none;
   transform: rotate(45deg);

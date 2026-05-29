@@ -98,6 +98,17 @@ defineEmits(['click'])
   font-size: 32px;
   color: var(--fg-5);
 }
+</style>
+
+<style>
+/* Light mode: glass-soft is near-transparent on light bg — use stronger surface */
+:root.light .gd-media-card {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(15, 23, 42, 0.08);
+}
+:root.light .gd-media-card:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
 
 /* Body */
 .gd-media-card__body {

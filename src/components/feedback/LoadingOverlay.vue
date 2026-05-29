@@ -29,7 +29,7 @@ defineProps({
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(10, 18, 32, 0.72);
+  background: var(--loading-bg);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }

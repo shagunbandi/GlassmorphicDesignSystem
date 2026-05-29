@@ -272,7 +272,7 @@ nextTick(() => inputField.value?.focus?.())
   padding: 1.5rem;
   width: 100%;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
   box-sizing: border-box;
 }
 
@@ -283,7 +283,7 @@ nextTick(() => inputField.value?.focus?.())
   background: transparent;
 }
 .gd-inline-input-modal__scroll::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: var(--scrollbar-thumb);
   border-radius: 20px;
 }
 

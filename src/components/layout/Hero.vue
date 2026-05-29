@@ -78,7 +78,7 @@ const heroStyle = computed(() => {
   top: -80px;
   width: 260px;
   height: 260px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
+  border: 4px solid var(--glass-border);
   border-radius: var(--radius-full);
 }
 
@@ -89,7 +89,7 @@ const heroStyle = computed(() => {
   top: 40px;
   width: 130px;
   height: 130px;
-  border: 4px solid rgba(255, 255, 255, 0.2);
+  border: 4px solid var(--glass-border-soft);
   border-radius: var(--radius-full);
 }
 

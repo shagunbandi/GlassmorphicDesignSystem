@@ -168,7 +168,7 @@ onUnmounted(() => {
 .gd-popover {
   position: fixed;
   z-index: 9999;
-  background: rgba(20, 30, 48, 0.88);
+  background: var(--popover-bg);
   border: 1px solid var(--glass-border-soft);
   box-shadow: var(--glass-shadow-hover);
   backdrop-filter: blur(18px);
@@ -210,7 +210,7 @@ onUnmounted(() => {
 
 .gd-popover :deep(.gd-popover-item--active) {
   background: var(--color-interactive-bg);
-  color: #e0e7ff;
+  color: var(--badge-indigo-fg);
 }
 
 .gd-popover :deep(.gd-popover-item--danger:hover) {

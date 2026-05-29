@@ -82,9 +82,9 @@ defineProps({
 }
 
 /* ── Variant tints ── */
-.gd-stat-card__icon-wrap--sky   { background: rgba(155, 203, 255, 0.15); }
-.gd-stat-card__icon-wrap--mint  { background: rgba(85, 221, 176, 0.15); }
-.gd-stat-card__icon-wrap--coral { background: rgba(255, 126, 95, 0.15); }
+.gd-stat-card__icon-wrap--sky   { background: var(--badge-sky-bg); }
+.gd-stat-card__icon-wrap--mint  { background: var(--badge-emerald-bg); }
+.gd-stat-card__icon-wrap--coral { background: var(--badge-coral-bg); }
 .gd-stat-card__icon-wrap--warning { background: var(--color-warning-bg); }
 .gd-stat-card__icon-wrap--success { background: var(--color-success-bg); }
 .gd-stat-card__icon-wrap--danger  { background: var(--color-danger-bg); }
