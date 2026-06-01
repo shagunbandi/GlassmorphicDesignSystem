@@ -110,4 +110,8 @@ defineEmits(['update:active'])
   font-size: 0.9375rem;
   gap: 0.625rem;
 }
+
+:root.light .gd-tab-bar__tab--active {
+  background: color-mix(in srgb, var(--brand-sky) 12%, transparent);
+}
 </style>

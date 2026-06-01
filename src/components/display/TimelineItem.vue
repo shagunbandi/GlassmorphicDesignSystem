@@ -149,4 +149,19 @@ const transitTime = computed(
   background: var(--glass-soft);
   color: var(--brand-sky);
 }
+
+:root.light .gd-timeline-item__line {
+  background: linear-gradient(
+    180deg,
+    rgba(37, 99, 235, 0) 0%,
+    rgba(37, 99, 235, 0.22) 20%,
+    rgba(37, 99, 235, 0.22) 80%,
+    rgba(37, 99, 235, 0) 100%
+  );
+}
+
+:root.light .gd-timeline-item__transit {
+  background: rgba(37, 99, 235, 0.08);
+  border-color: rgba(37, 99, 235, 0.22);
+}
 </style>

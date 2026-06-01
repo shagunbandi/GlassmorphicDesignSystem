@@ -105,4 +105,9 @@ function isActive(item) {
   letter-spacing: 0.01em;
   line-height: 1;
 }
+
+:root.light .gd-bottom-nav {
+  background: rgba(255, 255, 255, 0.85);
+  border-top-color: rgba(15, 23, 42, 0.08);
+}
 </style>

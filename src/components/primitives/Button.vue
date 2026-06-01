@@ -1251,14 +1251,25 @@ function handleClick(event) {
   outline-color: rgba(79, 70, 229, 0.4);
 }
 
+/* neutral solid */
+:root.light .gd-btn[data-tone='inverted'][data-intent='neutral'][data-surface='solid'] {
+  background: #292524;
+  color: #fff;
+}
+:root.light .gd-btn[data-tone='inverted'][data-intent='neutral'][data-surface='solid']:not(:disabled):hover {
+  background: #1c1917;
+}
+
 /* neutral elevated */
 :root.light .gd-btn[data-tone='inverted'][data-intent='neutral'][data-surface='elevated'] {
   background: rgba(255, 255, 255, 0.7);
+  color: var(--fg-2);
   border-color: rgba(15, 23, 42, 0.12);
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.12);
 }
 :root.light .gd-btn[data-tone='inverted'][data-intent='neutral'][data-surface='elevated']:not(:disabled):hover {
   background: rgba(255, 255, 255, 0.88);
+  color: var(--fg-1);
 }
 
 /* primary inverted — pastel → saturated */

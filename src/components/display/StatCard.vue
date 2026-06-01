@@ -48,4 +48,9 @@ defineProps({
   grid-template-columns: repeat(var(--gd-stat-cols), 1fr);
   gap: var(--space-3);
 }
+
+:root.light .gd-stat-card {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(15, 23, 42, 0.08);
+}
 </style>
