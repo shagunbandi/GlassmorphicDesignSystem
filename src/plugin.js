@@ -8,6 +8,7 @@ import Grid from './components/layout/Grid.vue'
 import Flex from './components/layout/Flex.vue'
 import Hero from './components/layout/Hero.vue'
 import CollapsibleSection from './components/layout/CollapsibleSection.vue'
+import PageShell from './components/layout/PageShell.vue'
 import MediaCard from './components/layout/MediaCard.vue'
 // Overlay
 import Modal from './components/overlay/Modal.vue'
@@ -49,6 +50,7 @@ const GlassUI = {
     app.component('GdFlex', Flex)
     app.component('GdHero', Hero)
     app.component('GdCollapsibleSection', CollapsibleSection)
+    app.component('GdPageShell', PageShell)
     app.component('GdMediaCard', MediaCard)
     app.component('GdModal', Modal)
     app.component('GdPopover', Popover)

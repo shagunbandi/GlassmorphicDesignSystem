@@ -121,6 +121,27 @@
   --space-10: 40px;
   --space-12: 48px;
 
+  /* -------- Layout (see layout.css, PageShell.vue; breakpoints.js) -------- */
+  --layout-max-width: 1080px;
+  --layout-max-width-narrow: 896px;
+  --layout-max-width-marketing: 1180px;
+  --layout-page-padding-x: var(--space-4);
+  --layout-page-padding-x-md: var(--space-6);
+  --layout-page-padding-y: var(--space-6);
+  --layout-page-stack-gap: var(--space-5);
+  --layout-page-stack-gap-lg: var(--space-6);
+
+  /* Breakpoint scale (for JS / docs; @media uses breakpoints.css) */
+  --bp-xs: 480px;
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1536px;
+  --bp-hero-stack: 900px;
+  --bp-steps-stack: 800px;
+  --bp-form-narrow: 520px;
+
   /* -------- Component tokens -------- */
   --scrollbar-thumb: rgba(255, 255, 255, 0.25);
   --checkbox-check: rgba(255, 255, 255, 0.95);

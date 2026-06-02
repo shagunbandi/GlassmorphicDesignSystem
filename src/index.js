@@ -1,5 +1,7 @@
 // Design tokens — import in your app entry: import '@glass/ui/style.css'
 import './tokens/tokens.css'
+import './tokens/breakpoints.css'
+import './tokens/layout.css'
 
 // Primitives
 export { default as Button } from './components/primitives/Button.vue'
@@ -13,6 +15,15 @@ export { default as Grid } from './components/layout/Grid.vue'
 export { default as Flex } from './components/layout/Flex.vue'
 export { default as Hero } from './components/layout/Hero.vue'
 export { default as CollapsibleSection } from './components/layout/CollapsibleSection.vue'
+export { default as PageShell } from './components/layout/PageShell.vue'
+
+export {
+  breakpoints,
+  breakpointSemantics,
+  tailwindScreens,
+  minWidth,
+  maxWidth,
+} from './tokens/breakpoints.js'
 
 // Overlay
 export { default as Modal } from './components/overlay/Modal.vue'

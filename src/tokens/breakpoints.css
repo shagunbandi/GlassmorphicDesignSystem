@@ -1,0 +1,27 @@
+/**
+ * Named media queries for Voyager — values must match breakpoints.js.
+ * Use as: @media (--gd-max-md) { ... }
+ * Requires postcss-custom-media in the app build.
+ */
+
+/* Standard scale */
+@custom-media --gd-max-xs (max-width: 479px);
+@custom-media --gd-min-xs (min-width: 480px);
+@custom-media --gd-max-sm (max-width: 639px);
+@custom-media --gd-min-sm (min-width: 640px);
+@custom-media --gd-max-md (max-width: 767px);
+@custom-media --gd-min-md (min-width: 768px);
+@custom-media --gd-max-lg (max-width: 1023px);
+@custom-media --gd-min-lg (min-width: 1024px);
+@custom-media --gd-max-xl (max-width: 1279px);
+@custom-media --gd-min-xl (min-width: 1280px);
+@custom-media --gd-max-2xl (max-width: 1535px);
+@custom-media --gd-min-2xl (min-width: 1536px);
+
+/* Semantic layout (see breakpointSemantics in breakpoints.js) */
+@custom-media --gd-max-hero (max-width: 899px);
+@custom-media --gd-min-hero (min-width: 900px);
+@custom-media --gd-max-steps (max-width: 799px);
+@custom-media --gd-min-steps (min-width: 800px);
+@custom-media --gd-max-form (max-width: 519px);
+@custom-media --gd-min-form (min-width: 520px);

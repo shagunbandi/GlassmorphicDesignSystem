@@ -10,7 +10,9 @@
       "import": "./dist/index.es.js",
       "require": "./dist/index.cjs.js"
     },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/style.css",
+    "./breakpoints.js": "./src/tokens/breakpoints.js",
+    "./breakpoints.css": "./src/tokens/breakpoints.css"
   },
   "files": [
     "dist"
