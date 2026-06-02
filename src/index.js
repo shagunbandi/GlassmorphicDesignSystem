@@ -16,6 +16,8 @@ export { default as Flex } from './components/layout/Flex.vue'
 export { default as Hero } from './components/layout/Hero.vue'
 export { default as CollapsibleSection } from './components/layout/CollapsibleSection.vue'
 export { default as PageShell } from './components/layout/PageShell.vue'
+export { default as PageHeader } from './components/layout/PageHeader.vue'
+export { default as PageSearchBar } from './components/layout/PageSearchBar.vue'
 
 export {
   breakpoints,

@@ -37,3 +37,60 @@
 .gd-page-stack--gap-6 {
   gap: var(--layout-page-stack-gap-lg);
 }
+
+.gd-page-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.gd-page-head__title {
+  margin: 6px 0 0;
+}
+
+.gd-page-head__subtitle {
+  margin-top: 8px;
+}
+
+.gd-page-head__actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.gd-page-search {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+  max-width: 340px;
+  display: flex;
+  align-items: center;
+}
+
+.gd-page-search--wide {
+  max-width: none;
+}
+
+.gd-page-search__icon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--fg-4);
+  font-size: 13px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.gd-page-search__input {
+  flex: 1;
+  width: 100%;
+}
+
+.gd-page-search .gd-input {
+  padding-left: 36px;
+}
+

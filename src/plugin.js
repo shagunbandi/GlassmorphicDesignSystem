@@ -9,6 +9,8 @@ import Flex from './components/layout/Flex.vue'
 import Hero from './components/layout/Hero.vue'
 import CollapsibleSection from './components/layout/CollapsibleSection.vue'
 import PageShell from './components/layout/PageShell.vue'
+import PageHeader from './components/layout/PageHeader.vue'
+import PageSearchBar from './components/layout/PageSearchBar.vue'
 import MediaCard from './components/layout/MediaCard.vue'
 // Overlay
 import Modal from './components/overlay/Modal.vue'
@@ -51,6 +53,8 @@ const GlassUI = {
     app.component('GdHero', Hero)
     app.component('GdCollapsibleSection', CollapsibleSection)
     app.component('GdPageShell', PageShell)
+    app.component('GdPageHeader', PageHeader)
+    app.component('GdPageSearchBar', PageSearchBar)
     app.component('GdMediaCard', MediaCard)
     app.component('GdModal', Modal)
     app.component('GdPopover', Popover)
