@@ -1,36 +1,40 @@
 <template>
   <!-- Bordered field (forms / modals) -->
   <div v-if="variant === 'field'" class="gd-input-wrap">
-    <textarea
-      v-if="fieldIsTextarea"
-      ref="fieldTextareaRef"
-      :value="fieldDisplayValue"
-      :disabled="disabled"
-      :readonly="readonly"
-      :placeholder="placeholder"
-      :rows="textareaRows"
-      class="gd-input"
-      :class="{ 'gd-input--error': hasError }"
-      v-bind="nativeAttrs"
-      @input="onFieldTextareaInput"
-    />
-    <input
-      v-else
-      ref="fieldInputRef"
-      :type="resolvedFieldType"
-      :value="fieldDisplayValue"
-      :disabled="disabled"
-      :readonly="readonly"
-      :placeholder="placeholder"
-      :maxlength="maxlengthNum"
-      :min="minAttr"
-      :max="maxAttr"
-      :step="stepAttr"
-      class="gd-input"
-      :class="{ 'gd-input--error': hasError }"
-      v-bind="nativeAttrs"
-      @input="onFieldInput"
-    />
+    <div class="gd-input-inner" :class="{ 'gd-input-inner--has-prefix': prefix, 'gd-input-inner--has-suffix': suffix }">
+      <i v-if="prefix" :class="[prefix, 'gd-input-prefix-icon']" aria-hidden="true" />
+      <textarea
+        v-if="fieldIsTextarea"
+        ref="fieldTextareaRef"
+        :value="fieldDisplayValue"
+        :disabled="disabled"
+        :readonly="readonly"
+        :placeholder="placeholder"
+        :rows="textareaRows"
+        class="gd-input"
+        :class="{ 'gd-input--error': hasError, 'gd-input--prefixed': prefix, 'gd-input--suffixed': suffix }"
+        v-bind="nativeAttrs"
+        @input="onFieldTextareaInput"
+      />
+      <input
+        v-else
+        ref="fieldInputRef"
+        :type="resolvedFieldType"
+        :value="fieldDisplayValue"
+        :disabled="disabled"
+        :readonly="readonly"
+        :placeholder="placeholder"
+        :maxlength="maxlengthNum"
+        :min="minAttr"
+        :max="maxAttr"
+        :step="stepAttr"
+        class="gd-input"
+        :class="{ 'gd-input--error': hasError, 'gd-input--prefixed': prefix, 'gd-input--suffixed': suffix }"
+        v-bind="nativeAttrs"
+        @input="onFieldInput"
+      />
+      <i v-if="suffix" :class="[suffix, 'gd-input-suffix-icon']" aria-hidden="true" />
+    </div>
     <p v-if="errorMessage" class="gd-input-error">{{ errorMessage }}</p>
   </div>
 
@@ -96,6 +100,8 @@ const props = defineProps({
   transparent: { type: Boolean, default: false },
   fullWidth: { type: Boolean, default: false },
   errorMessage: { type: String, default: '' },
+  prefix: { type: String, default: '' },
+  suffix: { type: String, default: '' },
   maxlength: [String, Number],
   min: [String, Number],
   max: [String, Number],
@@ -230,6 +236,38 @@ function saveInlineChanges() {
 /* ─── Field variant ─────────────────────────────────────────────────────── */
 .gd-input-wrap {
   width: 100%;
+}
+
+.gd-input-inner {
+  position: relative;
+  width: 100%;
+}
+
+.gd-input-prefix-icon,
+.gd-input-suffix-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--fg-4);
+  font-size: var(--text-sm);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.gd-input-prefix-icon {
+  left: var(--space-3);
+}
+
+.gd-input-suffix-icon {
+  right: var(--space-3);
+}
+
+.gd-input--prefixed {
+  padding-left: 2.25rem;
+}
+
+.gd-input--suffixed {
+  padding-right: 2.25rem;
 }
 
 textarea.gd-input {

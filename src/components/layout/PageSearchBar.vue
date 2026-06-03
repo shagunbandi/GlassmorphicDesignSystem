@@ -1,14 +1,12 @@
 <template>
   <div class="gd-page-search" :class="{ 'gd-page-search--wide': wide }">
-    <i class="fas fa-magnifying-glass gd-page-search__icon" aria-hidden="true" />
-    <div class="gd-page-search__input">
-      <Input
-        variant="field"
-        :model-value="modelValue"
-        :placeholder="placeholder"
-        @update:model-value="$emit('update:modelValue', $event)"
-      />
-    </div>
+    <Input
+      variant="field"
+      prefix="fas fa-magnifying-glass"
+      :model-value="modelValue"
+      :placeholder="placeholder"
+      @update:model-value="$emit('update:modelValue', $event)"
+    />
   </div>
 </template>
 
@@ -24,3 +22,13 @@ defineProps({
 
 defineEmits(['update:modelValue'])
 </script>
+
+<style scoped>
+.gd-page-search {
+  display: inline-block;
+}
+
+.gd-page-search--wide {
+  width: 100%;
+}
+</style>
