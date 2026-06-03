@@ -1,7 +1,6 @@
 /* ============================================================
    Glass Design System — Colors & Type
    Glassmorphic dark-first UI token sheet.
-   Source: Voyager design handoff (voyager handoff/design-system/project/colors_and_type.css)
 
    Font: Import Inter Variable in your app entry point.
      npm: import '@fontsource-variable/inter'
@@ -31,6 +30,9 @@
   --glass-border-hairline: rgba(255, 255, 255, 0.1);
 
   --glass-blur: 20px;
+  --glass-blur-sm: 8px;
+  --glass-blur-md: 12px;
+  --glass-blur-lg: 18px;
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   --glass-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.3);
 
@@ -52,6 +54,8 @@
   --color-interactive-hover: #4338ca;
   --color-interactive-light: #6366f1;
   --color-interactive-bg: rgba(79, 70, 229, 0.12);
+  --color-interactive-fill: rgba(99, 102, 241, 0.65);
+  --color-interactive-fill-border: rgba(129, 140, 248, 0.85);
 
   --color-success: #059669;
   --color-success-light: #10b981;
@@ -90,15 +94,6 @@
   --badge-slate-fg: rgba(226, 232, 240, 0.9);
   --badge-slate-solid-bg: #475569;
   --badge-slate-solid-fg: #fff;
-
-  /* -------- Map / category palette -------- */
-  --cat-attraction: #f59e0b; /* amber */
-  --cat-restaurant: #fb7185; /* rose */
-  --cat-activity: #34d399; /* emerald */
-  --cat-hotel: #a78bfa; /* violet */
-  --cat-transport: #10b981; /* green */
-  --cat-airport: #38bdf8; /* sky */
-  --cat-shopping: #f472b6; /* pink */
 
   /* -------- Radii -------- */
   --radius-xs: 4px;
@@ -200,6 +195,9 @@
   --glass-border-hairline: rgba(15, 23, 42, 0.05);
 
   --glass-blur: 20px;
+  --glass-blur-sm: 8px;
+  --glass-blur-md: 12px;
+  --glass-blur-lg: 18px;
   --glass-shadow: 0 6px 24px rgba(15, 23, 42, 0.08);
   --glass-shadow-hover: 0 12px 36px rgba(15, 23, 42, 0.14);
 
@@ -219,6 +217,8 @@
   --color-interactive-hover: #4338ca;
   --color-interactive-light: #4f46e5;
   --color-interactive-bg: rgba(79, 70, 229, 0.1);
+  --color-interactive-fill: rgba(79, 70, 229, 0.65);
+  --color-interactive-fill-border: rgba(79, 70, 229, 0.85);
 
   --color-success: #059669;
   --color-success-light: #059669;
@@ -257,15 +257,6 @@
   --badge-slate-fg: #334155;
   --badge-slate-solid-bg: #475569;
   --badge-slate-solid-fg: #fff;
-
-  /* -------- Map / category palette -------- */
-  --cat-attraction: #d97706;
-  --cat-restaurant: #e11d48;
-  --cat-activity: #059669;
-  --cat-hotel: #7c3aed;
-  --cat-transport: #059669;
-  --cat-airport: #0284c7;
-  --cat-shopping: #db2777;
 
   /* -------- Component tokens -------- */
   --scrollbar-thumb: rgba(15, 23, 42, 0.2);

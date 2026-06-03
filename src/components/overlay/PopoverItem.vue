@@ -23,10 +23,38 @@ defineEmits(['click'])
 
 <style scoped>
 .gd-popover-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.4rem 0.6rem;
   width: 100%;
+  border-radius: var(--radius-sm);
   background: transparent;
   border: none;
   text-align: left;
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--fg-2);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.gd-popover-item:hover {
+  background: var(--glass-default);
+  color: var(--fg-1);
+}
+
+.gd-popover-item--active {
+  background: var(--color-interactive-bg);
+  color: var(--badge-indigo-fg);
+}
+
+.gd-popover-item--danger:hover {
+  background: var(--color-danger-bg);
+  color: var(--color-danger-light);
 }
 
 .gd-popover-item:disabled {

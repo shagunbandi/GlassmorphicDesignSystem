@@ -1,3 +1,6 @@
+// Typography
+import Title from './components/typography/Title.vue'
+import Text from './components/typography/Text.vue'
 // Primitives
 import Button from './components/primitives/Button.vue'
 import Badge from './components/primitives/Badge.vue'
@@ -47,6 +50,8 @@ import StarRating from './components/display/StarRating.vue'
 
 const GlassUI = {
   install(app) {
+    app.component('GdTitle', Title)
+    app.component('GdText', Text)
     app.component('GdButton', Button)
     app.component('GdBadge', Badge)
     app.component('GdInput', Input)

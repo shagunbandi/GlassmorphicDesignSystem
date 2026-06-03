@@ -1,5 +1,5 @@
 /**
- * Named media queries for Voyager — values must match breakpoints.js.
+ * Named media queries — values must match breakpoints.js.
  * Use as: @media (--gd-max-md) { ... }
  * Requires postcss-custom-media in the app build.
  */

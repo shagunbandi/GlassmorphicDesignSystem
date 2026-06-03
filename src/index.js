@@ -2,7 +2,6 @@
 import './tokens/tokens.css'
 import './tokens/breakpoints.css'
 import './tokens/layout.css'
-import './tokens/multiselect.css'
 
 // Primitives
 export { default as Button } from './components/primitives/Button.vue'

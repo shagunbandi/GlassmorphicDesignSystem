@@ -171,8 +171,8 @@ onUnmounted(() => {
   background: var(--popover-bg);
   border: 1px solid var(--glass-border-soft);
   box-shadow: var(--glass-shadow-hover);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(var(--glass-blur-lg));
+  -webkit-backdrop-filter: blur(var(--glass-blur-lg));
   border-radius: var(--radius-md);
   padding: var(--space-1);
   min-width: 150px;
@@ -183,69 +183,5 @@ onUnmounted(() => {
 
 .gd-popover--match-width {
   min-width: 0;
-}
-
-/* ─── Generic row styles for slotted menu items ─────────────────────────── */
-/* Consumers can use these class names to get consistent row styling. */
-.gd-popover :deep(.gd-popover-item) {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: 0.4rem 0.6rem;
-  border-radius: var(--radius-sm);
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  color: var(--fg-2);
-  cursor: pointer;
-  transition:
-    background var(--transition-fast),
-    color var(--transition-fast);
-  user-select: none;
-}
-
-.gd-popover :deep(.gd-popover-item:hover) {
-  background: var(--glass-default);
-  color: var(--fg-1);
-}
-
-.gd-popover :deep(.gd-popover-item--active) {
-  background: var(--color-interactive-bg);
-  color: var(--badge-indigo-fg);
-}
-
-.gd-popover :deep(.gd-popover-item--danger:hover) {
-  background: var(--color-danger-bg);
-  color: var(--color-danger-light);
-}
-
-/* Detail row — non-interactive label/value pair */
-.gd-popover :deep(.gd-popover-item--detail) {
-  cursor: default;
-  text-transform: capitalize;
-}
-
-.gd-popover :deep(.gd-popover-item--detail:hover) {
-  background: transparent;
-  color: var(--fg-2);
-}
-
-.gd-popover :deep(.gd-popover-item__label) {
-  font-size: var(--text-2xs);
-  font-weight: 500;
-  color: var(--fg-3);
-  min-width: 4rem;
-  flex-shrink: 0;
-}
-
-.gd-popover :deep(.gd-popover-item__value) {
-  font-size: var(--text-xs);
-  font-weight: 500;
-  color: var(--fg-2);
-}
-
-.gd-popover :deep(.gd-popover-divider) {
-  height: 1px;
-  background: var(--glass-border-hairline);
-  margin: var(--space-1) 0;
 }
 </style>

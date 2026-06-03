@@ -32,8 +32,8 @@
 
       <!-- Identity -->
       <div class="gd-profile-hero__identity">
-        <div v-if="memberSince" class="gd-profile-hero__eyebrow">
-          Voyager member · since {{ memberSince }}
+        <div v-if="memberSince || eyebrow" class="gd-profile-hero__eyebrow">
+          {{ eyebrow || ('Member · since ' + memberSince) }}
         </div>
         <h1 class="gd-profile-hero__name">{{ name }}</h1>
         <div v-if="handle || location" class="gd-profile-hero__meta">
@@ -64,6 +64,7 @@ defineProps({
   location: { type: String, default: '' },
   bio: { type: String, default: '' },
   memberSince: { type: String, default: '' },
+  eyebrow: { type: String, default: '' },
   allowAvatarChange: { type: Boolean, default: false },
 })
 defineEmits(['avatar-click'])
