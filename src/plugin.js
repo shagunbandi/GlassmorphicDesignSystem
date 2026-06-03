@@ -31,6 +31,7 @@ import LoadingOverlay from './components/feedback/LoadingOverlay.vue'
 import AlertBanner from './components/feedback/AlertBanner.vue'
 // Form
 import CheckList from './components/form/CheckList.vue'
+import MultiSelect from './components/form/MultiSelect.vue'
 import RichTextEditor from './components/form/RichTextEditor.vue'
 import FileUpload from './components/form/FileUpload.vue'
 // Display
@@ -73,6 +74,7 @@ const GlassUI = {
     app.component('GdLoadingOverlay', LoadingOverlay)
     app.component('GdAlertBanner', AlertBanner)
     app.component('GdCheckList', CheckList)
+    app.component('GdMultiSelect', MultiSelect)
     app.component('GdRichTextEditor', RichTextEditor)
     app.component('GdFileUpload', FileUpload)
     app.component('GdTimelineItem', TimelineItem)

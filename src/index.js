@@ -2,6 +2,7 @@
 import './tokens/tokens.css'
 import './tokens/breakpoints.css'
 import './tokens/layout.css'
+import './tokens/multiselect.css'
 
 // Primitives
 export { default as Button } from './components/primitives/Button.vue'
@@ -49,6 +50,7 @@ export { default as AlertBanner } from './components/feedback/AlertBanner.vue'
 
 // Form
 export { default as CheckList } from './components/form/CheckList.vue'
+export { default as MultiSelect } from './components/form/MultiSelect.vue'
 export { default as RichTextEditor } from './components/form/RichTextEditor.vue'
 export { default as FileUpload } from './components/form/FileUpload.vue'
 
