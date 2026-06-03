@@ -41,6 +41,7 @@ export { default as BottomNavigation } from './components/navigation/BottomNavig
 export { default as TopNavbar } from './components/navigation/TopNavbar.vue'
 export { default as Tabs } from './components/navigation/Tabs.vue'
 export { default as TabBar } from './components/navigation/TabBar.vue'
+export { default as Breadcrumb } from './components/navigation/Breadcrumb.vue'
 
 // Feedback
 export { default as EmptyState } from './components/feedback/EmptyState.vue'

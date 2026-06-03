@@ -28,6 +28,7 @@ import BottomNavigation from './components/navigation/BottomNavigation.vue'
 import TopNavbar from './components/navigation/TopNavbar.vue'
 import Tabs from './components/navigation/Tabs.vue'
 import TabBar from './components/navigation/TabBar.vue'
+import Breadcrumb from './components/navigation/Breadcrumb.vue'
 // Feedback
 import EmptyState from './components/feedback/EmptyState.vue'
 import LoadingOverlay from './components/feedback/LoadingOverlay.vue'
@@ -75,6 +76,7 @@ const GlassUI = {
     app.component('GdTopNavbar', TopNavbar)
     app.component('GdTabs', Tabs)
     app.component('GdTabBar', TabBar)
+    app.component('GdBreadcrumb', Breadcrumb)
     app.component('GdEmptyState', EmptyState)
     app.component('GdLoadingOverlay', LoadingOverlay)
     app.component('GdAlertBanner', AlertBanner)
