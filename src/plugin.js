@@ -41,6 +41,8 @@ import ChatBubble from './components/display/ChatBubble.vue'
 import StatCard from './components/display/StatCard.vue'
 import StatItem from './components/display/StatItem.vue'
 import Difference from './components/display/Difference.vue'
+import ImageCarousel from './components/display/ImageCarousel.vue'
+import StarRating from './components/display/StarRating.vue'
 
 const GlassUI = {
   install(app) {
@@ -80,6 +82,8 @@ const GlassUI = {
     app.component('GdStatCard', StatCard)
     app.component('GdStatItem', StatItem)
     app.component('GdDifference', Difference)
+    app.component('GdImageCarousel', ImageCarousel)
+    app.component('GdStarRating', StarRating)
   },
 }
 

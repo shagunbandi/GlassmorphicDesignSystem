@@ -60,6 +60,8 @@ export { default as ChatBubble } from './components/display/ChatBubble.vue'
 export { default as StatCard } from './components/display/StatCard.vue'
 export { default as StatItem } from './components/display/StatItem.vue'
 export { default as Difference } from './components/display/Difference.vue'
+export { default as ImageCarousel } from './components/display/ImageCarousel.vue'
+export { default as StarRating } from './components/display/StarRating.vue'
 
 // Typography
 export { default as Title } from './components/typography/Title.vue'
