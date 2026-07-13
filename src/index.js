@@ -47,6 +47,11 @@ export { default as Breadcrumb } from './components/navigation/Breadcrumb.vue'
 export { default as EmptyState } from './components/feedback/EmptyState.vue'
 export { default as LoadingOverlay } from './components/feedback/LoadingOverlay.vue'
 export { default as AlertBanner } from './components/feedback/AlertBanner.vue'
+export { default as Toast } from './components/feedback/Toast.vue'
+export { default as ToastHost } from './components/feedback/ToastHost.vue'
+
+// Composables
+export { useToast } from './composables/useToast.js'
 
 // Form
 export { default as CheckList } from './components/form/CheckList.vue'
