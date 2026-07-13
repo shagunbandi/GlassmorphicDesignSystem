@@ -33,6 +33,8 @@ import Breadcrumb from './components/navigation/Breadcrumb.vue'
 import EmptyState from './components/feedback/EmptyState.vue'
 import LoadingOverlay from './components/feedback/LoadingOverlay.vue'
 import AlertBanner from './components/feedback/AlertBanner.vue'
+import Toast from './components/feedback/Toast.vue'
+import ToastHost from './components/feedback/ToastHost.vue'
 // Form
 import CheckList from './components/form/CheckList.vue'
 import MultiSelect from './components/form/MultiSelect.vue'
@@ -80,6 +82,8 @@ const GlassUI = {
     app.component('GdEmptyState', EmptyState)
     app.component('GdLoadingOverlay', LoadingOverlay)
     app.component('GdAlertBanner', AlertBanner)
+    app.component('GdToast', Toast)
+    app.component('GdToastHost', ToastHost)
     app.component('GdCheckList', CheckList)
     app.component('GdMultiSelect', MultiSelect)
     app.component('GdRichTextEditor', RichTextEditor)
