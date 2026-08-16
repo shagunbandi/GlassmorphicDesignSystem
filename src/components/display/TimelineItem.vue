@@ -19,9 +19,12 @@
           :key="i"
           type="button"
           class="gd-timeline-item__action-btn"
-          @click.stop="btn.clickHandler?.()"
+          :disabled="pendingIndex === i"
+          :aria-busy="pendingIndex === i || undefined"
+          @click.stop="runButton(btn, i)"
         >
-          <i :class="btn.icon ?? btn.ficon" aria-hidden="true" />
+          <Spinner v-if="pendingIndex === i" />
+          <i v-else :class="btn.icon ?? btn.ficon" aria-hidden="true" />
           <span v-if="btn.label">{{ btn.label }}</span>
         </button>
       </div>
@@ -30,7 +33,8 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import Spinner from '../internal/Spinner.vue'
 
 const props = defineProps({
   /** Array of { label, icon?, ficon?, clickHandler() } */
@@ -51,6 +55,22 @@ const transitDistance = computed(
 const transitTime = computed(
   () => props.transit?.duration?.text ?? props.transit?.time ?? '',
 )
+
+// A clickHandler that returns a promise swaps its own icon for a spinner until
+// it settles, so slow actions (adding a place, uploading) show they're working.
+const pendingIndex = ref(null)
+
+async function runButton(btn, index) {
+  const result = btn.clickHandler?.()
+  if (typeof result?.then !== 'function') return
+
+  pendingIndex.value = index
+  try {
+    await result
+  } finally {
+    pendingIndex.value = null
+  }
+}
 </script>
 
 <style scoped>
@@ -141,13 +161,19 @@ const transitTime = computed(
     color 150ms;
 }
 
-.gd-timeline-item__action-btn i {
+.gd-timeline-item__action-btn i,
+.gd-timeline-item__action-btn .gd-spinner {
   font-size: 10px;
 }
 
-.gd-timeline-item__action-btn:hover {
+.gd-timeline-item__action-btn:hover:not(:disabled) {
   background: var(--glass-soft);
   color: var(--brand-sky);
+}
+
+.gd-timeline-item__action-btn:disabled {
+  cursor: progress;
+  color: var(--fg-4);
 }
 
 :root.light .gd-timeline-item__line {

@@ -1,7 +1,7 @@
 <template>
   <component
     :is="tag"
-    v-bind="polymorphicAttrs"
+    v-bind="rootAttrs"
     :type="resolvedType"
     :data-intent="intent"
     :data-surface="surface"
@@ -12,6 +12,7 @@
     :data-accent="accentHue || null"
     :data-radius="radius || null"
     :data-elevation="elevation || null"
+    :data-loading="isLoading || null"
     :class="[
       'gd-btn',
       fullWidth ? 'gd-btn--full' : '',
@@ -19,35 +20,24 @@
     ]"
     :disabled="disabledAttr"
     :aria-pressed="ariaPressedValue"
+    :aria-busy="isLoading || undefined"
     :aria-disabled="isDisabled || undefined"
     :tabindex="tabIndexAttr"
     @click="handleClick"
   >
-    <span v-if="loading" class="gd-btn__spinner" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          stroke-width="4"
-          style="opacity: 0.25"
-        />
-        <path
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-          style="opacity: 0.75"
-        />
-      </svg>
+    <span v-if="isLoading" class="gd-btn__spinner" aria-hidden="true">
+      <Spinner />
     </span>
     <span v-else-if="$slots.leading" class="gd-btn__leading">
       <slot name="leading" />
     </span>
-    <span v-if="$slots.default" class="gd-btn__label">
+    <!-- Icon-only sizes carry their icon in the default slot, so the spinner
+         must replace it rather than sit beside it in a fixed-size box. -->
+    <span v-if="$slots.default && !(isLoading && iconOnly)" class="gd-btn__label">
       <slot />
     </span>
     <span
-      v-if="!loading && ($slots.trailing || external)"
+      v-if="!isLoading && ($slots.trailing || external)"
       class="gd-btn__trailing"
     >
       <slot name="trailing">
@@ -62,7 +52,12 @@
 </template>
 
 <script setup>
-import { computed, inject, resolveComponent } from 'vue'
+import { computed, inject, ref, resolveComponent, useAttrs } from 'vue'
+import Spinner from '../internal/Spinner.vue'
+
+// The click listener is invoked by hand (see handleClick) so an async handler can
+// drive the spinner, which means it must not also arrive via attribute fallthrough.
+defineOptions({ inheritAttrs: false })
 
 const props = defineProps({
   intent: {
@@ -159,7 +154,23 @@ const polymorphicAttrs = computed(() => {
   return {}
 })
 
-const isDisabled = computed(() => props.disabled || props.loading)
+const iconOnly = computed(() => props.size === 'icon' || props.size === 'icon-sm')
+
+const attrs = useAttrs()
+
+// Everything except the click listener still lands on the root element; the
+// polymorphic href/to bindings win over anything the caller passed through.
+const rootAttrs = computed(() => {
+  const { onClick, ...rest } = attrs
+  return { ...rest, ...polymorphicAttrs.value }
+})
+
+// Set while an async click handler is in flight. The explicit `loading` prop
+// still wins, so callers that track their own state keep working unchanged.
+const pending = ref(false)
+const isLoading = computed(() => props.loading || pending.value)
+
+const isDisabled = computed(() => props.disabled || isLoading.value)
 const disabledAttr = computed(() =>
   isNativeButton.value ? isDisabled.value : undefined,
 )
@@ -168,11 +179,39 @@ const tabIndexAttr = computed(() =>
 )
 const ariaPressedValue = computed(() => (props.selected ? 'true' : undefined))
 
-function handleClick(event) {
-  if (!isDisabled.value || isNativeButton.value) return
+const isThenable = (value) => typeof value?.then === 'function'
 
-  event.preventDefault()
-  event.stopImmediatePropagation?.()
+// Vue collapses multiple listeners on one event into an array. Run them all and
+// keep the first promise so the spinner tracks the async one.
+function invokeClickHandlers(event) {
+  const handler = attrs.onClick
+  if (!handler) return undefined
+  if (!Array.isArray(handler)) return handler(event)
+  return handler.map((fn) => fn?.(event)).find(isThenable)
+}
+
+async function handleClick(event) {
+  if (isDisabled.value) {
+    // Native buttons drop the click themselves via the disabled attribute;
+    // anchor and router-link tags have to be neutralised by hand.
+    if (!isNativeButton.value) {
+      event.preventDefault()
+      event.stopImmediatePropagation?.()
+    }
+    return
+  }
+
+  const result = invokeClickHandlers(event)
+  if (!isThenable(result)) return
+
+  pending.value = true
+  try {
+    // Rethrown on rejection so Vue's error handler still sees it — this
+    // function is bound through the template, so Vue awaits what it returns.
+    await result
+  } finally {
+    pending.value = false
+  }
 }
 </script>
 
@@ -216,6 +255,14 @@ function handleClick(event) {
   pointer-events: none;
 }
 
+/* Loading means "working", not "blocked" — show the progress cursor rather than
+   not-allowed. Pointer events go back on purely so the cursor renders; the
+   disabled attribute (and handleClick for link/router tags) still eats the click. */
+.gd-btn[data-loading] {
+  cursor: progress;
+  pointer-events: auto;
+}
+
 .gd-btn--full {
   width: 100%;
 }
@@ -231,18 +278,6 @@ function handleClick(event) {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-}
-
-.gd-btn__spinner svg {
-  width: 1em;
-  height: 1em;
-  animation: gd-spin 0.75s linear infinite;
-}
-
-@keyframes gd-spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .gd-btn__label {
