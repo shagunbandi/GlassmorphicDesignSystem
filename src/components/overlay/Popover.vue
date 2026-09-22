@@ -116,8 +116,12 @@ function computeStyle() {
   }
 }
 
-function onScrollClose() {
-  if (props.show && props.closeOnScroll) emit('close')
+function onScrollClose(event) {
+  if (!props.show || !props.closeOnScroll) return
+  // Scrolling inside the popover's own content (e.g. a long list) must not
+  // close it — only scrolling of the page/ancestors behind it should.
+  if (popoverRef.value && popoverRef.value.contains(event.target)) return
+  emit('close')
 }
 function onResizeClose() {
   if (props.show && props.closeOnResize) emit('close')
