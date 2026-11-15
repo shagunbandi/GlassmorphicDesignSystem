@@ -50,6 +50,20 @@ This package is **production-oriented** (Vite library build, SFCs). For HTML/JSX
 
 ---
 
+## Popover keyboard behaviour
+
+`Popover` is a menu by default (`menu` prop, default `true`): the panel has `role="menu"`, `PopoverItem` renders `role="menuitem"` with `tabindex="-1"`, and `PopoverDivider` is a `role="separator"`.
+
+- On open, focus moves to the `selected` item, or the first enabled item.
+- ArrowDown/ArrowUp move between items and wrap; Home/End jump to the first/last item; Enter/Space activate.
+- Escape closes only the most recently opened popover (a Modal underneath stays open) and returns focus to the trigger. Tab closes and returns focus to the trigger.
+
+Trigger guidance: give the trigger `aria-haspopup="menu"` and `:aria-expanded="show"`.
+
+For form or detail content (inputs, `PopoverRow`, custom blocks) pass `:menu="false"`: no `role="menu"`, no focus move, no arrow navigation. Escape still closes it. Use `aria-haspopup="dialog"` on its trigger.
+
+---
+
 ## Develop in this repo
 
 ```bash

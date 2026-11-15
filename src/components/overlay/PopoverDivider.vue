@@ -1,5 +1,5 @@
 <template>
-  <div class="gd-popover-divider" role="separator" aria-hidden="true" />
+  <div class="gd-popover-divider" role="separator" />
 </template>
 
 <style scoped>

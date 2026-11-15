@@ -87,11 +87,78 @@ export const StaticPreview = {
     },
     template: `
       <div style="height:320px;position:relative">
-        <Popover :show="true" :rect="rect" :backdrop="false" @close="() => {}">
+        <Popover :show="true" :rect="rect" :backdrop="false" :menu="false" @close="() => {}">
           <PopoverRow label="Destination" value="Kyoto, Japan" icon="fas fa-map-marker-alt" />
           <PopoverRow label="Duration" value="7 nights" icon="fas fa-moon" />
           <PopoverDivider />
           <PopoverItem>Open Trip</PopoverItem>
+        </Popover>
+      </div>
+    `,
+  }),
+}
+
+/** Enter on the trigger opens the menu; focus lands on the selected item. Try ArrowUp/Down, Home/End, Escape, Tab. */
+export const KeyboardMenu = {
+  render: () => ({
+    components: { Popover, PopoverItem, PopoverDivider },
+    setup() {
+      const show = ref(false)
+      const rect = ref(null)
+      const selected = ref('Newest')
+      function openAt(e) {
+        rect.value = e.currentTarget.getBoundingClientRect()
+        show.value = true
+      }
+      function pick(label) {
+        selected.value = label
+        show.value = false
+      }
+      return { show, rect, selected, openAt, pick }
+    },
+    template: `
+      <div style="padding:40px">
+        <button
+          aria-haspopup="menu"
+          :aria-expanded="show"
+          @click="openAt"
+          style="color:var(--fg-1);padding:8px 16px"
+        >
+          Sort: {{ selected }}
+        </button>
+        <Popover :show="show" :rect="rect" @close="show = false">
+          <PopoverItem v-for="label in ['Newest', 'Oldest', 'Name']" :key="label" :selected="selected === label" @click="pick(label)">{{ label }}</PopoverItem>
+          <PopoverDivider />
+          <PopoverItem disabled>Disabled option</PopoverItem>
+          <PopoverItem :danger="true" @click="show = false">Reset</PopoverItem>
+        </Popover>
+      </div>
+    `,
+  }),
+}
+
+/** `:menu="false"` for form or detail content: no menu role, no focus move, no arrow navigation. Escape still closes. */
+export const NonMenuContent = {
+  render: () => ({
+    components: { Popover },
+    setup() {
+      const show = ref(false)
+      const rect = ref(null)
+      function openAt(e) {
+        rect.value = e.currentTarget.getBoundingClientRect()
+        show.value = true
+      }
+      return { show, rect, openAt }
+    },
+    template: `
+      <div style="padding:40px">
+        <button aria-haspopup="dialog" :aria-expanded="show" @click="openAt" style="color:var(--fg-1);padding:8px 16px">
+          Notes
+        </button>
+        <Popover :show="show" :rect="rect" :menu="false" @close="show = false">
+          <div style="padding:8px;color:var(--fg-2)">
+            <label>Note <input type="text" style="margin-left:8px" /></label>
+          </div>
         </Popover>
       </div>
     `,

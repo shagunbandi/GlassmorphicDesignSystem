@@ -1,7 +1,14 @@
 <template>
   <button
     type="button"
-    :class="['gd-popover-item', danger ? 'gd-popover-item--danger' : '']"
+    :role="inMenu ? 'menuitem' : undefined"
+    :tabindex="inMenu ? -1 : undefined"
+    :data-selected="selected ? '' : undefined"
+    :class="[
+      'gd-popover-item',
+      danger ? 'gd-popover-item--danger' : '',
+      selected ? 'gd-popover-item--active' : '',
+    ]"
     :disabled="disabled"
     @click="$emit('click', $event)"
   >
@@ -13,10 +20,16 @@
 </template>
 
 <script setup>
+import { inject } from 'vue'
+
 defineProps({
   danger: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
+  /** Marks the current choice: highlighted, and focused first when the menu opens. */
+  selected: { type: Boolean, default: false },
 })
+
+const inMenu = inject('gdPopoverMenu', false)
 
 defineEmits(['click'])
 </script>
@@ -45,6 +58,13 @@ defineEmits(['click'])
 .gd-popover-item:hover {
   background: var(--glass-default);
   color: var(--fg-1);
+}
+
+.gd-popover-item:focus-visible {
+  background: var(--glass-default);
+  color: var(--fg-1);
+  outline: 2px solid var(--brand-sky);
+  outline-offset: -2px;
 }
 
 .gd-popover-item--active {
