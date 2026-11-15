@@ -84,9 +84,9 @@ const paddingStyle = computed(() => {
   outline-offset: -2px;
 }
 
-.gd-card--clickable a,
-.gd-card--clickable button:not(.gd-card__action),
-.gd-card--clickable [tabindex] {
+.gd-card--clickable :slotted(a),
+.gd-card--clickable :slotted(button),
+.gd-card--clickable :slotted([tabindex]) {
   position: relative;
   z-index: 2;
 }

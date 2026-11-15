@@ -85,6 +85,34 @@ defineEmits(['click'])
   cursor: pointer;
 }
 
+/* Title action: stretched overlay makes the whole card the hit area */
+.gd-media-card__action {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.gd-media-card__action:focus {
+  outline: none;
+}
+.gd-media-card__action::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 18px;
+}
+.gd-media-card__action:focus-visible::after {
+  outline: 2px solid var(--brand-sky);
+  outline-offset: -2px;
+}
+
 /* Cover */
 .gd-media-card__cover {
   position: relative;
@@ -129,35 +157,8 @@ defineEmits(['click'])
   background: rgba(255, 255, 255, 0.85);
 }
 
-/* Title action: stretched overlay makes the whole card the hit area */
-.gd-media-card__action {
-  appearance: none;
-  background: none;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  font: inherit;
-  color: inherit;
-  text-align: inherit;
-  text-decoration: none;
-  cursor: pointer;
-}
-.gd-media-card__action:focus {
-  outline: none;
-}
-.gd-media-card__action::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  border-radius: inherit;
-}
-.gd-media-card__action:focus-visible::after {
-  outline: 2px solid var(--brand-sky);
-  outline-offset: -2px;
-}
-
-/* Interactive children stay above the overlay */
+/* Interactive children stay above the overlay. Global on purpose: slot content
+   can be a wrapper whose nested buttons :slotted() cannot reach. */
 .gd-media-card__cover a,
 .gd-media-card__cover button,
 .gd-media-card__cover [tabindex],
