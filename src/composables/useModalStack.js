@@ -7,6 +7,11 @@ const FOCUSABLE =
 const stack = []
 let inertedByUs = []
 let savedOverflow = null
+let titleCounter = 0
+
+export function nextModalTitleId() {
+  return `gd-modal-title-${++titleCounter}`
+}
 
 function isFocusable(el) {
   if (el.disabled || el.hidden || el.closest('[hidden]')) return false
@@ -25,7 +30,13 @@ function applyInert() {
   const top = stack[stack.length - 1]
   if (!top) return
   for (const child of document.body.children) {
-    if (child === top.backdrop.value || child.hasAttribute('inert')) continue
+    if (
+      child === top.backdrop.value ||
+      child.hasAttribute('inert') ||
+      child.hasAttribute('data-gd-layer')
+    ) {
+      continue
+    }
     child.setAttribute('inert', '')
     inertedByUs.push(child)
   }
@@ -96,8 +107,9 @@ export function useModalStack({ backdrop, panel, onEscape }) {
     opener = document.activeElement
     push(entry)
     document.addEventListener('keydown', onKeyDown)
-    const [first] = getFocusable(panel.value)
-    ;(first || panel.value).focus()
+    const items = getFocusable(panel.value)
+    const target = items.find((el) => el.hasAttribute('autofocus')) || items[0] || panel.value
+    target.focus()
   })
 
   onBeforeUnmount(() => {

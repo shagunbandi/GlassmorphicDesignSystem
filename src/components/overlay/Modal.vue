@@ -60,11 +60,9 @@
 
 <script setup>
 import { ref, onMounted, nextTick, provide, useAttrs } from 'vue'
-import { useModalStack } from '../../composables/useModalStack'
+import { useModalStack, nextModalTitleId } from '../../composables/useModalStack'
 
 defineOptions({ inheritAttrs: false })
-
-let titleCounter = 0
 
 provide('buttonTone', 'inverted')
 
@@ -98,7 +96,7 @@ const props = defineProps({
 const emit = defineEmits(['close', 'click:outside'])
 
 const attrs = useAttrs()
-const titleId = `gd-modal-title-${++titleCounter}`
+const titleId = nextModalTitleId()
 const backdropEl = ref(null)
 const panelEl = ref(null)
 const visible = ref(false)
