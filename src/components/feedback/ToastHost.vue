@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <div class="gd-toast-host" aria-live="polite" aria-atomic="false">
+    <div class="gd-toast-host" data-gd-layer aria-live="polite" aria-atomic="false">
       <TransitionGroup name="gd-toast-anim">
         <Toast
           v-for="toast in toasts"

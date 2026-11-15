@@ -53,6 +53,7 @@
       <div
         v-show="open"
         ref="menuRef"
+        data-gd-layer
         class="gd-multiselect__menu gd-multiselect__menu--floating"
         role="listbox"
         aria-multiselectable="true"

@@ -23,8 +23,7 @@
       <Transition name="gd-fade">
         <Modal
           v-if="showLightbox"
-          omit-header
-          flush-body
+          :aria-label="alt || 'Image'"
           size="5xl"
           @close="showLightbox = false"
         >

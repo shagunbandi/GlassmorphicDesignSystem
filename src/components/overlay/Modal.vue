@@ -1,13 +1,18 @@
 <template>
   <Teleport to="body">
     <div
+      ref="backdropEl"
       class="gd-modal-backdrop"
       :class="{ 'gd-modal-backdrop--visible': visible }"
       @mousedown.self="onBackdropClick"
     >
       <div
+        ref="panelEl"
         role="dialog"
         aria-modal="true"
+        tabindex="-1"
+        :aria-labelledby="title ? titleId : undefined"
+        v-bind="$attrs"
         :class="['gd-modal-panel', `gd-modal-panel--${size}`, { 'gd-modal-panel--visible': visible }]"
       >
         <div v-if="$slots.hero" class="gd-modal-hero">
@@ -34,7 +39,7 @@
                 <i :class="icon" />
               </div>
               <div class="gd-modal-heading-text">
-                <h2 v-if="title" class="gd-modal-title">{{ title }}</h2>
+                <h2 v-if="title" :id="titleId" class="gd-modal-title">{{ title }}</h2>
                 <p v-if="subtitle" class="gd-modal-subtitle">{{ subtitle }}</p>
               </div>
             </div>
@@ -54,7 +59,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, nextTick, provide } from 'vue'
+import { ref, onMounted, nextTick, provide, useAttrs } from 'vue'
+import { useModalStack, nextModalTitleId } from '../../composables/useModalStack'
+
+defineOptions({ inheritAttrs: false })
 
 provide('buttonTone', 'inverted')
 
@@ -87,21 +95,31 @@ const props = defineProps({
 
 const emit = defineEmits(['close', 'click:outside'])
 
+const attrs = useAttrs()
+const titleId = nextModalTitleId()
+const backdropEl = ref(null)
+const panelEl = ref(null)
 const visible = ref(false)
 const closing = ref(false)
 
+useModalStack({
+  backdrop: backdropEl,
+  panel: panelEl,
+  onEscape: () => {
+    if (props.dismissable) startClose()
+  },
+})
+
 onMounted(async () => {
+  if (import.meta.env?.DEV && !props.title && !attrs['aria-label'] && !attrs['aria-labelledby']) {
+    console.warn('[GdModal] A dialog needs an accessible name: pass `title` or `aria-label`.')
+  }
   await nextTick()
   requestAnimationFrame(() =>
     requestAnimationFrame(() => {
       visible.value = true
     }),
   )
-  document.addEventListener('keydown', onKeyDown)
-})
-
-onBeforeUnmount(() => {
-  document.removeEventListener('keydown', onKeyDown)
 })
 
 async function startClose() {
@@ -117,10 +135,6 @@ function onBackdropClick() {
     emit('click:outside')
     startClose()
   }
-}
-
-function onKeyDown(e) {
-  if (e.key === 'Escape' && props.dismissable) startClose()
 }
 </script>
 
@@ -146,6 +160,10 @@ function onKeyDown(e) {
 }
 
 /* ── Panel ────────────────────────────────────────────────────────────────── */
+.gd-modal-panel:focus {
+  outline: none;
+}
+
 .gd-modal-panel {
   position: relative;
   width: 100%;

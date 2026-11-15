@@ -32,7 +32,7 @@ export const Playground = {
     template: `
       <div style="padding:40px">
         <Button intent="primary" surface="solid" @click="open = true">Open Modal</Button>
-        <Modal v-if="open" v-bind="args" @close="open = false">
+        <Modal v-if="open" v-bind="args" aria-label="Add a destination" @close="open = false">
           <template #header>
             <span style="font-weight:700;color:var(--fg-1)">Add a Destination</span>
           </template>
@@ -58,7 +58,7 @@ export const Default = {
     template: `
       <div style="padding:40px">
         <Button intent="primary" surface="solid" @click="open = true">Open Trip Modal</Button>
-        <Modal v-if="open" size="2xl" @close="open = false">
+        <Modal v-if="open" size="2xl" aria-label="Tokyo Spring Adventure" @close="open = false">
           <template #header>
             <span style="font-weight:700;color:var(--fg-1)">Tokyo Spring Adventure</span>
           </template>
@@ -85,7 +85,7 @@ export const Small = {
     template: `
       <div style="padding:40px">
         <Button intent="danger" surface="soft" @click="open = true">Delete Trip</Button>
-        <Modal v-if="open" size="sm" @close="open = false">
+        <Modal v-if="open" size="sm" aria-label="Confirm deletion" @close="open = false">
           <template #header>
             <span style="font-weight:700;color:var(--fg-1)">Confirm Deletion</span>
           </template>
@@ -115,7 +115,7 @@ export const BottomSheet = {
     template: `
       <div style="padding:40px">
         <Button intent="primary" surface="outline" @click="open = true">Open Bottom Sheet</Button>
-        <Modal v-if="open" size="xl" position="bottom-center" @close="open = false">
+        <Modal v-if="open" size="xl" position="bottom-center" aria-label="Choose transport" @close="open = false">
           <template #header>
             <span style="font-weight:700;color:var(--fg-1)">Choose Transport</span>
           </template>
@@ -123,6 +123,35 @@ export const BottomSheet = {
             <div style="padding:24px;color:var(--fg-2)">
               <p>Select how you'll travel between destinations on Day 2.</p>
             </div>
+          </template>
+        </Modal>
+      </div>
+    `,
+  }),
+}
+
+export const Stacked = {
+  parameters: { layout: 'fullscreen' },
+  render: () => ({
+    components: { Modal, Button },
+    setup() {
+      const first = ref(false)
+      const second = ref(false)
+      return { first, second }
+    },
+    template: `
+      <div style="padding:40px">
+        <Button intent="primary" surface="solid" @click="first = true">Open first modal</Button>
+        <Modal v-if="first" title="First modal" size="md" @close="first = false">
+          <template #body>
+            <div style="padding:24px">
+              <Button intent="primary" surface="outline" @click="second = true">Open second modal</Button>
+            </div>
+          </template>
+        </Modal>
+        <Modal v-if="second" title="Second modal" size="sm" @close="second = false">
+          <template #body>
+            <div style="padding:24px;color:var(--fg-2)">Escape closes only this modal.</div>
           </template>
         </Modal>
       </div>
