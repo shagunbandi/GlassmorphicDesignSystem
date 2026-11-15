@@ -98,6 +98,7 @@ Reference implementations: **`Button.vue`**, **`Modal.vue`**, **`TabBar.vue`**.
 - [ ] All colors via `var(--…)`; all spacing/type/radii via tokens
 - [ ] No `:deep()` except for third-party wrappers
 - [ ] Focus, disabled, and `aria-*` states consistent with `Button` / `Modal`
+- [ ] `Modal` without a `title` prop needs an `aria-label` (accessible dialog name)
 - [ ] Export from `src/index.js`; register in `src/plugin.js` as `GdPascalCase`
 
 ### Edit existing component

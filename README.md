@@ -68,7 +68,7 @@ Library entry: `src/index.js`. Vite config: `vite.config.js` — `vue`, `vue-rou
 
 2. **Match existing SFCs** — New components should follow the same patterns as neighbors in the same folder: `<script setup>`, scoped styles with a short `gd-` BEM-style prefix where applicable, props with validators for finite string unions.
 
-3. **Accessibility** — Preserve focus rings, `aria-*`, and disabled states consistent with `Button`, `Modal`, and other primitives.
+3. **Accessibility** — Preserve focus rings, `aria-*`, and disabled states consistent with `Button`, `Modal`, and other primitives. A `Modal` without a `title` prop (custom `#header`) must be given an `aria-label`; it traps Tab, closes only the top modal on Escape, and restores focus to the opener.
 
 4. **Exports** — Add the component to `src/index.js` and `src/plugin.js` with a `GdPascalCase` global name that matches the file purpose.
 
