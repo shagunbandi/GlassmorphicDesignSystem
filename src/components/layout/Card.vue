@@ -1,8 +1,15 @@
 <template>
   <div
-    :class="['gd-card', glass ? 'gd-card--glass' : '']"
+    :class="['gd-card', glass ? 'gd-card--glass' : '', clickable ? 'gd-card--clickable' : '']"
     :style="paddingStyle"
   >
+    <button
+      v-if="clickable"
+      type="button"
+      class="gd-card__action"
+      :aria-label="label || title"
+      @click="$emit('click')"
+    />
     <h5 v-if="title" class="gd-card__title">{{ title }}</h5>
     <div v-if="divider && title" class="gd-card__divider" aria-hidden="true" />
     <p v-if="description" class="gd-card__description">{{ description }}</p>
@@ -21,7 +28,13 @@ const props = defineProps({
   padding: { type: [String, Number], default: '6' },
   /** Applies glassmorphic surface styling. */
   glass: { type: Boolean, default: false },
+  /** Renders a stretched button covering the card; emits `click`. */
+  clickable: { type: Boolean, default: false },
+  /** Accessible name of the clickable button; falls back to `title`. */
+  label: String,
 })
+
+defineEmits(['click'])
 
 const PADDING_PX = { 0: '0', 2: '8px', 4: '16px', 6: '24px', 8: '32px' }
 
@@ -44,6 +57,38 @@ const paddingStyle = computed(() => {
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-xl);
   box-shadow: var(--glass-shadow);
+}
+
+.gd-card--clickable {
+  position: relative;
+}
+
+.gd-card__action {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: inherit;
+  cursor: pointer;
+}
+.gd-card__action:focus {
+  outline: none;
+}
+.gd-card__action:focus-visible {
+  outline: 2px solid var(--brand-sky);
+  outline-offset: -2px;
+}
+
+.gd-card--clickable a,
+.gd-card--clickable button:not(.gd-card__action),
+.gd-card--clickable [tabindex] {
+  position: relative;
+  z-index: 2;
 }
 
 .gd-card__title {
