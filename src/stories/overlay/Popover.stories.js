@@ -152,7 +152,7 @@ export const NonMenuContent = {
     },
     template: `
       <div style="padding:40px">
-        <button aria-haspopup="dialog" :aria-expanded="show" @click="openAt" style="color:var(--fg-1);padding:8px 16px">
+        <button :aria-expanded="show" @click="openAt" style="color:var(--fg-1);padding:8px 16px">
           Notes
         </button>
         <Popover :show="show" :rect="rect" :menu="false" @close="show = false">

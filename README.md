@@ -60,7 +60,7 @@ This package is **production-oriented** (Vite library build, SFCs). For HTML/JSX
 
 Trigger guidance: give the trigger `aria-haspopup="menu"` and `:aria-expanded="show"`.
 
-For form or detail content (inputs, `PopoverRow`, custom blocks) pass `:menu="false"`: no `role="menu"`, no focus move, no arrow navigation. Escape still closes it. Use `aria-haspopup="dialog"` on its trigger.
+For form or detail content (inputs, `PopoverRow`, custom blocks) pass `:menu="false"`: no `role="menu"`, no focus move, no arrow navigation. Escape still closes it. Give its trigger only `:aria-expanded`; there is no `aria-haspopup` value for non-menu popovers.
 
 ---
 

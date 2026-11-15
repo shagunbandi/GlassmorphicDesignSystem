@@ -156,6 +156,8 @@ function onKeydown(event) {
   if (!props.menu) return
   if (event.key === 'Tab') {
     event.preventDefault()
+    event.stopPropagation()
+    if (opener && opener.isConnected) opener.focus()
     emit('close')
     return
   }
