@@ -15,6 +15,8 @@ export default {
     fullWidth: { control: 'boolean' },
     placeholder: { control: 'text' },
     errorMessage: { control: 'text' },
+    label: { control: 'text' },
+    hint: { control: 'text' },
   },
   args: {
     variant: 'field',
@@ -71,6 +73,23 @@ export const WithError = {
           v-model="val"
           error-message="Please enter a valid destination"
         />
+      </div>
+    `,
+  }),
+}
+
+export const WithLabel = {
+  render: () => ({
+    components: { Input },
+    setup() {
+      const name = ref('')
+      const city = ref('')
+      return { name, city }
+    },
+    template: `
+      <div style="display:flex;flex-direction:column;gap:16px;max-width:400px">
+        <Input variant="field" label="Trip name" hint="Shown on your plan card" placeholder="Tokyo Spring" v-model="name" />
+        <Input variant="field" label="City" hint="Where does it start?" error-message="City is required" v-model="city" />
       </div>
     `,
   }),

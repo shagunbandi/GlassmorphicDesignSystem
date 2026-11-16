@@ -1,6 +1,7 @@
 <template>
   <!-- Bordered field (forms / modals) -->
   <div v-if="variant === 'field'" class="gd-input-wrap">
+    <label v-if="label" class="gd-field-label" :for="fieldId">{{ label }}</label>
     <div class="gd-input-inner" :class="{ 'gd-input-inner--has-prefix': prefix, 'gd-input-inner--has-suffix': suffix }">
       <i v-if="prefix" :class="[prefix, 'gd-input-prefix-icon']" aria-hidden="true" />
       <textarea
@@ -13,6 +14,9 @@
         :rows="textareaRows"
         class="gd-input"
         :class="{ 'gd-input--error': hasError, 'gd-input--prefixed': prefix, 'gd-input--suffixed': suffix }"
+        :id="fieldId"
+        :aria-invalid="ariaInvalid"
+        :aria-describedby="describedBy"
         v-bind="nativeAttrs"
         @input="onFieldTextareaInput"
       />
@@ -30,12 +34,16 @@
         :step="stepAttr"
         class="gd-input"
         :class="{ 'gd-input--error': hasError, 'gd-input--prefixed': prefix, 'gd-input--suffixed': suffix }"
+        :id="fieldId"
+        :aria-invalid="ariaInvalid"
+        :aria-describedby="describedBy"
         v-bind="nativeAttrs"
         @input="onFieldInput"
       />
       <i v-if="suffix" :class="[suffix, 'gd-input-suffix-icon']" aria-hidden="true" />
     </div>
-    <p v-if="errorMessage" class="gd-input-error">{{ errorMessage }}</p>
+    <p v-if="hint" :id="hintId" class="gd-input-error gd-input-hint">{{ hint }}</p>
+    <p v-if="errorMessage" :id="errorId" class="gd-input-error" role="alert">{{ errorMessage }}</p>
   </div>
 
   <!-- Inline plaintext (agenda titles, etc.) -->
@@ -66,6 +74,11 @@
     @change="saveInlineChanges"
   />
 </template>
+
+<script>
+// Plain script block: runs once per module, so the counter is shared by all instances.
+let nextInputId = 0
+</script>
 
 <script setup>
 import { computed, ref, useAttrs, watch } from 'vue'
@@ -107,6 +120,11 @@ const props = defineProps({
   max: [String, Number],
   step: [String, Number],
   textareaRows: { type: Number, default: 6 },
+  id: { type: String, default: '' },
+  /** Visible label (field variant); wired to the control with for/id */
+  label: { type: String, default: '' },
+  /** Helper text under the field; referenced by aria-describedby */
+  hint: { type: String, default: '' },
 })
 
 const emit = defineEmits(['update:modelValue', 'onSave'])
@@ -134,7 +152,19 @@ defineExpose({
   },
 })
 
+const autoId = `gd-input-${nextInputId++}`
+const fieldId = computed(() => props.id || autoId)
+const hintId = computed(() => `${fieldId.value}-hint`)
+const errorId = computed(() => `${fieldId.value}-error`)
+
 const hasError = computed(() => Boolean(props.errorMessage))
+const ariaInvalid = computed(() => (hasError.value ? 'true' : undefined))
+const describedBy = computed(() => {
+  const ids = []
+  if (props.hint) ids.push(hintId.value)
+  if (hasError.value) ids.push(errorId.value)
+  return ids.length ? ids.join(' ') : undefined
+})
 const isFieldVariant = computed(() => props.variant === 'field')
 const fieldIsTextarea = computed(
   () => isFieldVariant.value && props.inputType === 'textarea',
@@ -318,6 +348,10 @@ textarea.gd-input {
   font-size: 0.7rem;
   color: var(--color-danger-light);
   margin-top: 0.2rem;
+}
+
+.gd-input-hint {
+  color: var(--fg-4);
 }
 
 /* ─── Inline variant ────────────────────────────────────────────────────── */
