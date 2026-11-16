@@ -14,7 +14,9 @@
       </div>
     </div>
 
-    <h3 class="gd-empty-state__title">{{ title }}</h3>
+    <component :is="`h${headingLevel}`" class="gd-empty-state__title">{{
+      title
+    }}</component>
     <p class="gd-empty-state__description">{{ description }}</p>
 
     <slot name="action">
@@ -43,6 +45,11 @@ defineProps({
   actionText: { type: String, default: '' },
   showAddBadge: { type: Boolean, default: true },
   large: { type: Boolean, default: false },
+  headingLevel: {
+    type: Number,
+    default: 3,
+    validator: (v) => [2, 3, 4, 5, 6].includes(v),
+  },
   tone: {
     type: String,
     default: 'sky',
