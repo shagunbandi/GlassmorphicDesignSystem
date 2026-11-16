@@ -53,6 +53,7 @@
   --brand-sky-deep: #003256;
   --brand-mint: #55ddb0; /* "Active Adventure", success accent */
   --brand-coral: #ff7e5f; /* "Past Memory" highlight */
+  --brand-amber: #fbbf24; /* warning accent */
 
   /* -------- Semantic interaction colors -------- */
   --color-interactive: #4f46e5;
@@ -220,6 +221,7 @@
   --brand-sky-deep: #003256;
   --brand-mint: #047857;
   --brand-coral: #b83b09;
+  --brand-amber: #b45309;
 
   /* -------- Semantic interaction colors -------- */
   --color-interactive: #4f46e5;

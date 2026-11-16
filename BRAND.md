@@ -45,7 +45,7 @@ Cards, navbars, modals, and pills are **frosted glass** floating on top: white a
 | `--brand-sky` | `#9bcbff` | Primary links, active nav, focus rings |
 | `--brand-mint` | `#55ddb0` | Active/success accent, "Public" indicator |
 | `--brand-coral` | `#ff7e5f` | Memory/past status, danger accent |
-| `--brand-amber` | `#f59e0b` | Warning accent |
+| `--brand-amber` | `#fbbf24` | Warning accent (light theme `#b45309`) |
 | `--color-interactive*` | indigo `#4f46e5` | Drag indicators, primary CTA fill |
 
 Colors appear as **chip backgrounds at 12–22% alpha** or as icon-only color hits — never at full saturation on surfaces.
