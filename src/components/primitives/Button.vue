@@ -52,7 +52,7 @@
 </template>
 
 <script setup>
-import { computed, inject, ref, resolveComponent, useAttrs } from 'vue'
+import { computed, inject, onMounted, ref, resolveComponent, useAttrs } from 'vue'
 import Spinner from '../internal/Spinner.vue'
 
 // The click listener is invoked by hand (see handleClick) so an async handler can
@@ -157,6 +157,17 @@ const polymorphicAttrs = computed(() => {
 const iconOnly = computed(() => props.size === 'icon' || props.size === 'icon-sm')
 
 const attrs = useAttrs()
+
+onMounted(() => {
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    iconOnly.value &&
+    !attrs['aria-label'] &&
+    !attrs['aria-labelledby']
+  ) {
+    console.warn('[GdButton] An icon-only button needs an accessible name: pass `aria-label`.')
+  }
+})
 
 // Everything except the click listener still lands on the root element; the
 // polymorphic href/to bindings win over anything the caller passed through.
@@ -338,6 +349,13 @@ async function handleClick(event) {
   height: 28px;
   padding: 0;
   border-radius: var(--radius-xs);
+}
+@media (pointer: coarse) {
+  .gd-btn[data-size='icon'],
+  .gd-btn[data-size='icon-sm'] {
+    min-width: 44px;
+    min-height: 44px;
+  }
 }
 
 /* Link surface removes padding */
