@@ -1,7 +1,7 @@
 <template>
   <!-- Bordered field (forms / modals) -->
   <div v-if="variant === 'field'" class="gd-input-wrap">
-    <label v-if="label" class="gd-field-label" :for="fieldId">{{ label }}</label>
+    <label v-if="label" class="gd-field-label" :for="controlId">{{ label }}</label>
     <div class="gd-input-inner" :class="{ 'gd-input-inner--has-prefix': prefix, 'gd-input-inner--has-suffix': suffix }">
       <i v-if="prefix" :class="[prefix, 'gd-input-prefix-icon']" aria-hidden="true" />
       <textarea
@@ -14,7 +14,7 @@
         :rows="textareaRows"
         class="gd-input"
         :class="{ 'gd-input--error': hasError, 'gd-input--prefixed': prefix, 'gd-input--suffixed': suffix }"
-        :id="fieldId"
+        :id="controlId"
         :aria-invalid="ariaInvalid"
         :aria-describedby="describedBy"
         v-bind="nativeAttrs"
@@ -34,7 +34,7 @@
         :step="stepAttr"
         class="gd-input"
         :class="{ 'gd-input--error': hasError, 'gd-input--prefixed': prefix, 'gd-input--suffixed': suffix }"
-        :id="fieldId"
+        :id="controlId"
         :aria-invalid="ariaInvalid"
         :aria-describedby="describedBy"
         v-bind="nativeAttrs"
@@ -60,6 +60,7 @@
     ]"
     :type="inlineHtmlType"
     :placeholder="placeholder"
+    :id="id || undefined"
     v-bind="nativeAttrs"
     @change="saveInlineChanges"
   />
@@ -70,6 +71,7 @@
     v-model="editedInput"
     class="gd-inline-input"
     :placeholder="placeholder"
+    :id="id || undefined"
     v-bind="nativeAttrs"
     @change="saveInlineChanges"
   />
@@ -154,6 +156,9 @@ defineExpose({
 
 const autoId = `gd-input-${nextInputId++}`
 const fieldId = computed(() => props.id || autoId)
+const controlId = computed(() =>
+  props.id || (props.label || props.hint || props.errorMessage ? autoId : undefined),
+)
 const hintId = computed(() => `${fieldId.value}-hint`)
 const errorId = computed(() => `${fieldId.value}-error`)
 
