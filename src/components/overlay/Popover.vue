@@ -139,6 +139,15 @@ function clearScrollBaselines() {
   elementBaselines.clear()
 }
 
+// Record scroll positions of the opener's ancestors at open so a single large
+// jump is measured against the real starting point. Unknown targets fall back
+// to a lazy baseline on their first scroll event.
+function recordAncestorBaselines(from) {
+  for (let el = from; el && el !== document.body; el = el.parentElement) {
+    elementBaselines.set(el, { x: el.scrollLeft, y: el.scrollTop })
+  }
+}
+
 function movedPastThreshold(dx, dy) {
   return Math.max(Math.abs(dx), Math.abs(dy)) > SCROLL_CLOSE_THRESHOLD
 }
@@ -150,8 +159,10 @@ function onScrollClose(event) {
   if (popoverRef.value && popoverRef.value.contains(event.target)) return
   const target = event.target
   if (target === document || target === window || target === document.documentElement) {
-    const base = pageBaseline || { x: window.scrollX, y: window.scrollY }
-    if (movedPastThreshold(window.scrollX - base.x, window.scrollY - base.y)) emit('close')
+    if (!pageBaseline) return
+    if (movedPastThreshold(window.scrollX - pageBaseline.x, window.scrollY - pageBaseline.y)) {
+      emit('close')
+    }
     return
   }
   if (!elementBaselines.has(target)) {
@@ -227,6 +238,7 @@ watch(
     if (val) {
       opener = document.activeElement
       pageBaseline = { x: window.scrollX, y: window.scrollY }
+      recordAncestorBaselines(opener)
       openStack.push(onEscape)
       document.addEventListener('keydown', onEscape, true)
       computeStyle()
