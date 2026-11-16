@@ -58,6 +58,7 @@ provide('gdPopoverMenu', computed(() => props.menu))
 const MARGIN = 6
 const ESTIMATED_HEIGHT = 200
 const ESTIMATED_WIDTH = 180
+const SCROLL_CLOSE_THRESHOLD = 24
 
 function computeStyle() {
   if (!props.rect) {
@@ -128,12 +129,37 @@ function computeStyle() {
   }
 }
 
+// Page scroll is measured against the position recorded when the popover
+// opened; inner scroll containers against the first position we saw them at.
+let pageBaseline = null
+const elementBaselines = new Map()
+
+function clearScrollBaselines() {
+  pageBaseline = null
+  elementBaselines.clear()
+}
+
+function movedPastThreshold(dx, dy) {
+  return Math.max(Math.abs(dx), Math.abs(dy)) > SCROLL_CLOSE_THRESHOLD
+}
+
 function onScrollClose(event) {
   if (!props.show || !props.closeOnScroll) return
   // Scrolling inside the popover's own content (e.g. a long list) must not
   // close it — only scrolling of the page/ancestors behind it should.
   if (popoverRef.value && popoverRef.value.contains(event.target)) return
-  emit('close')
+  const target = event.target
+  if (target === document || target === window || target === document.documentElement) {
+    const base = pageBaseline || { x: window.scrollX, y: window.scrollY }
+    if (movedPastThreshold(window.scrollX - base.x, window.scrollY - base.y)) emit('close')
+    return
+  }
+  if (!elementBaselines.has(target)) {
+    elementBaselines.set(target, { x: target.scrollLeft, y: target.scrollTop })
+    return
+  }
+  const base = elementBaselines.get(target)
+  if (movedPastThreshold(target.scrollLeft - base.x, target.scrollTop - base.y)) emit('close')
 }
 function onResizeClose() {
   if (props.show && props.closeOnResize) emit('close')
@@ -200,6 +226,7 @@ watch(
   async (val) => {
     if (val) {
       opener = document.activeElement
+      pageBaseline = { x: window.scrollX, y: window.scrollY }
       openStack.push(onEscape)
       document.addEventListener('keydown', onEscape, true)
       computeStyle()
@@ -216,6 +243,7 @@ watch(
       restoreFocus()
       removeFromStack()
       menuStyle.value = {}
+      clearScrollBaselines()
       window.removeEventListener('scroll', onScrollClose, { capture: true })
       window.removeEventListener('resize', onResizeClose)
     }
@@ -233,6 +261,7 @@ watch(
 
 onUnmounted(() => {
   removeFromStack()
+  clearScrollBaselines()
   window.removeEventListener('scroll', onScrollClose, { capture: true })
   window.removeEventListener('resize', onResizeClose)
 })

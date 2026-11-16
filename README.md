@@ -62,6 +62,8 @@ Trigger guidance: give the trigger `aria-haspopup="menu"` and `:aria-expanded="s
 
 For form or detail content (inputs, `PopoverRow`, custom blocks) pass `:menu="false"`: no `role="menu"`, no focus move, no arrow navigation. Escape still closes it. Give its trigger only `:aria-expanded`; there is no `aria-haspopup` value for non-menu popovers.
 
+`closeOnScroll` (default `true`) closes the popover once the page, or a scrolled ancestor, has moved more than 24 px; it ignores scrolls of 24 px or less.
+
 ---
 
 ## Develop in this repo
