@@ -1,8 +1,9 @@
 <template>
-  <div
+  <nav
     v-if="!isHiddenRoute"
     class="gd-top-navbar"
     :class="{ 'gd-top-navbar--hide-mobile': showBottomNav }"
+    :aria-label="navAriaLabel"
   >
     <div class="gd-top-navbar__bar gd-glass">
       <div class="gd-top-navbar__max">
@@ -63,8 +64,6 @@
                 !hasDesktopAfterSlot
               "
               class="gd-top-navbar__switch"
-              role="group"
-              :aria-label="navAriaLabel"
             >
               <router-link
                 v-for="(item, idx) in itemsResolved"
@@ -241,7 +240,7 @@
         </div>
       </div>
     </transition>
-  </div>
+  </nav>
 </template>
 
 <script setup>
@@ -262,7 +261,7 @@ const props = defineProps({
     default: 'pill',
     validator: (v) => v === 'pill' || v === 'inline',
   },
-  /** `aria-label` for the desktop pill (`role="group"`). */
+  /** `aria-label` for the root `<nav>` landmark. */
   navAriaLabel: { type: String, default: 'Navigation' },
   showBottomNav: { type: Boolean, default: false },
   logoSrc: { type: String, default: '' },
