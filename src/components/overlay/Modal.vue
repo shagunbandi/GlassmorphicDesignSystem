@@ -111,7 +111,7 @@ useModalStack({
 })
 
 onMounted(async () => {
-  if (import.meta.env?.DEV && !props.title && !attrs['aria-label'] && !attrs['aria-labelledby']) {
+  if (process.env.NODE_ENV !== 'production' && !props.title && !attrs['aria-label'] && !attrs['aria-labelledby']) {
     console.warn('[GdModal] A dialog needs an accessible name: pass `title` or `aria-label`.')
   }
   await nextTick()
@@ -232,6 +232,13 @@ function onBackdropClick() {
   font-size: var(--text-xs);
   z-index: 2;
   transition: background var(--transition-base);
+}
+
+@media (pointer: coarse) {
+  .gd-modal-close {
+    min-width: 44px;
+    min-height: 44px;
+  }
 }
 
 .gd-modal-close:hover {

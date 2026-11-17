@@ -6,6 +6,7 @@
       role="tab"
       type="button"
       :aria-selected="active === tab.id"
+      :aria-label="tab.name"
       :class="[
         'gd-tab-bar__tab',
         { 'gd-tab-bar__tab--active': active === tab.id },
@@ -24,7 +25,7 @@
 
 <script setup>
 defineProps({
-  /** Array of { id, name, icon? } */
+  /** Array of { id, name, icon? }. Each tab is named from `name` even when a consumer hides the label. */
   tabs: { type: Array, required: true },
   active: { type: String, required: true },
   size: {
