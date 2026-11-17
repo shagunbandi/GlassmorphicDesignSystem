@@ -1,5 +1,5 @@
 <template>
-  <article class="gd-media-card" @click="$emit('click')">
+  <article :class="['gd-media-card', { 'gd-media-card--interactive': to || clickable }]">
     <div class="gd-media-card__cover">
       <div
         v-if="imageUrl"
@@ -13,7 +13,18 @@
     </div>
 
     <div class="gd-media-card__body">
-      <h3 class="gd-media-card__title">{{ title }}</h3>
+      <h3 class="gd-media-card__title">
+        <router-link v-if="to" :to="to" class="gd-media-card__action">{{ title }}</router-link>
+        <button
+          v-else-if="clickable"
+          type="button"
+          class="gd-media-card__action"
+          @click="$emit('click')"
+        >
+          {{ title }}
+        </button>
+        <template v-else>{{ title }}</template>
+      </h3>
       <p
         v-if="description !== undefined"
         class="gd-media-card__desc"
@@ -38,6 +49,10 @@ defineProps({
   imageUrl: String,
   title: { type: String, required: true },
   description: String,
+  /** Route location; renders the title as a router-link covering the whole card. */
+  to: [String, Object],
+  /** Renders the title as a button that emits `click`, covering the whole card. */
+  clickable: Boolean,
 })
 
 defineEmits(['click'])
@@ -45,6 +60,7 @@ defineEmits(['click'])
 
 <style scoped>
 .gd-media-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   border-radius: 18px;
@@ -54,7 +70,6 @@ defineEmits(['click'])
   -webkit-backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border-soft);
   box-shadow: var(--glass-shadow);
-  cursor: pointer;
   transition:
     background var(--transition-base),
     box-shadow var(--transition-base),
@@ -64,6 +79,38 @@ defineEmits(['click'])
   background: var(--glass-default);
   box-shadow: var(--glass-shadow-hover);
   transform: translateY(-4px);
+}
+
+.gd-media-card--interactive {
+  cursor: pointer;
+}
+
+/* Title action: stretched overlay makes the whole card the hit area */
+.gd-media-card__action {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.gd-media-card__action:focus {
+  outline: none;
+}
+.gd-media-card__action::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 18px;
+}
+.gd-media-card__action:focus-visible::after {
+  outline: 2px solid var(--brand-sky);
+  outline-offset: -2px;
 }
 
 /* Cover */
@@ -108,6 +155,18 @@ defineEmits(['click'])
 }
 :root.light .gd-media-card:hover {
   background: rgba(255, 255, 255, 0.85);
+}
+
+/* Interactive children stay above the overlay. Global on purpose: slot content
+   can be a wrapper whose nested buttons :slotted() cannot reach. */
+.gd-media-card__cover a,
+.gd-media-card__cover button,
+.gd-media-card__cover [tabindex],
+.gd-media-card__footer a,
+.gd-media-card__footer button,
+.gd-media-card__footer [tabindex] {
+  position: relative;
+  z-index: 2;
 }
 
 /* Body */

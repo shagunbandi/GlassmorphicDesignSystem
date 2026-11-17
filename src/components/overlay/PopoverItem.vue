@@ -1,22 +1,39 @@
 <template>
-  <button
-    type="button"
-    :class="['gd-popover-item', danger ? 'gd-popover-item--danger' : '']"
-    :disabled="disabled"
+  <component
+    :is="href ? 'a' : 'button'"
+    :href="href || undefined"
+    :type="href ? undefined : 'button'"
+    :role="inMenu ? 'menuitem' : undefined"
+    :tabindex="inMenu ? -1 : undefined"
+    :data-selected="selected ? '' : undefined"
+    :class="[
+      'gd-popover-item',
+      danger ? 'gd-popover-item--danger' : '',
+      selected ? 'gd-popover-item--active' : '',
+    ]"
+    :disabled="href ? undefined : disabled"
     @click="$emit('click', $event)"
   >
     <span v-if="$slots.leading" class="gd-popover-item__leading" aria-hidden="true">
       <slot name="leading" />
     </span>
     <slot />
-  </button>
+  </component>
 </template>
 
 <script setup>
+import { inject } from 'vue'
+
 defineProps({
+  /** Renders an `<a>` instead of a `<button>`; `target`/`rel` fall through. */
+  href: { type: String, default: '' },
   danger: { type: Boolean, default: false },
   disabled: { type: Boolean, default: false },
+  /** Marks the current choice: highlighted, and focused first when the menu opens. */
+  selected: { type: Boolean, default: false },
 })
+
+const inMenu = inject('gdPopoverMenu', false)
 
 defineEmits(['click'])
 </script>
@@ -32,6 +49,7 @@ defineEmits(['click'])
   background: transparent;
   border: none;
   text-align: left;
+  text-decoration: none;
   font-family: var(--font-sans);
   font-size: var(--text-sm);
   color: var(--fg-2);
@@ -45,6 +63,13 @@ defineEmits(['click'])
 .gd-popover-item:hover {
   background: var(--glass-default);
   color: var(--fg-1);
+}
+
+.gd-popover-item:focus-visible {
+  background: var(--glass-default);
+  color: var(--fg-1);
+  outline: 2px solid var(--brand-sky);
+  outline-offset: -2px;
 }
 
 .gd-popover-item--active {

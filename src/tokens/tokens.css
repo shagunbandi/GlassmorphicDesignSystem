@@ -25,6 +25,11 @@
   --glass-default: rgba(255, 255, 255, 0.1);
   --glass-strong: rgba(255, 255, 255, 0.14);
 
+  /* Content cards (place cards, note shells): a touch more opaque in light. */
+  --glass-card-light: rgba(255, 255, 255, 0.07);
+  --glass-card-light-hover: rgba(255, 255, 255, 0.1);
+  --glass-card-light-border: rgba(255, 255, 255, 0.12);
+
   --glass-border: rgba(255, 255, 255, 0.2);
   --glass-border-soft: rgba(255, 255, 255, 0.12);
   --glass-border-hairline: rgba(255, 255, 255, 0.1);
@@ -189,6 +194,10 @@
   --glass-soft: rgba(15, 23, 42, 0.06);
   --glass-default: rgba(255, 255, 255, 0.55);
   --glass-strong: rgba(255, 255, 255, 0.96);
+
+  --glass-card-light: rgba(255, 255, 255, 0.6);
+  --glass-card-light-hover: rgba(255, 255, 255, 0.75);
+  --glass-card-light-border: rgba(15, 23, 42, 0.08);
 
   --glass-border: rgba(15, 23, 42, 0.1);
   --glass-border-soft: rgba(15, 23, 42, 0.06);
