@@ -185,10 +185,15 @@ const isDisabled = computed(() => props.disabled || isLoading.value)
 const disabledAttr = computed(() =>
   isNativeButton.value ? isDisabled.value : undefined,
 )
+// A caller-supplied tabindex (roving focus in Tabs) is kept unless a disabled
+// non-native element has to be taken out of the tab order.
 const tabIndexAttr = computed(() =>
-  !isNativeButton.value && isDisabled.value ? -1 : undefined,
+  !isNativeButton.value && isDisabled.value ? -1 : attrs.tabindex,
 )
-const ariaPressedValue = computed(() => (props.selected ? 'true' : undefined))
+// aria-pressed is not allowed on role="tab"; Tabs uses aria-selected instead.
+const ariaPressedValue = computed(() =>
+  props.selected && attrs.role !== 'tab' ? 'true' : undefined,
+)
 
 const isThenable = (value) => typeof value?.then === 'function'
 

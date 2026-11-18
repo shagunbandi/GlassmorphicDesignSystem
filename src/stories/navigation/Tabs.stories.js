@@ -57,6 +57,30 @@ export const Interactive = {
   }),
 }
 
+/** Focus the active tab, then use ArrowLeft/ArrowRight (wraps), Home and End. */
+export const KeyboardNavigation = {
+  render: () => ({
+    components: { Tabs },
+    setup() {
+      const active = ref('share')
+      return { active }
+    },
+    template: `
+      <div>
+        <Tabs
+          aria-label="Share options"
+          :tabs="[
+            { id: 'share', name: 'Share', icon: 'fas fa-users' },
+            { id: 'pdf', name: 'Export PDF', icon: 'fas fa-file-pdf' },
+          ]"
+          v-model:active="active"
+        />
+        <div style="padding:16px;color:var(--fg-3);font-size:13px">Active tab: {{ active }}</div>
+      </div>
+    `,
+  }),
+}
+
 export const WithCounts = {
   render: () => ({
     components: { Tabs },
