@@ -66,6 +66,20 @@ For form or detail content (inputs, `PopoverRow`, custom blocks) pass `:menu="fa
 
 ---
 
+## Switch
+
+`Switch` is an on/off toggle: a native `<button role="switch">` with `aria-checked`, so Space and Enter work without extra handlers.
+
+```vue
+<Switch v-model="remindersOn" label="Reminders for this trip" />
+```
+
+- `v-model` is a Boolean. `disabled` blocks toggling.
+- Give it an accessible name with `label` (rendered as `aria-label`) or an `aria-labelledby` attribute. In development it warns once on mount when neither is set.
+- The visual size is 38x22; on coarse pointers the hit area grows to 44px without changing it.
+
+---
+
 ## Develop in this repo
 
 ```bash
