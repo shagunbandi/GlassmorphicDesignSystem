@@ -9,7 +9,7 @@
         'gd-bottom-nav__item',
         isActive(item) ? 'gd-bottom-nav__item--active' : '',
       ]"
-      :aria-label="item.label"
+      :aria-current="isActive(item) ? 'page' : undefined"
       :type="item.path ? undefined : 'button'"
       @click="item.path ? undefined : $emit('item-click', item)"
     >
@@ -76,7 +76,7 @@ function isActive(item) {
   gap: 4px;
   width: 72px;
   padding: 12px 8px 10px;
-  color: var(--fg-4);
+  color: var(--fg-3);
   text-decoration: none;
   background: none;
   border: none;
@@ -100,7 +100,7 @@ function isActive(item) {
   line-height: 1;
 }
 .gd-bottom-nav__label {
-  font-size: 10px;
+  font-size: var(--text-xs);
   font-weight: 500;
   letter-spacing: 0.01em;
   line-height: 1;
