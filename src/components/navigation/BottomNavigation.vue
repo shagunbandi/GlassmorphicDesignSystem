@@ -75,7 +75,7 @@ function isActive(item) {
   justify-content: center;
   gap: 4px;
   width: 72px;
-  padding: 12px 8px 10px;
+  padding: 12px 2px 10px;
   color: var(--fg-3);
   text-decoration: none;
   background: none;
@@ -104,6 +104,7 @@ function isActive(item) {
   font-weight: 500;
   letter-spacing: 0.01em;
   line-height: 1;
+  white-space: nowrap;
 }
 
 :root.light .gd-bottom-nav {
