@@ -1,14 +1,24 @@
 <template>
   <div class="gd-tabs">
-    <div class="gd-tabs__scroll">
+    <div
+      class="gd-tabs__scroll"
+      role="tablist"
+      :aria-label="ariaLabel || undefined"
+      @keydown="onKeydown"
+    >
       <Button
-        v-for="tab in tabs"
+        v-for="(tab, index) in tabs"
         :key="tab.id"
+        :ref="(el) => setTabRef(el, index)"
+        role="tab"
         intent="neutral"
         surface="ghost"
         size="sm"
         tone="inverted"
         :selected="active === tab.id"
+        :aria-selected="active === tab.id ? 'true' : 'false'"
+        :aria-label="tab.name"
+        :tabindex="active === tab.id ? 0 : -1"
         type="button"
         @click="$emit('update:active', tab.id)"
       >
@@ -31,13 +41,38 @@
 <script setup>
 import Button from '../primitives/Button.vue'
 
-defineProps({
+const props = defineProps({
   /** Array of { id, name, icon?, count? } */
   tabs: { type: Array, required: true },
   active: { type: String, required: true },
+  /** Accessible name for the tablist */
+  ariaLabel: { type: String, default: '' },
 })
 
-defineEmits(['update:active'])
+const emit = defineEmits(['update:active'])
+
+const tabEls = []
+
+function setTabRef(el, index) {
+  tabEls[index] = el?.$el ?? null
+}
+
+// Arrow keys wrap, Home/End jump; each moves focus and selects the tab.
+function onKeydown(event) {
+  const last = props.tabs.length - 1
+  const current = props.tabs.findIndex((tab) => tab.id === props.active)
+  const targets = {
+    ArrowRight: current >= last ? 0 : current + 1,
+    ArrowLeft: current <= 0 ? last : current - 1,
+    Home: 0,
+    End: last,
+  }
+  const next = targets[event.key]
+  if (next === undefined || last < 0) return
+  event.preventDefault()
+  emit('update:active', props.tabs[next].id)
+  tabEls[next]?.focus()
+}
 </script>
 
 <style scoped>
