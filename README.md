@@ -80,6 +80,20 @@ For form or detail content (inputs, `PopoverRow`, custom blocks) pass `:menu="fa
 
 ---
 
+## Tabs
+
+`Tabs` is a tablist: `role="tablist"` with a `role="tab"` button per tab, `aria-selected` on the active one, and `aria-label` taken from the tab `name` so icon-only tabs (labels are hidden under 480px) stay named.
+
+```vue
+<Tabs :tabs="[{ id: 'share', name: 'Share' }, { id: 'pdf', name: 'Export PDF' }]" v-model:active="tab" />
+```
+
+- Roving focus: only the active tab is in the Tab order. ArrowLeft and ArrowRight move focus and select the previous or next tab, wrapping at the ends; Home and End jump to the first or last tab. Each emits `update:active`.
+- `aria-pressed` is not set on tabs (`Button` skips it for `role="tab"`).
+- Pass `aria-label` to name the tablist when the page has more than one.
+
+---
+
 ## Develop in this repo
 
 ```bash
