@@ -8,7 +8,10 @@
           :tone="toast.tone"
           :title="toast.title"
           :message="toast.message"
+          :action="toast.action"
           @dismiss="dismiss(toast.id)"
+          @pause="pause(toast.id)"
+          @resume="resume(toast.id)"
         />
       </TransitionGroup>
     </div>
@@ -19,7 +22,7 @@
 import Toast from './Toast.vue'
 import { useToast } from '../../composables/useToast.js'
 
-const { toasts, dismiss } = useToast()
+const { toasts, dismiss, pause, resume } = useToast()
 </script>
 
 <style scoped>

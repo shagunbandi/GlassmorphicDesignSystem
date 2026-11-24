@@ -1,10 +1,29 @@
 <template>
-  <div :class="['gd-toast', `gd-toast--${tone}`]" role="status">
+  <div
+    ref="root"
+    :class="['gd-toast', `gd-toast--${tone}`]"
+    role="status"
+    @mouseenter="$emit('pause')"
+    @mouseleave="handleLeave"
+    @focusin="$emit('pause')"
+    @focusout="handleFocusOut"
+  >
     <i :class="[resolvedIcon, 'gd-toast__icon']" aria-hidden="true" />
     <div class="gd-toast__body">
       <p v-if="title" class="gd-toast__title">{{ title }}</p>
       <p v-if="message" class="gd-toast__message">{{ message }}</p>
       <slot />
+      <Button
+        v-if="action"
+        class="gd-toast__action"
+        type="button"
+        size="sm"
+        surface="link"
+        intent="primary"
+        @click="runAction"
+      >
+        {{ action.label }}
+      </Button>
     </div>
     <button
       class="gd-toast__dismiss"
@@ -18,7 +37,8 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import Button from '../primitives/Button.vue'
 
 const props = defineProps({
   tone: {
@@ -29,9 +49,35 @@ const props = defineProps({
   title: { type: String, default: '' },
   message: { type: String, default: '' },
   icon: { type: String, default: '' },
+  // { label, onClick } — onClick may return a promise.
+  action: { type: Object, default: null },
 })
 
-defineEmits(['dismiss'])
+const emit = defineEmits(['dismiss', 'pause', 'resume'])
+
+const root = ref(null)
+let running = false
+
+function handleLeave() {
+  if (!running) emit('resume')
+}
+
+function handleFocusOut(event) {
+  if (running || root.value?.contains(event.relatedTarget)) return
+  emit('resume')
+}
+
+// Returns the promise so Button shows its spinner while the action runs.
+async function runAction() {
+  if (running) return
+  running = true
+  emit('pause')
+  try {
+    await props.action.onClick()
+  } finally {
+    emit('dismiss')
+  }
+}
 
 const DEFAULT_ICONS = {
   error: 'fa-solid fa-exclamation-circle',
@@ -71,6 +117,10 @@ const resolvedIcon = computed(() => props.icon || DEFAULT_ICONS[props.tone])
 .gd-toast__body {
   flex: 1;
   min-width: 0;
+}
+
+.gd-toast__action {
+  margin-top: var(--space-1);
 }
 
 .gd-toast__title {
