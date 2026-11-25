@@ -3,9 +3,9 @@
     ref="root"
     :class="['gd-toast', `gd-toast--${tone}`]"
     role="status"
-    @mouseenter="$emit('pause')"
+    @mouseenter="handleEnter"
     @mouseleave="handleLeave"
-    @focusin="$emit('pause')"
+    @focusin="handleFocusIn"
     @focusout="handleFocusOut"
   >
     <i :class="[resolvedIcon, 'gd-toast__icon']" aria-hidden="true" />
@@ -58,16 +58,37 @@ const emit = defineEmits(['dismiss', 'pause', 'resume'])
 const root = ref(null)
 let running = false
 
+let hovered = false
+let focused = false
+
+function maybeResume() {
+  if (!hovered && !focused && !running) emit('resume')
+}
+
+function handleEnter() {
+  hovered = true
+  emit('pause')
+}
+
 function handleLeave() {
-  if (!running) emit('resume')
+  hovered = false
+  maybeResume()
+}
+
+function handleFocusIn() {
+  focused = true
+  emit('pause')
 }
 
 function handleFocusOut(event) {
-  if (running || root.value?.contains(event.relatedTarget)) return
-  emit('resume')
+  if (root.value?.contains(event.relatedTarget)) return
+  focused = false
+  maybeResume()
 }
 
 // Returns the promise so Button shows its spinner while the action runs.
+// The toast dismisses whether onClick resolves or rejects; a rejection
+// propagates to Vue's error handler, so onClick must report its own errors.
 async function runAction() {
   if (running) return
   running = true
@@ -121,6 +142,14 @@ const resolvedIcon = computed(() => props.icon || DEFAULT_ICONS[props.tone])
 
 .gd-toast__action {
   margin-top: var(--space-1);
+}
+
+@media (pointer: coarse) {
+  .gd-toast__action {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
 }
 
 .gd-toast__title {

@@ -85,6 +85,10 @@ function push(message, { tone = 'info', title = '', duration, action = null } = 
  *
  * An `action.onClick` may return a promise: the button shows a spinner until it
  * settles, then the toast dismisses. Toasts pause their timer on hover/focus.
+ *
+ * The toast dismisses whether `onClick` resolves or rejects, and a rejection
+ * propagates to Vue's error handler. So `onClick` must handle and report its
+ * own errors (e.g. call `toast.error`).
  */
 export function useToast() {
   return {
