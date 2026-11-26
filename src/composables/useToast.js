@@ -12,27 +12,63 @@ const DEFAULT_DURATION = 4500
 // read and act on, unlike a quick success confirmation.
 const ERROR_DURATION = 6000
 
+// A toast with an action needs time to be read and clicked.
+const ACTION_DURATION = 6000
+
+// Per-toast timer state: { handle, remaining, start }. `handle` is null while paused.
+const timers = new Map()
+
 function dismiss(id) {
+  const timer = timers.get(id)
+  if (timer) clearTimeout(timer.handle)
+  timers.delete(id)
   const index = state.toasts.findIndex((t) => t.id === id)
   if (index !== -1) state.toasts.splice(index, 1)
 }
 
 function clear() {
+  timers.forEach((timer) => clearTimeout(timer.handle))
+  timers.clear()
   state.toasts.splice(0)
 }
 
-function push(message, { tone = 'info', title = '', duration } = {}) {
+function startTimer(id, timer) {
+  timer.start = Date.now()
+  timer.handle = setTimeout(() => dismiss(id), timer.remaining)
+}
+
+function pause(id) {
+  const timer = timers.get(id)
+  if (!timer || timer.handle === null) return
+  clearTimeout(timer.handle)
+  timer.handle = null
+  timer.remaining = Math.max(0, timer.remaining - (Date.now() - timer.start))
+}
+
+function resume(id) {
+  const timer = timers.get(id)
+  if (!timer || timer.handle !== null) return
+  startTimer(id, timer)
+}
+
+function push(message, { tone = 'info', title = '', duration, action = null } = {}) {
   // Guard against empty toasts — a blank card is never useful.
   if (!message) return null
 
   const id = ++seq
-  const resolvedDuration =
-    duration ?? (tone === 'error' ? ERROR_DURATION : DEFAULT_DURATION)
+  const defaultDuration = action
+    ? ACTION_DURATION
+    : tone === 'error'
+      ? ERROR_DURATION
+      : DEFAULT_DURATION
+  const resolvedDuration = duration ?? defaultDuration
 
-  state.toasts.push({ id, message, tone, title })
+  state.toasts.push({ id, message, tone, title, action })
 
   if (resolvedDuration > 0) {
-    setTimeout(() => dismiss(id), resolvedDuration)
+    const timer = { handle: null, remaining: resolvedDuration, start: 0 }
+    timers.set(id, timer)
+    startTimer(id, timer)
   }
 
   return id
@@ -45,6 +81,14 @@ function push(message, { tone = 'info', title = '', duration } = {}) {
  *   const toast = useToast()
  *   toast.success('Export ready — downloading now')
  *   toast.error('Failed to update visibility')
+ *   toast.info('Place removed', { action: { label: 'Undo', onClick } })
+ *
+ * An `action.onClick` may return a promise: the button shows a spinner until it
+ * settles, then the toast dismisses. Toasts pause their timer on hover/focus.
+ *
+ * The toast dismisses whether `onClick` resolves or rejects, and a rejection
+ * propagates to Vue's error handler. So `onClick` must handle and report its
+ * own errors (e.g. call `toast.error`).
  */
 export function useToast() {
   return {
@@ -52,6 +96,8 @@ export function useToast() {
     push,
     dismiss,
     clear,
+    pause,
+    resume,
     success: (message, options) => push(message, { ...options, tone: 'success' }),
     error: (message, options) => push(message, { ...options, tone: 'error' }),
     info: (message, options) => push(message, { ...options, tone: 'info' }),

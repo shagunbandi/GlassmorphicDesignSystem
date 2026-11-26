@@ -1,10 +1,29 @@
 <template>
-  <div :class="['gd-toast', `gd-toast--${tone}`]" role="status">
+  <div
+    ref="root"
+    :class="['gd-toast', `gd-toast--${tone}`]"
+    role="status"
+    @mouseenter="handleEnter"
+    @mouseleave="handleLeave"
+    @focusin="handleFocusIn"
+    @focusout="handleFocusOut"
+  >
     <i :class="[resolvedIcon, 'gd-toast__icon']" aria-hidden="true" />
     <div class="gd-toast__body">
       <p v-if="title" class="gd-toast__title">{{ title }}</p>
       <p v-if="message" class="gd-toast__message">{{ message }}</p>
       <slot />
+      <Button
+        v-if="action"
+        class="gd-toast__action"
+        type="button"
+        size="sm"
+        surface="link"
+        intent="primary"
+        @click="runAction"
+      >
+        {{ action.label }}
+      </Button>
     </div>
     <button
       class="gd-toast__dismiss"
@@ -18,7 +37,8 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import Button from '../primitives/Button.vue'
 
 const props = defineProps({
   tone: {
@@ -29,9 +49,56 @@ const props = defineProps({
   title: { type: String, default: '' },
   message: { type: String, default: '' },
   icon: { type: String, default: '' },
+  // { label, onClick } — onClick may return a promise.
+  action: { type: Object, default: null },
 })
 
-defineEmits(['dismiss'])
+const emit = defineEmits(['dismiss', 'pause', 'resume'])
+
+const root = ref(null)
+let running = false
+
+let hovered = false
+let focused = false
+
+function maybeResume() {
+  if (!hovered && !focused && !running) emit('resume')
+}
+
+function handleEnter() {
+  hovered = true
+  emit('pause')
+}
+
+function handleLeave() {
+  hovered = false
+  maybeResume()
+}
+
+function handleFocusIn() {
+  focused = true
+  emit('pause')
+}
+
+function handleFocusOut(event) {
+  if (root.value?.contains(event.relatedTarget)) return
+  focused = false
+  maybeResume()
+}
+
+// Returns the promise so Button shows its spinner while the action runs.
+// The toast dismisses whether onClick resolves or rejects; a rejection
+// propagates to Vue's error handler, so onClick must report its own errors.
+async function runAction() {
+  if (running) return
+  running = true
+  emit('pause')
+  try {
+    await props.action.onClick()
+  } finally {
+    emit('dismiss')
+  }
+}
 
 const DEFAULT_ICONS = {
   error: 'fa-solid fa-exclamation-circle',
@@ -71,6 +138,18 @@ const resolvedIcon = computed(() => props.icon || DEFAULT_ICONS[props.tone])
 .gd-toast__body {
   flex: 1;
   min-width: 0;
+}
+
+.gd-toast__action {
+  margin-top: var(--space-1);
+}
+
+@media (pointer: coarse) {
+  .gd-toast__action {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
 }
 
 .gd-toast__title {

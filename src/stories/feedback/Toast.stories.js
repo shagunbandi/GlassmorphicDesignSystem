@@ -11,6 +11,7 @@ export default {
     title: { control: 'text' },
     message: { control: 'text' },
     icon: { control: 'text' },
+    action: { control: 'object' },
   },
   args: {
     tone: 'success',
@@ -27,6 +28,18 @@ export const Playground = {
       return { args }
     },
     template: '<div style="max-width:360px"><Toast v-bind="args" /></div>',
+  }),
+}
+
+export const WithAction = {
+  render: (args) => ({
+    components: { Toast },
+    setup() {
+      const action = { label: 'Undo', onClick: () => console.log('Undo clicked') }
+      return { args, action }
+    },
+    template:
+      '<div style="max-width:360px"><Toast v-bind="args" tone="info" message="Place removed" :action="action" /></div>',
   }),
 }
 
@@ -50,7 +63,9 @@ export const LiveQueue = {
     components: { ToastHost },
     setup() {
       const toast = useToast()
-      return { toast }
+      const undo = () => console.log('Undo clicked')
+      const slowUndo = () => new Promise((resolve) => setTimeout(resolve, 1500))
+      return { toast, undo, slowUndo }
     },
     template: `
       <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -58,6 +73,8 @@ export const LiveQueue = {
         <button @click="toast.error('Failed to invite user. Please try again.')">Error</button>
         <button @click="toast.info('Your itinerary is syncing.')">Info</button>
         <button @click="toast.warning('You are offline.')">Warning</button>
+        <button @click="toast.info('Place removed', { action: { label: 'Undo', onClick: undo } })">Info with Undo</button>
+        <button @click="toast.info('Place removed', { action: { label: 'Undo', onClick: slowUndo } })">Info with slow Undo</button>
         <ToastHost />
       </div>
     `,
