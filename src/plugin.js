@@ -37,6 +37,7 @@ import Toast from './components/feedback/Toast.vue'
 import ToastHost from './components/feedback/ToastHost.vue'
 // Form
 import CheckList from './components/form/CheckList.vue'
+import CheckboxGroup from './components/form/CheckboxGroup.vue'
 import Switch from './components/form/Switch.vue'
 import MultiSelect from './components/form/MultiSelect.vue'
 import RichTextEditor from './components/form/RichTextEditor.vue'
@@ -86,6 +87,7 @@ const GlassUI = {
     app.component('GdToast', Toast)
     app.component('GdToastHost', ToastHost)
     app.component('GdCheckList', CheckList)
+    app.component('GdCheckboxGroup', CheckboxGroup)
     app.component('GdSwitch', Switch)
     app.component('GdMultiSelect', MultiSelect)
     app.component('GdRichTextEditor', RichTextEditor)

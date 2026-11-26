@@ -80,6 +80,27 @@ For form or detail content (inputs, `PopoverRow`, custom blocks) pass `:menu="fa
 
 ---
 
+## CheckboxGroup
+
+`CheckboxGroup` is a set of native checkboxes in a `<fieldset>`; Space toggles the focused one.
+
+```vue
+<CheckboxGroup
+  v-model="selected"
+  label="Recipients"
+  :items="[
+    { value: 1, label: 'You' },
+    { value: 2, label: 'Sam', disabled: true, hint: 'Not on Telegram' },
+  ]"
+/>
+```
+
+- `v-model` is an array of the checked item values. `items` is `[{ value, label, disabled?, hint? }]`; `disabled` on the component disables the whole group.
+- `hint` renders as a muted tag and is linked with `aria-describedby`, so a checkbox's accessible name is just its `label`.
+- Name the group with `label` (a visible `<legend>`), or an `aria-label` / `aria-labelledby` attribute. In development it warns once on mount when none is set.
+
+---
+
 ## Tabs
 
 `Tabs` is a tablist: `role="tablist"` with a `role="tab"` button per tab, `aria-selected` on the active one, and `aria-label` taken from the tab `name` so icon-only tabs (labels are hidden under 480px) stay named.

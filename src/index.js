@@ -55,6 +55,7 @@ export { useToast } from './composables/useToast.js'
 
 // Form
 export { default as CheckList } from './components/form/CheckList.vue'
+export { default as CheckboxGroup } from './components/form/CheckboxGroup.vue'
 export { default as Switch } from './components/form/Switch.vue'
 export { default as MultiSelect } from './components/form/MultiSelect.vue'
 export { default as RichTextEditor } from './components/form/RichTextEditor.vue'
